@@ -1,6 +1,7 @@
 import { AppNavBar } from '../../components/AppNavBar'
 import { BreadCrumb } from '../../components/BreadCrumb'
 import { DefaultButton } from '../../components/Button/Default'
+import { CustomLink } from '../../components/CustomLink'
 import { BreadCrumbLinkProp } from '../../types'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
@@ -42,7 +43,9 @@ export const AppUserPage = () => {
                     /> */}
                 </ul>
                 <section className="py-10 max-w-2xl w-full">
-                    <DefaultButton>Adicionar Usuário</DefaultButton>
+                    <CustomLink href="/app/users/edit">
+                        <DefaultButton>Adicionar Usuário</DefaultButton>
+                    </CustomLink>
                 </section>
             </section>
         </main>
