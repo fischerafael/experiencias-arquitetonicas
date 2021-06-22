@@ -18,18 +18,12 @@ const breadCrumbLinks: BreadCrumbLinkProp[] = [
 
 export const AppUserPage = () => {
     return (
-        <main className="bg-gray-50 h-screen flex flex-col justify-start">
+        <main className="bg-gray-50 min-h-screen flex flex-col justify-start">
             <AppNavBar activePage="users" />
             <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
                 <ul className="flex flex-col gap-2 max-w-2xl w-full">
                     <ListItemEmpty />
-                    {/* <ListItemUser
-                        name="Rafael Fischer"
-                        profession="Arquiteto"
-                        age="31"
-                        desiredExp="Positiva"
-                    />
                     <ListItemUser
                         name="Rafael Fischer"
                         profession="Arquiteto"
@@ -41,7 +35,13 @@ export const AppUserPage = () => {
                         profession="Arquiteto"
                         age="31"
                         desiredExp="Positiva"
-                    /> */}
+                    />
+                    <ListItemUser
+                        name="Rafael Fischer"
+                        profession="Arquiteto"
+                        age="31"
+                        desiredExp="Positiva"
+                    />
                 </ul>
                 <section className="py-10 max-w-2xl w-full">
                     <CustomLink href="/app/users/edit">
