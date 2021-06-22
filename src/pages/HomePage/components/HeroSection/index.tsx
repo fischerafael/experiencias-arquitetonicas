@@ -12,7 +12,7 @@ export const HeroSection = () => {
                 como os usuários irão experenciar os espaços projetados com o
                 auxílio da inteligência artificial
             </h2>
-            <CustomLink href="/cadastrar">
+            <CustomLink href="/register">
                 <DefaultButton>Criar Projeto</DefaultButton>
             </CustomLink>
         </section>
