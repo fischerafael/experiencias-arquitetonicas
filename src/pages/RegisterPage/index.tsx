@@ -4,7 +4,7 @@ import { BlackLogo } from '../../components/BlackLogo'
 
 export const RegisterPage = () => {
     return (
-        <main className="bg-gray-100 h-screen flex flex-col justify-start items-center">
+        <main className="bg-gray-50 h-screen flex flex-col justify-start items-center">
             <div className="h-20">
                 <BlackLogo href="/" />
             </div>

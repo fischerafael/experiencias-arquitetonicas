@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 export const AppNavBar = () => {
     return (
-        <header className="shadow-sm h-20 flex items-center justify-between px-4 bg-white">
+        <header className="shadow-sm h-20 flex items-center justify-between px-4 bg-white z-10">
             <CustomLink href="/">
                 <img src="/icons/logo-black.svg" alt="" />
             </CustomLink>
