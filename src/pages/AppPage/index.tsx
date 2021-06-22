@@ -12,11 +12,11 @@ const breadCrumbLinks: BreadCrumbLinkProp[] = [
 
 export const AppPage = () => {
     return (
-        <main className="bg-gray-50 h-screen flex flex-col justify-start ">
+        <main className="bg-gray-50 flex flex-col justify-start ">
             <AppNavBar />
-            <section className="p-4 w-full h-full flex flex-col align-middle">
+            <section className="p-4 w-full h-full flex flex-col justify-center items-center">
                 <BreadCrumb links={breadCrumbLinks} />
-                <ul className="grid grid-cols-4 h-full gap-4 items-center">
+                <ul className="grid grid-cols-2 h-full gap-4 items-center max-w-2xl w-full">
                     <CardAppPage
                         index="01"
                         title="Usuários"
