@@ -1,10 +1,10 @@
-import { CustomLink } from '../../components/CustomLink'
+import { CustomLink } from '../../../../components/CustomLink'
 
 interface Props {
     transparent?: boolean
 }
 
-export const NavBar = ({ transparent }: Props) => {
+export const HomeNavBar = ({ transparent }: Props) => {
     return (
         <header
             className={`h-nav flex items-center justify-between px-4 ${

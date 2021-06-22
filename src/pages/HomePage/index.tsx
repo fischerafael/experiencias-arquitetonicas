@@ -1,19 +1,13 @@
-import styled from 'styled-components'
-import { NavBar } from '../../components/NavBar'
+import { LayoutPageHome } from '../../../styles/components/Layout'
+
+import { HomeNavBar } from './components/HomeNavBar'
 import { HeroSection } from './components/HeroSection'
 
 export const HomePage = () => {
     return (
-        <HomePageBackground>
-            <NavBar transparent />
+        <LayoutPageHome>
+            <HomeNavBar transparent />
             <HeroSection />
-        </HomePageBackground>
+        </LayoutPageHome>
     )
 }
-
-const HomePageBackground = styled.main`
-    min-height: 100vh;
-    background: #e0c7c7;
-    background-image: url('/pictures/hero-background.png');
-    object-fit: cover;
-`
