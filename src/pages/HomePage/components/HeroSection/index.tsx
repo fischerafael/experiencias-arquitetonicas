@@ -3,11 +3,11 @@ import { CustomLink } from '../../../../components/CustomLink'
 
 export const HeroSection = () => {
     return (
-        <section className="px-4 h-hero flex gap-6 flex-col items-start justify-center">
-            <h1 className="text-6xl font-bold text-white max-w-lg leading-tight">
+        <section className="px-4 h-hero flex gap-6 flex-col items-center justify-center">
+            <h1 className="text-6xl font-bold text-center text-white max-w-2xl leading-tight">
                 Projete Experiências Arquitetônicas
             </h1>
-            <h2 className="text-white max-w-xl">
+            <h2 className="text-white max-w-xl text-center">
                 O UxArch permite que você preveja, ainda em estágios iniciais,
                 como os usuários irão experenciar os espaços projetados com o
                 auxílio da inteligência artificial
