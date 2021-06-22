@@ -9,7 +9,7 @@ interface Props {
 export const CustomLink = ({ href, children }: Props) => {
     return (
         <Link href={href}>
-            <a>{children}</a>
+            <a className="h-full flex items-center">{children}</a>
         </Link>
     )
 }

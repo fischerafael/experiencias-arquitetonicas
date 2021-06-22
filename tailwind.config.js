@@ -13,7 +13,8 @@ module.exports = {
                 poppins: ['Poppins']
             },
             colors: {
-                primary: '#3485FF'
+                primary: '#3485FF',
+                dark: '#333333'
             },
             height: {
                 nav: '15vh',
