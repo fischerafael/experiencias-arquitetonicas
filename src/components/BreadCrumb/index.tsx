@@ -20,7 +20,7 @@ const BreadCrumbLink = ({ href, label }: BreadCrumbLinkProp) => {
         <CustomLink href={href}>
             <li className="flex flex-row pr-2 rounded items-center justify-center cursor-pointer hover:bg-gray-100">
                 <ArrowRight />
-                <span className="text-sm font-poppins">{label}</span>
+                <span className="text-xs font-poppins">{label}</span>
             </li>
         </CustomLink>
     )

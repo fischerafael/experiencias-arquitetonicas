@@ -25,7 +25,9 @@ export const AppUserNewPage = () => {
             <AppNavBar activePage="users" />
             <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
-                <section></section>
+                <form className="bg-white w-full max-w-2xl p-6 shadow-sm rounded-md mb-6">
+                    <h1>Dados do Usuário</h1>
+                </form>
                 new user
             </AppDashboardLayout>
         </main>
