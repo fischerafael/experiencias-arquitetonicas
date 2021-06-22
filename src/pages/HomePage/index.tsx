@@ -3,7 +3,13 @@ import { NavBar } from '../../components/NavBar'
 
 export const HomePage = () => {
     return (
-        <main className="bg-gray-500 min-h-screen">
+        <main
+            className="bg-gray-500 min-h-screen"
+            style={{
+                backgroundImage: "url('/pictures/hero-background.png')",
+                objectFit: 'cover'
+            }}
+        >
             <NavBar />
         </main>
     )
