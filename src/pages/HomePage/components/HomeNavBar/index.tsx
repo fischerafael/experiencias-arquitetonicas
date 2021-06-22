@@ -16,7 +16,7 @@ export const HomeNavBar = ({ transparent }: Props) => {
             </CustomLink>
 
             <CustomLink href="/login">
-                <span className="font-poppins text-white hover:text-gray-500 transition duration-300">
+                <span className="font-poppins text-white hover:text-primary transition duration-300">
                     Acessar Projeto
                 </span>
             </CustomLink>
