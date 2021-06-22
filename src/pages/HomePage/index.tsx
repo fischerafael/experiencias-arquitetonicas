@@ -3,9 +3,9 @@ import { NavBar } from '../../components/NavBar'
 
 export const HomePage = () => {
     return (
-        <HomePageBackground>
+        <main className="bg-gray-500 min-h-screen">
             <NavBar />
-        </HomePageBackground>
+        </main>
     )
 }
 
