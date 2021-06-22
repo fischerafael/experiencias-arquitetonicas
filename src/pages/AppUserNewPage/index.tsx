@@ -56,18 +56,22 @@ export const AppUserNewPage = () => {
                             <CardOption
                                 experience="Muito Positiva"
                                 feelings={['excitado', 'eufórico', 'feliz']}
+                                checked={true}
                             />
                             <CardOption
                                 experience="Positiva"
                                 feelings={['contente', 'relaxado', 'calmo']}
+                                checked={false}
                             />
                             <CardOption
                                 experience="Negativa"
                                 feelings={['fatigado', 'deprimido', 'triste']}
+                                checked={false}
                             />
                             <CardOption
                                 experience="Muito Negativa"
                                 feelings={['irritado', 'nervoso', 'tenso']}
+                                checked={false}
                             />
                         </section>
                     </div>
@@ -77,17 +81,21 @@ export const AppUserNewPage = () => {
     )
 }
 
-const CardOption = ({
-    experience,
-    feelings
-}: {
+interface PropsCardOptions {
     experience: string
     feelings: string[]
-}) => {
+    checked: boolean
+}
+
+const CardOption = ({ experience, feelings, checked }: PropsCardOptions) => {
     return (
-        <article className="bg-gray-50 border border-gray-100 p-2 rounded-md shadow-sm cursor-pointer hover:shadow-md">
+        <article
+            className={`${
+                checked ? 'bg-primary text-white' : 'bg-gray-50 text-gray-500'
+            } border border-gray-100 p-2 rounded-md shadow-sm cursor-pointer hover:shadow-md`}
+        >
             <header className="h-20 border-b flex flex-col justify-end pb-2">
-                <h3 className="text-tiny font-poppins text-gray-300 font-normal">
+                <h3 className="text-tiny font-poppins  font-normal">
                     Experiência
                 </h3>
                 <h2 className="font-bold font-poppins text-base">
@@ -96,16 +104,30 @@ const CardOption = ({
             </header>
             <footer className="flex flex-wrap py-2 gap-1">
                 {feelings?.map((feeling) => (
-                    <CardOptionHashtag key={feeling} hashtag={feeling} />
+                    <CardOptionHashtag
+                        key={feeling}
+                        checked={checked}
+                        hashtag={feeling}
+                    />
                 ))}
             </footer>
         </article>
     )
 }
 
-const CardOptionHashtag = ({ hashtag }: { hashtag: string }) => {
+const CardOptionHashtag = ({
+    hashtag,
+    checked
+}: {
+    hashtag: string
+    checked: boolean
+}) => {
     return (
-        <span className="text-tiny p-1 font-poppins bg-gray-100 rounded-xl border border-gray-200">
+        <span
+            className={`text-tiny p-1 font-poppins ${
+                checked ? 'bg-blue-400' : 'bg-gray-200'
+            } rounded-xl`}
+        >
             {hashtag}
         </span>
     )
