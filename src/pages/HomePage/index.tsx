@@ -3,9 +3,9 @@ import { NavBar } from '../../components/NavBar'
 
 export const HomePage = () => {
     return (
-        <div className="w-full bg-gray-500">
+        <HomePageBackground>
             <NavBar />
-        </div>
+        </HomePageBackground>
     )
 }
 
