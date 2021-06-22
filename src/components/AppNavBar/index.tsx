@@ -2,7 +2,11 @@ import { CustomLink } from '../CustomLink'
 import { OutlineButton } from '../Button/Outline'
 import { ReactNode } from 'react'
 
-export const AppNavBar = () => {
+interface Props {
+    activePage?: 'users' | 'references' | 'evaluations' | 'projects'
+}
+
+export const AppNavBar = ({ activePage }: Props) => {
     return (
         <header className="shadow-sm h-20 flex items-center justify-between px-4 bg-white z-10">
             <CustomLink href="/app">
@@ -10,12 +14,30 @@ export const AppNavBar = () => {
             </CustomLink>
 
             <div className="h-full flex items-center justify-center px-2">
-                <NavBarLink active href="#">
+                <NavBarLink
+                    active={activePage === 'users' ? true : false}
+                    href="#"
+                >
                     Usuários
                 </NavBarLink>
-                <NavBarLink href="#">Referências</NavBarLink>
-                <NavBarLink href="#">Avaliações</NavBarLink>
-                <NavBarLink href="#">Projetos</NavBarLink>
+                <NavBarLink
+                    active={activePage === 'references' ? true : false}
+                    href="#"
+                >
+                    Referências
+                </NavBarLink>
+                <NavBarLink
+                    active={activePage === 'evaluations' ? true : false}
+                    href="#"
+                >
+                    Avaliações
+                </NavBarLink>
+                <NavBarLink
+                    active={activePage === 'projects' ? true : false}
+                    href="#"
+                >
+                    Projetos
+                </NavBarLink>
             </div>
 
             <CustomLink href="/login">
