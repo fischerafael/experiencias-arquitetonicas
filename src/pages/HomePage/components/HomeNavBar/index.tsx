@@ -7,7 +7,7 @@ interface Props {
 export const HomeNavBar = ({ transparent }: Props) => {
     return (
         <header
-            className={`h-nav flex items-center justify-between px-4 ${
+            className={`h-20 flex items-center justify-between px-4 ${
                 transparent ? 'bg-transparent' : 'bg-white'
             }`}
         >

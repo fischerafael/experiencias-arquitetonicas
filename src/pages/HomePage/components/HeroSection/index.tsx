@@ -3,7 +3,7 @@ import { CustomLink } from '../../../../components/CustomLink'
 
 export const HeroSection = () => {
     return (
-        <section className="px-4 h-hero flex gap-6 flex-col items-center justify-center">
+        <section className="py-20 px-4 h-full flex gap-6 flex-col items-center justify-center">
             <h1 className="text-6xl font-bold text-center text-white max-w-2xl leading-tight">
                 Projete Experiências Arquitetônicas
             </h1>
