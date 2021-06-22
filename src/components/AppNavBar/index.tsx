@@ -59,7 +59,7 @@ const NavBarLink = ({ children, href, active }: PropsNavBarLink) => {
             <span
                 className={`${
                     active ? 'border-primary' : 'border-white'
-                } text-sm border-b-2 hover:text-gray-100 transition duration-500 h-full flex items-center px-4`}
+                } text-sm border-b-2 hover:text-gray-100 transition duration-500 flex items-center px-4 h-20`}
             >
                 {children}
             </span>

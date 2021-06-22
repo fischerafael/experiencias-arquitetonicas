@@ -1,11 +1,25 @@
 import { AppNavBar } from '../../components/AppNavBar'
+import { BreadCrumb } from '../../components/BreadCrumb'
 import { DefaultButton } from '../../components/Button/Default'
+import { BreadCrumbLinkProp } from '../../types'
+
+const breadCrumbLinks: BreadCrumbLinkProp[] = [
+    {
+        label: 'Início',
+        href: '/app'
+    },
+    {
+        label: 'Usuários',
+        href: '/app/users'
+    }
+]
 
 export const AppUserPage = () => {
     return (
         <main className="bg-gray-50 h-screen flex flex-col justify-start ">
             <AppNavBar activePage="users" />
             <section className="p-4 w-full h-full flex flex-col items-center">
+                <BreadCrumb links={breadCrumbLinks} />
                 <ul className="flex flex-col gap-2 max-w-2xl w-full">
                     <ListItemEmpty />
                     {/* <ListItemUser

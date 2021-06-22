@@ -1,11 +1,21 @@
+import { BreadCrumbLinkProp } from '../../types'
 import { AppNavBar } from '../../components/AppNavBar'
 import { CardAppPage } from './components/CardAppPage'
+import { BreadCrumb } from '../../components/BreadCrumb'
+
+const breadCrumbLinks: BreadCrumbLinkProp[] = [
+    {
+        label: 'Início',
+        href: '/app'
+    }
+]
 
 export const AppPage = () => {
     return (
         <main className="bg-gray-50 h-screen flex flex-col justify-start ">
             <AppNavBar />
             <section className="p-4 w-full h-full flex flex-col align-middle">
+                <BreadCrumb links={breadCrumbLinks} />
                 <ul className="grid grid-cols-4 h-full gap-4 items-center">
                     <CardAppPage
                         index="01"
