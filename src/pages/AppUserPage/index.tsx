@@ -7,7 +7,8 @@ export const AppUserPage = () => {
             <AppNavBar activePage="users" />
             <section className="p-4 w-full h-full flex flex-col items-center">
                 <ul className="flex flex-col gap-2 max-w-2xl w-full">
-                    <ListItemUser
+                    <ListItemEmpty />
+                    {/* <ListItemUser
                         name="Rafael Fischer"
                         profession="Arquiteto"
                         age="31"
@@ -24,10 +25,26 @@ export const AppUserPage = () => {
                         profession="Arquiteto"
                         age="31"
                         desiredExp="Positiva"
-                    />
+                    /> */}
                 </ul>
+                <section className="py-10 max-w-2xl w-full">
+                    <DefaultButton>Adicionar Usuário</DefaultButton>
+                </section>
             </section>
         </main>
+    )
+}
+
+const ListItemEmpty = () => {
+    return (
+        <li className="transition duration-500 p-4 py-10 rounded-md border-2 border-dashed border-white flex flex-col justify-center items-center">
+            <h2 className="text-lg font-poppins font-bold">
+                Nenhum usuário cadastrado
+            </h2>
+            <p className="text-xs font-poppins">
+                Adicione um usuário para poder criar seus projetos
+            </p>
+        </li>
     )
 }
 
