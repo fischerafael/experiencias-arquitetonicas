@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import { NavBar } from '../../components/NavBar'
+import { HeroSection } from './components/HeroSection'
 
 export const HomePage = () => {
     return (
         <HomePageBackground>
-            <NavBar />
+            <NavBar transparent />
+            <HeroSection />
         </HomePageBackground>
     )
 }

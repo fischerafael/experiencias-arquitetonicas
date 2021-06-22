@@ -16,7 +16,8 @@ module.exports = {
                 primary: '#3485FF'
             },
             height: {
-                nav: '15vh'
+                nav: '15vh',
+                hero: '85vh'
             }
         }
     },
