@@ -9,7 +9,7 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
 
     return (
         <ul className="flex py-2 flex-row w-full justify-between">
-            <nav className="flex flex-row">
+            <nav className="flex flex-row gap-2">
                 {links?.map((link) => (
                     <BreadCrumbLink
                         key={link.href}
@@ -20,9 +20,9 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
             </nav>
             <li
                 onClick={navigateBack}
-                className="flex flex-row pr-1 rounded items-center justify-center cursor-pointer hover:bg-gray-100"
+                className="flex flex-row items-center justify-center cursor-pointer "
             >
-                <span className="text-tiny text-gray-400 font-poppins">
+                <span className="text-sm text-gray-400 font-poppins">
                     VOLTAR
                 </span>
             </li>
@@ -33,9 +33,9 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
 const BreadCrumbLink = ({ href, label }: BreadCrumbLinkProp) => {
     return (
         <CustomLink href={href}>
-            <li className="flex flex-row pr-1 rounded items-center justify-center cursor-pointer hover:bg-gray-100">
+            <li className="flex flex-row rounded items-center justify-center cursor-pointer gap-2">
                 <ArrowRight />
-                <span className="text-tiny text-gray-400 font-poppins">
+                <span className="text-sm text-gray-400 font-poppins">
                     {label}
                 </span>
             </li>

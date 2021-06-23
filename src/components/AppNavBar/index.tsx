@@ -13,7 +13,7 @@ export const AppNavBar = ({ activePage }: Props) => {
                 <img src="/icons/logo-black.svg" alt="" />
             </CustomLink>
 
-            <div className="h-full flex items-center justify-center px-2">
+            <nav className="hidden laptop:flex h-full items-center justify-center px-2">
                 <NavBarLink
                     active={activePage === 'users' ? true : false}
                     href="/app/users"
@@ -38,11 +38,17 @@ export const AppNavBar = ({ activePage }: Props) => {
                 >
                     Projetos
                 </NavBarLink>
-            </div>
+            </nav>
 
-            <CustomLink href="/login">
-                <OutlineButton>Sair do Projeto</OutlineButton>
-            </CustomLink>
+            <section className="hidden laptop:flex">
+                <CustomLink href="/login">
+                    <OutlineButton>Sair do Projeto</OutlineButton>
+                </CustomLink>
+            </section>
+
+            <section className="flex laptop:hidden">
+                <OutlineButton>Menu</OutlineButton>
+            </section>
         </header>
     )
 }

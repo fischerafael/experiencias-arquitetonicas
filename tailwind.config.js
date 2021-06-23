@@ -26,7 +26,9 @@ module.exports = {
                 small: '0.9rem'
             },
             screens: {
-                tablet: '480px'
+                tablet: '480px',
+                laptop: '720px',
+                computer: '1024px'
             }
         }
     },

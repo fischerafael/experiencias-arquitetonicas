@@ -6,6 +6,7 @@ import { DefaultButton } from '../../components/Button/Default'
 import { CustomLink } from '../../components/CustomLink'
 import { BreadCrumbLinkProp } from '../../types'
 import { EmptyListItem } from '../../components/List/EmptyListItem'
+import { MainButton } from '../../components/Button/Main'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
     {
@@ -24,14 +25,12 @@ export const AppUserPage = () => {
             <AppNavBar activePage="users" />
             <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
-                <section className="w-full text-gray-500 py-4 flex justify-between items-center">
-                    <h1 className="text-xl font-poppins font-bold">Usuários</h1>
-                    <CustomLink href="/app/users/edit">
-                        <button className="font-poppins text-small font-medium hover:text-primary">
-                            Adicionar
-                        </button>
-                    </CustomLink>
+
+                <section className="py-8 w-full flex items-center flex-row justify-between">
+                    <h1 className="text-2xl font-bold">USUÁRIOS</h1>
+                    <MainButton href="/app/users/edit">+ Adicionar</MainButton>
                 </section>
+
                 <AppDashboardlayoutList>
                     {/* <EmptyListItem label="Você ainda não cadastrou nenhum usuário" /> */}
                     <ListItemUser
