@@ -1,11 +1,12 @@
 import { BreadCrumbLinkProp } from '../../types'
+import { AppDashboardLayout } from '../../components/Layout/AppDashboardLayout'
 import { AppNavBar } from '../../components/AppNavBar'
 import { CardAppPage } from './components/CardAppPage'
 import { BreadCrumb } from '../../components/BreadCrumb'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
     {
-        label: 'Início',
+        label: 'INÍCIO',
         href: '/app'
     }
 ]
@@ -14,7 +15,7 @@ export const AppPage = () => {
     return (
         <main className="bg-gray-50 flex flex-col justify-start ">
             <AppNavBar />
-            <section className="p-4 w-full h-full flex flex-col justify-center items-center">
+            <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
                 <ul className="grid grid-cols-2 h-full gap-4 items-center max-w-2xl w-full">
                     <CardAppPage
@@ -42,7 +43,10 @@ export const AppPage = () => {
                         href="/app/projects"
                     />
                 </ul>
-            </section>
+            </AppDashboardLayout>
+            {/* <section className="p-4 w-full h-full flex flex-col justify-center items-center"> */}
+
+            {/* </section> */}
         </main>
     )
 }

@@ -9,15 +9,15 @@ import { DefaultButton } from '../../components/Button/Default'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
     {
-        label: 'Início',
+        label: 'INÍCIO',
         href: '/app'
     },
     {
-        label: 'Usuários',
+        label: 'USUÁRIOS',
         href: '/app/users'
     },
     {
-        label: 'Novo Usuário',
+        label: 'NOVO',
         href: '/app/edit'
     }
 ]

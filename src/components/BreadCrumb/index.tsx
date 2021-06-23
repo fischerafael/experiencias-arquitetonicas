@@ -1,16 +1,31 @@
+import Router from 'next/router'
 import { BreadCrumbLinkProp, BreadCrumbProps } from '../../types'
 import { CustomLink } from '../CustomLink'
 
 export const BreadCrumb = ({ links }: BreadCrumbProps) => {
+    const navigateBack = () => {
+        Router.back()
+    }
+
     return (
-        <ul className="py-4 flex flex-row w-full max-w-2xl">
-            {links?.map((link) => (
-                <BreadCrumbLink
-                    key={link.href}
-                    href={link.href}
-                    label={link.label}
-                />
-            ))}
+        <ul className="flex py-2 flex-row w-full justify-between">
+            <nav className="flex flex-row">
+                {links?.map((link) => (
+                    <BreadCrumbLink
+                        key={link.href}
+                        href={link.href}
+                        label={link.label}
+                    />
+                ))}
+            </nav>
+            <li
+                onClick={navigateBack}
+                className="flex flex-row pr-1 rounded items-center justify-center cursor-pointer hover:bg-gray-100"
+            >
+                <span className="text-tiny text-gray-400 font-poppins">
+                    VOLTAR
+                </span>
+            </li>
         </ul>
     )
 }
@@ -18,9 +33,9 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
 const BreadCrumbLink = ({ href, label }: BreadCrumbLinkProp) => {
     return (
         <CustomLink href={href}>
-            <li className="flex flex-row pr-2 rounded items-center justify-center cursor-pointer hover:bg-gray-100">
+            <li className="flex flex-row pr-1 rounded items-center justify-center cursor-pointer hover:bg-gray-100">
                 <ArrowRight />
-                <span className="text-xs text-gray-400 font-poppins">
+                <span className="text-tiny text-gray-400 font-poppins">
                     {label}
                 </span>
             </li>

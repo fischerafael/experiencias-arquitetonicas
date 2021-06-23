@@ -5,14 +5,15 @@ import { AppDashboardlayoutList } from '../../components/Layout/AppDashboardLayo
 import { DefaultButton } from '../../components/Button/Default'
 import { CustomLink } from '../../components/CustomLink'
 import { BreadCrumbLinkProp } from '../../types'
+import { EmptyListItem } from '../../components/List/EmptyListItem'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
     {
-        label: 'Início',
+        label: 'INÍCIO',
         href: '/app'
     },
     {
-        label: 'Usuários',
+        label: 'USUÁRIOS',
         href: '/app/users'
     }
 ]
@@ -23,8 +24,16 @@ export const AppUserPage = () => {
             <AppNavBar activePage="users" />
             <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
+                <section className="w-full text-gray-500 py-4 flex justify-between items-center">
+                    <h1 className="text-xl font-poppins font-bold">Usuários</h1>
+                    <CustomLink href="/app/users/edit">
+                        <button className="font-poppins text-small font-medium hover:text-primary">
+                            Adicionar
+                        </button>
+                    </CustomLink>
+                </section>
                 <AppDashboardlayoutList>
-                    <ListItemEmpty />
+                    {/* <EmptyListItem label="Você ainda não cadastrou nenhum usuário" /> */}
                     <ListItemUser
                         name="Rafael Fischer"
                         profession="Arquiteto"
@@ -44,33 +53,14 @@ export const AppUserPage = () => {
                         desiredExp="Positiva"
                     />
                 </AppDashboardlayoutList>
-
-                <section className="py-10 max-w-2xl w-full">
-                    <CustomLink href="/app/users/edit">
-                        <DefaultButton>Novo Usuário</DefaultButton>
-                    </CustomLink>
-                </section>
             </AppDashboardLayout>
         </main>
     )
 }
 
-const ListItemEmpty = () => {
-    return (
-        <li className="transition duration-500 p-4 py-10 rounded-md border-2 border-dashed border-white flex flex-col justify-center items-center">
-            <h2 className="text-lg font-poppins font-bold">
-                Nenhum usuário cadastrado
-            </h2>
-            <p className="text-xs font-poppins">
-                Adicione um usuário para poder criar seus projetos
-            </p>
-        </li>
-    )
-}
-
 const ListItemUser = ({ name, profession, age, desiredExp }) => {
     return (
-        <li className="border border-gray-100 hover:shadow-lg transition duration-500 bg-white p-4 grid grid-cols-6 items-start cursor-pointer shadow-sm rounded-md">
+        <li className="border border-gray-100 hover:shadow-lg transition duration-500 bg-white p-4 grid grid-cols-6 items-start cursor-default shadow-sm rounded-md">
             <section className="col-span-1 flex items-center h-full">
                 <UserIcon />
             </section>

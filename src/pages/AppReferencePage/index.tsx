@@ -8,11 +8,11 @@ import { BreadCrumbLinkProp, IProject } from '../../types'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
     {
-        label: 'Início',
+        label: 'INÍCIO',
         href: '/app'
     },
     {
-        label: 'Referências',
+        label: 'REFERÊNCIAS',
         href: '/app/references'
     }
 ]
@@ -49,8 +49,18 @@ export const AppReferencePage = () => {
             <AppNavBar activePage="references" />
             <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
+
+                <section className="w-full text-gray-500 py-4 pt-10 flex justify-between items-center">
+                    <h1 className="text-xl font-poppins font-bold">
+                        Referências
+                    </h1>
+                    <button className="font-poppins text-small font-medium hover:text-primary">
+                        Adicionar
+                    </button>
+                </section>
+
                 <AppDashboardlayoutList>
-                    <EmptyListItem label="Você ainda não cadastrou nenhuma referência" />
+                    {/* <EmptyListItem label="Você ainda não cadastrou nenhuma referência" /> */}
                     <AppReferenceListItem project={rua24} />
                 </AppDashboardlayoutList>
             </AppDashboardLayout>
