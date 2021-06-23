@@ -68,26 +68,28 @@ const ListItemEmpty = () => {
 
 const ListItemUser = ({ name, profession, age, desiredExp }) => {
     return (
-        <li className="hover:shadow-md transition duration-500 bg-white p-4 grid grid-cols-6 items-start cursor-pointer shadow-sm rounded-md">
-            <section className="col-span-1 flex justify-center items-center h-full">
+        <li className="border border-gray-100 hover:shadow-lg transition duration-500 bg-white p-4 grid grid-cols-6 items-start cursor-pointer shadow-sm rounded-md">
+            <section className="col-span-1 flex items-center h-full">
                 <UserIcon />
             </section>
 
             <section className="col-span-2 flex flex-col ">
-                <span className="text-xs text-primary tracking-wider font-poppins">
+                <span className="text-tiny font-poppins font-normal">
                     USUÁRIO
                 </span>
-                <h1 className="text-xl font-poppins font-bold">{name}</h1>
-                <h2 className="text-xs font-poppins">
+                <h1 className="text-lg font-poppins font-bold">{name}</h1>
+                <h2 className="text-supersmall text-gray-400 font-poppins">
                     {profession}, {age} anos
                 </h2>
             </section>
 
-            <section className="w-full col-span-2 flex flex-col">
-                <span className="text-xs text-primary tracking-wider font-poppins">
+            <section className="w-full col-span-2 flex flex-col h-full">
+                <span className="text-tiny font-poppins font-normal">
                     EXPERIÊNCIA DESEJADA
                 </span>
-                <p className="text-xl font-bold font-poppins">{desiredExp}</p>
+                <p className="text-md font-bold text-gray-300 font-poppins">
+                    {desiredExp}
+                </p>
             </section>
 
             <section className="flex h-full items-center justify-center">

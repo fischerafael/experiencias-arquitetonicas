@@ -5,6 +5,7 @@ import { BreadCrumb } from '../../components/BreadCrumb'
 import { AppDashboardLayout } from '../../components/Layout/AppDashboardLayout'
 import { LayoutForm } from '../../components/Form/LayoutForm'
 import { InputText } from '../../components/InputText'
+import { DefaultButton } from '../../components/Button/Default'
 
 const breadCrumbLinks: BreadCrumbLinkProp[] = [
     {
@@ -74,6 +75,10 @@ export const AppUserNewPage = () => {
                                 checked={false}
                             />
                         </section>
+
+                        <section className="flex pt-6">
+                            <DefaultButton>Criar Usuário</DefaultButton>
+                        </section>
                     </div>
                 </LayoutForm>
             </AppDashboardLayout>
@@ -92,7 +97,7 @@ const CardOption = ({ experience, feelings, checked }: PropsCardOptions) => {
         <article
             className={`${
                 checked ? 'bg-primary text-white' : 'bg-gray-50 text-gray-500'
-            } border border-gray-100 p-2 rounded-md shadow-sm cursor-pointer hover:shadow-md`}
+            } border border-gray-100 p-2 rounded-md shadow-sm cursor-pointer hover:shadow-lg`}
         >
             <header className="h-20 border-b flex flex-col justify-end pb-2">
                 <h3 className="text-tiny font-poppins  font-normal">

@@ -21,7 +21,9 @@ module.exports = {
                 hero: '85vh'
             },
             fontSize: {
-                tiny: '0.6rem'
+                tiny: '0.6rem',
+                supersmall: '0.75rem',
+                small: '0.9rem'
             }
         }
     },

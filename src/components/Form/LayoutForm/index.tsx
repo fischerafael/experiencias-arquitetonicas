@@ -6,7 +6,7 @@ interface Props {
 
 export const LayoutForm = ({ children }: Props) => {
     return (
-        <form className="bg-white w-full max-w-2xl shadow-sm rounded-md mb-6">
+        <form className="bg-white w-full max-w-2xl shadow-sm rounded-md mb-6 border border-gray-100">
             {children}
         </form>
     )
