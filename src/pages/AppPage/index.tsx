@@ -2,45 +2,33 @@ import { BreadCrumbLinkProp } from '../../types'
 import { AppDashboardLayout } from '../../components/Layout/AppDashboardLayout'
 import { AppNavBar } from '../../components/AppNavBar'
 import { CardAppPage } from './components/CardAppPage'
-import { BreadCrumb } from '../../components/BreadCrumb'
-
-const breadCrumbLinks: BreadCrumbLinkProp[] = [
-    {
-        label: 'INÍCIO',
-        href: '/app'
-    }
-]
+import { AppDashboardCard } from '../../components/Card/AppDashboardCard'
 
 export const AppPage = () => {
     return (
-        <main className="bg-gray-50 flex flex-col justify-start ">
+        <main className="bg-gray-100 flex flex-col justify-start ">
             <AppNavBar />
             <AppDashboardLayout>
-                <BreadCrumb links={breadCrumbLinks} />
-                <ul className="grid grid-cols-2 h-full gap-4 items-center max-w-2xl w-full">
-                    <CardAppPage
+                <ul className="grid grid-cols-4 py-4 gap-6 font-poppins text-gray-600">
+                    <AppDashboardCard
                         index="01"
-                        title="Usuários"
-                        description="Cadastre os usuários de seu projeto"
-                        href="/app/users"
+                        title="USUÁRIOS"
+                        description="Cadastre os usuários de seu projeto para começar"
                     />
-                    <CardAppPage
+                    <AppDashboardCard
                         index="02"
-                        title="Referências"
-                        description="Cadastre referências de projeto"
-                        href="/app/references"
+                        title="REFERÊNCIAS"
+                        description="Cadastre referências de projeto parecidas com o que você vai projetar"
                     />
-                    <CardAppPage
+                    <AppDashboardCard
                         index="03"
-                        title="Avaliações"
-                        description="Avalie as referências junto ao usuário"
-                        href="/app/evaluations"
+                        title="AVALIAÇÕES"
+                        description="Peça para os usuários avaliarem as referências de projeto cadastradas"
                     />
-                    <CardAppPage
+                    <AppDashboardCard
                         index="04"
-                        title="Projetos"
-                        description="Preveja as experiências arquitetônicas de seus projetos"
-                        href="/app/projects"
+                        title="PROJETO"
+                        description="Cadastre suas alternativas de projeto e descubra como os usuários irão experenciá-las"
                     />
                 </ul>
             </AppDashboardLayout>
