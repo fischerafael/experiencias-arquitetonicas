@@ -24,6 +24,9 @@ module.exports = {
                 tiny: '0.6rem',
                 supersmall: '0.75rem',
                 small: '0.9rem'
+            },
+            screens: {
+                tablet: '480px'
             }
         }
     },
