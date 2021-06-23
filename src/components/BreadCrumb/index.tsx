@@ -20,7 +20,9 @@ const BreadCrumbLink = ({ href, label }: BreadCrumbLinkProp) => {
         <CustomLink href={href}>
             <li className="flex flex-row pr-2 rounded items-center justify-center cursor-pointer hover:bg-gray-100">
                 <ArrowRight />
-                <span className="text-xs font-poppins">{label}</span>
+                <span className="text-xs text-gray-400 font-poppins">
+                    {label}
+                </span>
             </li>
         </CustomLink>
     )
@@ -30,7 +32,7 @@ const ArrowRight = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 text-primary"
+            className="h-3 w-3 text-primary"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

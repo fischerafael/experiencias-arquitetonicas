@@ -16,25 +16,25 @@ export const AppNavBar = ({ activePage }: Props) => {
             <div className="h-full flex items-center justify-center px-2">
                 <NavBarLink
                     active={activePage === 'users' ? true : false}
-                    href="#"
+                    href="/app/users"
                 >
                     Usuários
                 </NavBarLink>
                 <NavBarLink
                     active={activePage === 'references' ? true : false}
-                    href="#"
+                    href="/app/references"
                 >
                     Referências
                 </NavBarLink>
                 <NavBarLink
                     active={activePage === 'evaluations' ? true : false}
-                    href="#"
+                    href="/app/evaluations"
                 >
                     Avaliações
                 </NavBarLink>
                 <NavBarLink
                     active={activePage === 'projects' ? true : false}
-                    href="#"
+                    href="/app/projects"
                 >
                     Projetos
                 </NavBarLink>

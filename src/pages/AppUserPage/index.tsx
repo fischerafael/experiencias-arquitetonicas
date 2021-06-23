@@ -1,6 +1,7 @@
-import { AppDashboardLayout } from '../../components/Layout/AppDashboardLayout'
 import { AppNavBar } from '../../components/AppNavBar'
 import { BreadCrumb } from '../../components/BreadCrumb'
+import { AppDashboardLayout } from '../../components/Layout/AppDashboardLayout'
+import { AppDashboardlayoutList } from '../../components/Layout/AppDashboardLayoutList'
 import { DefaultButton } from '../../components/Button/Default'
 import { CustomLink } from '../../components/CustomLink'
 import { BreadCrumbLinkProp } from '../../types'
@@ -22,7 +23,7 @@ export const AppUserPage = () => {
             <AppNavBar activePage="users" />
             <AppDashboardLayout>
                 <BreadCrumb links={breadCrumbLinks} />
-                <ul className="flex flex-col gap-2 max-w-2xl w-full">
+                <AppDashboardlayoutList>
                     <ListItemEmpty />
                     <ListItemUser
                         name="Rafael Fischer"
@@ -42,7 +43,8 @@ export const AppUserPage = () => {
                         age="31"
                         desiredExp="Positiva"
                     />
-                </ul>
+                </AppDashboardlayoutList>
+
                 <section className="py-10 max-w-2xl w-full">
                     <CustomLink href="/app/users/edit">
                         <DefaultButton>Novo Usuário</DefaultButton>
