@@ -18,7 +18,8 @@ module.exports = {
             },
             height: {
                 nav: '15vh',
-                hero: '85vh'
+                hero: '85vh',
+                dashboard: '85vh'
             },
             fontSize: {
                 tiny: '0.6rem',

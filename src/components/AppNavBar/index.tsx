@@ -1,6 +1,7 @@
 import { CustomLink } from '../CustomLink'
 import { OutlineButton } from '../Button/Outline'
 import { ReactNode } from 'react'
+import { LogoutIcon, MenuAlt3Icon } from '@heroicons/react/outline'
 
 interface Props {
     activePage?: 'users' | 'references' | 'evaluations' | 'projects'
@@ -8,7 +9,7 @@ interface Props {
 
 export const AppNavBar = ({ activePage }: Props) => {
     return (
-        <header className="shadow-sm h-20 flex items-center justify-between px-4 bg-white z-10">
+        <header className="shadow h-nav flex items-center justify-between px-4 bg-white z-10">
             <CustomLink href="/app">
                 <img src="/icons/logo-black.svg" alt="" />
             </CustomLink>
@@ -42,12 +43,12 @@ export const AppNavBar = ({ activePage }: Props) => {
 
             <section className="hidden laptop:flex">
                 <CustomLink href="/login">
-                    <OutlineButton>Sair do Projeto</OutlineButton>
+                    <LogoutIcon className="w-8 h-8 text-blue-500 hover:text-gray-600" />
                 </CustomLink>
             </section>
 
             <section className="flex laptop:hidden">
-                <OutlineButton>Menu</OutlineButton>
+                <MenuAlt3Icon className="w-8 h-8 text-blue-500 hover:text-gray-600 cursor-pointer" />
             </section>
         </header>
     )
@@ -65,7 +66,7 @@ const NavBarLink = ({ children, href, active }: PropsNavBarLink) => {
             <span
                 className={`${
                     active ? 'border-primary' : 'border-white'
-                } text-sm border-b-2 hover:text-gray-100 transition duration-500 flex items-center px-4 h-20`}
+                } text-sm border-b-2 hover:text-gray-100 transition duration-500 flex items-center px-4 h-nav`}
             >
                 {children}
             </span>

@@ -1,23 +1,10 @@
+import { IProject } from '../../types'
+
 import { AppNavBar } from '../../components/AppNavBar'
 import { AppDashboardLayout } from '../../components/Layout/AppDashboardLayout'
 import { AppDashboardlayoutList } from '../../components/Layout/AppDashboardLayoutList'
 import { ProjectListItem } from '../../components/List/ProjectListItem'
-import { BreadCrumb } from '../../components/BreadCrumb'
-import { MainButton } from '../../components/Button/Main'
 import { EmptyListItem } from '../../components/List/EmptyListItem'
-
-import { BreadCrumbLinkProp, IProject } from '../../types'
-
-const breadCrumbLinks: BreadCrumbLinkProp[] = [
-    {
-        label: 'INÍCIO',
-        href: '/app'
-    },
-    {
-        label: 'REFERÊNCIAS',
-        href: '/app/references'
-    }
-]
 
 const p1: IProject = {
     thumbnail:
@@ -78,14 +65,11 @@ const p2: IProject = {
 
 export const AppReferencePage = () => {
     return (
-        <main className="bg-gray-50 min-h-screen flex flex-col justify-start">
+        <main className="bg-gray-50  text-gray-600 flex flex-col justify-start">
             <AppNavBar activePage="references" />
-            <AppDashboardLayout>
-                <BreadCrumb links={breadCrumbLinks} />
-
-                <section className="py-8 w-full flex items-center flex-row justify-between">
-                    <h1 className="text-2xl font-bold">REFERÊNCIAS</h1>
-                    <MainButton href="/app/users/edit">+ Adicionar</MainButton>
+            <main className="px-4 py-2 overflow-hidden h-dashboard overflow-y-scroll flex flex-col items-center">
+                <section className="py-8 max-w-screen-lg w-full flex flex-row justify-between">
+                    <h1 className="text-2xl font-bold">Referências</h1>
                 </section>
 
                 <AppDashboardlayoutList>
@@ -95,7 +79,7 @@ export const AppReferencePage = () => {
                     </ul>
                     {/* <EmptyListItem label="Você ainda não cadastrou nenhuma referência" /> */}
                 </AppDashboardlayoutList>
-            </AppDashboardLayout>
+            </main>
         </main>
     )
 }

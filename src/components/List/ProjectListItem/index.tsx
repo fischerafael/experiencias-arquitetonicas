@@ -1,9 +1,11 @@
 import { IProject } from '../../../types'
+import { XCircleIcon } from '@heroicons/react/outline'
+import { HashtagList } from '../../List/HashTagList'
 
 export const ProjectListItem = ({ project }: { project: IProject }) => {
     return (
         <li className="relative grid grid-cols-5 font-poppins text-gray-600 bg-white w-full overflow-hidden border border-gray-200 rounded-md shadow-sm hover:shadow-lg cursor-default">
-            <section className="col-span-1 w-full">
+            <section className=" col-span-1 w-full">
                 <img
                     src={project.thumbnail}
                     alt=""
@@ -11,8 +13,8 @@ export const ProjectListItem = ({ project }: { project: IProject }) => {
                 />
             </section>
 
-            <section className="col-span-2 grid grid-cols-2 gap-2 p-8">
-                <section className="col-span-1 py-4 flex flex-col">
+            <section className="col-span-4 p-8 gap-4 grid grid-cols-4 w-full">
+                <section className="col-span-1 flex flex-col">
                     <span className="text-xs pb-4 text-gray-300">
                         REFERÊNCIA
                     </span>
@@ -20,7 +22,7 @@ export const ProjectListItem = ({ project }: { project: IProject }) => {
                     <p className="text-xs">Curitiba, Paraná</p>
                 </section>
 
-                <section className="col-span-1 py-4 flex flex-col">
+                <section className="col-span-1 flex flex-col">
                     <span className="text-xs pb-4 text-gray-300">
                         CARACTERÍSTICAS
                     </span>
@@ -30,10 +32,8 @@ export const ProjectListItem = ({ project }: { project: IProject }) => {
                         ))}
                     </ul>
                 </section>
-            </section>
 
-            <section className="col-span-2 grid p-8 grid-cols-2 gap-2">
-                <section className="col-span-1 py-4 flex flex-col">
+                <section className="col-span-1 flex flex-col">
                     <span className="text-xs pb-4 text-gray-300 text-center">
                         EXPERIÊNCIA REAL
                     </span>
@@ -50,7 +50,7 @@ export const ProjectListItem = ({ project }: { project: IProject }) => {
                     </section>
                 </section>
 
-                <section className="col-span-1 py-4 flex flex-col">
+                <section className="col-span-1 flex flex-col">
                     <span className="text-xs pb-4 text-gray-300 text-center">
                         EXPERIÊNCIA PREVISTA
                     </span>
@@ -67,14 +67,8 @@ export const ProjectListItem = ({ project }: { project: IProject }) => {
                     </section>
                 </section>
             </section>
-        </li>
-    )
-}
 
-const HashtagList = ({ feature }: { feature: string }) => {
-    return (
-        <li className="flex items-center border border-gray-200 text-tiny bg-gray-50 h-6 px-2 rounded-xl">
-            {feature}
+            <XCircleIcon className="absolute right-2 bottom-2 w-8 h-8 text-red-600 hover:text-gray-600 cursor-pointer" />
         </li>
     )
 }
