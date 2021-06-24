@@ -22,7 +22,7 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
                 onClick={navigateBack}
                 className="flex flex-row items-center justify-center cursor-pointer "
             >
-                <span className="text-sm text-gray-400 font-poppins">
+                <span className="text-sm font-medium text-gray-400 font-poppins">
                     VOLTAR
                 </span>
             </li>
@@ -35,7 +35,7 @@ const BreadCrumbLink = ({ href, label }: BreadCrumbLinkProp) => {
         <CustomLink href={href}>
             <li className="flex flex-row rounded items-center justify-center cursor-pointer gap-2">
                 <ArrowRight />
-                <span className="text-sm text-gray-400 font-poppins">
+                <span className="text-sm font-medium text-gray-400 font-poppins">
                     {label}
                 </span>
             </li>

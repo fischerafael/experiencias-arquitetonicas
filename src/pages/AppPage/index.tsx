@@ -21,7 +21,7 @@ export const AppPage = () => {
                         description="Cadastre os usuários de seu projeto para começar"
                     />
                     <AppDashboardCard
-                        href="/app/users"
+                        href="/app/references"
                         index="02"
                         title="REFERÊNCIAS"
                         description="Cadastre referências de projeto parecidas com o que você vai projetar"
