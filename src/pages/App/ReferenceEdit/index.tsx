@@ -1,6 +1,56 @@
+import { useState } from 'react'
 import tw from 'tailwind-styled-components'
 
+const options = {
+    height: [
+        {
+            type: 'height',
+            text: 'P',
+            description: 'até 3 m',
+            value: 0,
+            isActive: false
+        },
+        {
+            type: 'height',
+            text: 'M',
+            description: 'de 3m a 6m',
+            value: 0.33,
+            isActive: false
+        },
+        {
+            type: 'height',
+            text: 'G',
+            description: 'de 6m a 24m',
+            value: 0.66,
+            isActive: false
+        },
+        {
+            type: 'height',
+            text: 'GG',
+            description: 'mais de 24m',
+            value: 1,
+            isActive: false
+        }
+    ]
+}
+
 export const ReferenceEdit = () => {
+    const [form, setForm] = useState({
+        height: {
+            value: 0.5
+        }
+    })
+
+    const handleOptionChange = (key: string, value: number) => {
+        setForm({ ...form, [key]: value })
+    }
+
+    // () =>
+    //                                     setForm({ ...form, height: 1 })
+    //                                 }
+
+    console.log('FORM DATA', form)
+
     return (
         <section className="relative bg-gray-50 text-gray-700 h-screen w-full flex flex-col items-center font-poppins text-xs">
             <header className="h-nav bg-white max-w-sm w-full px-6 flex flex-col items-center">
@@ -54,25 +104,33 @@ export const ReferenceEdit = () => {
                             Características
                         </Legend>
 
-                        <section className="flex flex-col gap-2">
-                            <span className="text-xm font-medium">Altura</span>
-                            <ul className="grid grid-cols-4 gap-4">
-                                <Option text="P" description="até 3m" />
-                                <Option text="M" description="de 3m a 6m" />
-                                <Option text="G" description="de 6m a 24m" />
-                                <Option text="GG" description="mais de 24m" />
-                            </ul>
-                        </section>
+                        <FormSection>
+                            <FormSectionTitle>Altura</FormSectionTitle>
+                            <FormGridOptions>
+                                {options.height.map((option) => (
+                                    <Option
+                                        onClick={() =>
+                                            handleOptionChange(
+                                                option.type,
+                                                option.value
+                                            )
+                                        }
+                                        text={option.text}
+                                        description={option.description}
+                                    />
+                                ))}
+                            </FormGridOptions>
+                        </FormSection>
 
-                        <section className="flex flex-col gap-2">
-                            <span className="text-xm font-medium">Altura</span>
-                            <ul className="grid grid-cols-4 gap-4">
+                        <FormSection>
+                            <FormSectionTitle>Tamanho</FormSectionTitle>
+                            <FormGridOptions>
                                 <Option text="PP" description="sem altura" />
                                 <Option text="P" description="até 3m" />
                                 <Option text="M" description="de 3m a 6m" />
                                 <Option text="G" description="de 6m a 24m" />
-                            </ul>
-                        </section>
+                            </FormGridOptions>
+                        </FormSection>
                     </FieldSet>
                     <hr />
                 </Form>
@@ -129,11 +187,15 @@ const BreadCrumbLink = ({ text, isFirst, isActive }: BreadCrumbLinkProps) => {
 interface OptionProps {
     text: string
     description: string
+    onClick?: (e: any) => void
 }
 
-const Option = ({ text, description }: OptionProps) => {
+const Option = ({ text, description, onClick }: OptionProps) => {
     return (
-        <li className="group hover:border-blue-500 hover:shadow-lg bg-gray-50 border p-2 cursor-pointer border-gray-200 rounded flex flex-col items-center">
+        <li
+            onClick={onClick}
+            className="group hover:border-blue-500 hover:shadow-lg bg-gray-50 border p-2 cursor-pointer border-gray-200 rounded flex flex-col items-center"
+        >
             <p className="text-2xl text-center font-medium text-gray-400 group-hover:text-blue-500">
                 {text}
             </p>
@@ -145,7 +207,8 @@ const Option = ({ text, description }: OptionProps) => {
 }
 
 const Form = tw.form`flex flex-col gap-4`
-
 const FieldSet = tw.fieldset`flex flex-col gap-4`
-
 const Legend = tw.legend`font-bold pb-4 text-base`
+const FormSection = tw.section`flex flex-col gap-2`
+const FormSectionTitle = tw.h2`text-xm font-medium`
+const FormGridOptions = tw.ul`grid grid-cols-4 gap-4`
