@@ -19,7 +19,10 @@ module.exports = {
             height: {
                 nav: '15vh',
                 hero: '85vh',
-                dashboard: '85vh'
+                dashboard: '85vh',
+                main: '70vh',
+                header: '10vh',
+                footer: '10vh'
             },
             fontSize: {
                 tiny: '0.6rem',
