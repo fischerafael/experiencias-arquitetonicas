@@ -1,6 +1,8 @@
+import tw from 'tailwind-styled-components'
+
 export const ReferenceEdit = () => {
     return (
-        <main className="relative bg-gray-50 text-gray-700 h-screen w-full flex flex-col items-center font-poppins text-xs">
+        <section className="relative bg-gray-50 text-gray-700 h-screen w-full flex flex-col items-center font-poppins text-xs">
             <header className="h-nav bg-white max-w-sm w-full px-6 flex flex-col items-center">
                 <section className="h-2/3 flex w-full items-center justify-center">
                     <img src="/icons/logo-black.svg" alt="" className="h-5" />
@@ -18,7 +20,7 @@ export const ReferenceEdit = () => {
             </header>
 
             <main className="bg-white px-6 overflow-y-scroll max-w-sm w-full h-main flex flex-col gap-4">
-                <section className="">
+                <section className="relative">
                     <img
                         src="https://images.adsttc.com/media/images/5e57/e3a1/6ee6/7e67/1c00/0032/newsletter/washington-oliveira-wG0fPnkpms0-unsplash.jpg?1582818201"
                         alt=""
@@ -26,9 +28,9 @@ export const ReferenceEdit = () => {
                     />
                 </section>
 
-                <form className="flex flex-col gap-4">
-                    <fieldset className="flex flex-col gap-4">
-                        {/* <legend>Dados Gerais</legend> */}
+                <Form>
+                    <FieldSet>
+                        <Legend>Dados Gerais</Legend>
 
                         <CustomInput
                             type="text"
@@ -45,21 +47,23 @@ export const ReferenceEdit = () => {
                             label="Localização"
                             placeholder="ex: Niterói, Brasil"
                         />
-                    </fieldset>
+                    </FieldSet>
 
-                    <fieldset>
-                        <legend>Informações da Referência</legend>
+                    <FieldSet>
+                        <Legend className="font-bold pb-4 text-base">
+                            Características
+                        </Legend>
                         <label>
                             <span>URL da imagem</span>
                         </label>
-                    </fieldset>
-                </form>
+                    </FieldSet>
+                </Form>
             </main>
 
             <footer className="absolute bottom-0 bg-red-500 h-nav max-w-sm w-full px-6 flex flex-col items-center p-6">
                 <button>Adicionar</button>
             </footer>
-        </main>
+        </section>
     )
 }
 
@@ -103,3 +107,17 @@ const BreadCrumbLink = ({ text, isFirst, isActive }: BreadCrumbLinkProps) => {
         </div>
     )
 }
+
+const Form = tw.form`
+    flex 
+    flex-col 
+    gap-4
+`
+
+const FieldSet = tw.fieldset`
+    flex 
+    flex-col 
+    gap-4
+`
+
+const Legend = tw.legend`font-bold pb-4 text-base`
