@@ -53,10 +53,28 @@ export const ReferenceEdit = () => {
                         <Legend className="font-bold pb-4 text-base">
                             Características
                         </Legend>
-                        <label>
-                            <span>URL da imagem</span>
-                        </label>
+
+                        <section className="flex flex-col gap-2">
+                            <span className="text-xm font-medium">Altura</span>
+                            <ul className="grid grid-cols-4 gap-4">
+                                <Option text="P" description="até 3m" />
+                                <Option text="M" description="de 3m a 6m" />
+                                <Option text="G" description="de 6m a 24m" />
+                                <Option text="GG" description="mais de 24m" />
+                            </ul>
+                        </section>
+
+                        <section className="flex flex-col gap-2">
+                            <span className="text-xm font-medium">Altura</span>
+                            <ul className="grid grid-cols-4 gap-4">
+                                <Option text="PP" description="sem altura" />
+                                <Option text="P" description="até 3m" />
+                                <Option text="M" description="de 3m a 6m" />
+                                <Option text="G" description="de 6m a 24m" />
+                            </ul>
+                        </section>
                     </FieldSet>
+                    <hr />
                 </Form>
             </main>
 
@@ -108,16 +126,26 @@ const BreadCrumbLink = ({ text, isFirst, isActive }: BreadCrumbLinkProps) => {
     )
 }
 
-const Form = tw.form`
-    flex 
-    flex-col 
-    gap-4
-`
+interface OptionProps {
+    text: string
+    description: string
+}
 
-const FieldSet = tw.fieldset`
-    flex 
-    flex-col 
-    gap-4
-`
+const Option = ({ text, description }: OptionProps) => {
+    return (
+        <li className="group hover:border-blue-500 hover:shadow-lg bg-gray-50 border p-2 cursor-pointer border-gray-200 rounded flex flex-col items-center">
+            <p className="text-2xl text-center font-medium text-gray-400 group-hover:text-blue-500">
+                {text}
+            </p>
+            <p className="text-tiny text-center group-hover:text-blue-500">
+                {description}
+            </p>
+        </li>
+    )
+}
+
+const Form = tw.form`flex flex-col gap-4`
+
+const FieldSet = tw.fieldset`flex flex-col gap-4`
 
 const Legend = tw.legend`font-bold pb-4 text-base`
