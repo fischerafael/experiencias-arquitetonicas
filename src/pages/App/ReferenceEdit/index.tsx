@@ -1,18 +1,31 @@
 import { useState } from 'react'
-import {
-    FieldSet,
-    Form,
-    FormGridOptions,
-    FormSection,
-    FormSectionTitle,
-    Legend,
-    LegendShortDescription
-} from '../../../components/Form/style'
-import { FormOptionItem } from '../../../components/Form/FormRadio/FormOptionItem'
+import { FieldSet, Form, Legend } from '../../../components/Form/style'
+import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
 
 import { options } from '../../../model/formRadio'
-import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
-const { height, size, elements } = options
+const {
+    height,
+    size,
+    elements,
+    shape,
+    materials,
+    texture,
+    tone,
+    primary_color,
+    secondary_color,
+    tertiary_color,
+    opennings,
+    light,
+    contrast,
+    opacity,
+    movement,
+    people,
+    context,
+    landmark,
+    context_interest,
+    time,
+    weather
+} = options
 
 export const ReferenceEdit = () => {
     const [selectedOptions, setSelectedOptions] = useState({
@@ -94,23 +107,102 @@ export const ReferenceEdit = () => {
                     </FieldSet>
 
                     <FieldSet>
-                        <Legend>Características</Legend>
+                        <Legend>Características Físicas</Legend>
 
                         <FormRadioSection
                             option={height}
                             selectedHeight={selectedOptions.height}
                             onClick={handleOptionChange}
                         />
-
                         <FormRadioSection
                             option={size}
                             selectedHeight={selectedOptions.size}
                             onClick={handleOptionChange}
                         />
-
                         <FormRadioSection
                             option={elements}
                             selectedHeight={selectedOptions.elements}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={shape}
+                            selectedHeight={selectedOptions.shape}
+                            onClick={handleOptionChange}
+                        />
+                    </FieldSet>
+
+                    <FieldSet>
+                        <Legend>Materiais</Legend>
+                        <FormRadioSection
+                            option={materials}
+                            selectedHeight={selectedOptions.materials}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={texture}
+                            selectedHeight={selectedOptions.texture}
+                            onClick={handleOptionChange}
+                        />
+                    </FieldSet>
+
+                    <FieldSet>
+                        <Legend>Tons e Cores</Legend>
+                        <FormRadioSection
+                            option={tone}
+                            selectedHeight={selectedOptions.tone}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={primary_color}
+                            selectedHeight={selectedOptions.primary_color}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={secondary_color}
+                            selectedHeight={selectedOptions.secondary_color}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={tertiary_color}
+                            selectedHeight={selectedOptions.tertiary_color}
+                            onClick={handleOptionChange}
+                        />
+                    </FieldSet>
+
+                    <FieldSet>
+                        <Legend>Aberturas e Iluminação</Legend>
+                        <FormRadioSection
+                            option={opennings}
+                            selectedHeight={selectedOptions.opennings}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={light}
+                            selectedHeight={selectedOptions.light}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={contrast}
+                            selectedHeight={selectedOptions.contrast}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={opacity}
+                            selectedHeight={selectedOptions.opacity}
+                            onClick={handleOptionChange}
+                        />
+                    </FieldSet>
+
+                    <FieldSet>
+                        <Legend>Pessoas</Legend>
+                        <FormRadioSection
+                            option={people}
+                            selectedHeight={selectedOptions.people}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={movement}
+                            selectedHeight={selectedOptions.movement}
                             onClick={handleOptionChange}
                         />
                     </FieldSet>
