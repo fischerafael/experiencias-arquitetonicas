@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FieldSet, Form, Legend } from '../../../components/Form/style'
 import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
 
@@ -29,6 +29,7 @@ const {
 } = options
 
 export const ReferenceEdit = () => {
+    const defaultProjectImage = '/pictures/default-placeholder.png'
     const project_type = 'reference'
     const [textInputs, setTextInputs] = useState({
         project_name: '',
@@ -73,6 +74,20 @@ export const ReferenceEdit = () => {
 
     const formData = { project_type, ...textInputs, ...selectedOptions }
 
+    const [buttonDisabled, setButtonDisabled] = useState(true)
+
+    useEffect(() => {
+        if (
+            textInputs.project_location != '' &&
+            textInputs.project_name != '' &&
+            textInputs.project_thumbnail != ''
+        ) {
+            setButtonDisabled(false)
+            return
+        }
+        setButtonDisabled(true)
+    }, [formData])
+
     console.log('formData', formData)
 
     return (
@@ -96,7 +111,11 @@ export const ReferenceEdit = () => {
             <main className="bg-white px-6 overflow-y-scroll max-w-sm w-full h-main flex flex-col gap-4">
                 <section className="relative">
                     <img
-                        src="https://images.adsttc.com/media/images/5e57/e3a1/6ee6/7e67/1c00/0032/newsletter/washington-oliveira-wG0fPnkpms0-unsplash.jpg?1582818201"
+                        src={
+                            textInputs.project_thumbnail
+                                ? textInputs.project_thumbnail
+                                : defaultProjectImage
+                        }
                         alt=""
                         className="h-80 w-full object-cover rounded"
                     />
@@ -271,7 +290,9 @@ export const ReferenceEdit = () => {
             </main>
 
             <footer className="absolute bg-white bottom-0 h-nav max-w-sm w-full px-6 flex flex-col items-center justify-center p-6">
-                <DefaultButton disabled>Salvar Referência</DefaultButton>
+                <DefaultButton disabled={buttonDisabled}>
+                    Salvar Referência
+                </DefaultButton>
             </footer>
         </section>
     )
