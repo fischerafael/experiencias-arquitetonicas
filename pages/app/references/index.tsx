@@ -1,8 +1,8 @@
 import React from 'react'
-import { AppReferencePage } from '../../../src/pages/AppReferencePage'
+import { ReferencesPage } from '../../../src/pages/App/References'
 
 const index = () => {
-    return <AppReferencePage />
+    return <ReferencesPage />
 }
 
 export default index

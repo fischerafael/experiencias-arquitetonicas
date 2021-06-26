@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
+import {
+    PageAppWrapper,
+    PageHeaderWrapper
+} from '../../../../styles/components/Layout'
 import { FieldSet, Form, Legend } from '../../../components/Form/style'
 import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
 
 import { options } from '../../../model/formRadio'
 import { DefaultButton } from '../../../components/Button/style'
+import { BreadCrumb } from '../../../components/BreadCrumb'
 const {
     height,
     size,
@@ -27,6 +32,27 @@ const {
     time,
     weather
 } = options
+
+const breadCrumbLinks = [
+    {
+        text: 'Início',
+        url: '/app',
+        isActive: false,
+        isFirst: true
+    },
+    {
+        text: 'Referências',
+        url: '/app/references',
+        isActive: false,
+        isFirst: false
+    },
+    {
+        text: 'Novo',
+        url: '/app/references/edit',
+        isActive: true,
+        isFirst: false
+    }
+]
 
 export const ReferenceEdit = () => {
     const defaultProjectImage = '/pictures/default-placeholder.png'
@@ -91,22 +117,14 @@ export const ReferenceEdit = () => {
     console.log('formData', formData)
 
     return (
-        <section className="relative bg-gray-50 text-gray-700 h-screen w-full flex flex-col items-center font-poppins text-xs">
-            <header className="h-nav bg-white max-w-sm w-full px-6 flex flex-col items-center">
+        <PageAppWrapper>
+            <PageHeaderWrapper>
                 <section className="h-2/3 flex w-full items-center justify-center">
                     <img src="/icons/logo-black.svg" alt="" className="h-5" />
                 </section>
 
-                <section className="h-1/3 w-full flex justify-between items-center text-gray-400">
-                    <nav className="flex gap-1">
-                        <BreadCrumbLink isFirst text="Início" />
-                        <BreadCrumbLink text="Referências" />
-                        <BreadCrumbLink isActive text="Editar" />
-                    </nav>
-
-                    <BreadCrumbLink isFirst text="Voltar" />
-                </section>
-            </header>
+                <BreadCrumb links={breadCrumbLinks} />
+            </PageHeaderWrapper>
 
             <main className="bg-white px-6 overflow-y-scroll max-w-sm w-full h-main flex flex-col gap-4">
                 <section className="relative">
@@ -294,7 +312,7 @@ export const ReferenceEdit = () => {
                     Salvar Referência
                 </DefaultButton>
             </footer>
-        </section>
+        </PageAppWrapper>
     )
 }
 
@@ -324,27 +342,5 @@ const CustomInput = ({
                 className="h-10 px-4 border border-gray-200 rounded bg-gray-50"
             />
         </label>
-    )
-}
-
-interface BreadCrumbLinkProps {
-    text: string
-    isFirst?: boolean
-    isActive?: boolean
-}
-
-const BreadCrumbLink = ({ text, isFirst, isActive }: BreadCrumbLinkProps) => {
-    return (
-        <div className="flex gap-1 font-medium">
-            {!isFirst && <span>&gt;</span>}
-            {!isActive && (
-                <span className="cursor-pointer hover:text-gray-700">
-                    {text}
-                </span>
-            )}
-            {isActive && (
-                <span className="cursor-pointer text-gray-700">{text}</span>
-            )}
-        </div>
     )
 }
