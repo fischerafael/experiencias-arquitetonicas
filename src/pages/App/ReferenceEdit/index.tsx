@@ -7,49 +7,66 @@ const options = {
             type: 'height',
             text: 'P',
             description: 'até 3 m',
-            value: 0,
-            isActive: false
+            value: 0
         },
         {
             type: 'height',
             text: 'M',
             description: 'de 3m a 6m',
-            value: 0.33,
-            isActive: false
+            value: 0.33
         },
         {
             type: 'height',
             text: 'G',
             description: 'de 6m a 24m',
-            value: 0.66,
-            isActive: false
+            value: 0.66
         },
         {
             type: 'height',
             text: 'GG',
             description: 'mais de 24m',
-            value: 1,
-            isActive: false
+            value: 1
+        }
+    ],
+    size: [
+        {
+            type: 'size',
+            text: 'P',
+            description: 'até 10 m²',
+            value: 0
+        },
+        {
+            type: 'size',
+            text: 'M',
+            description: 'até 50 m²',
+            value: 0.33
+        },
+        {
+            type: 'size',
+            text: 'G',
+            description: 'até 200 m²',
+            value: 0.66
+        },
+        {
+            type: 'size',
+            text: 'GG',
+            description: 'mais de 200',
+            value: 1
         }
     ]
 }
 
 export const ReferenceEdit = () => {
-    const [form, setForm] = useState({
-        height: {
-            value: 0.5
-        }
+    const [optionsData, setOptionsData] = useState({
+        height: 0,
+        size: 0
     })
 
-    const handleOptionChange = (key: string, value: number) => {
-        setForm({ ...form, [key]: value })
+    const handleOptionChange = (option: { type: string; value: number }) => {
+        setOptionsData({ ...optionsData, [option.type]: option.value })
     }
 
-    // () =>
-    //                                     setForm({ ...form, height: 1 })
-    //                                 }
-
-    console.log('FORM DATA', form)
+    console.log('optionsData', optionsData)
 
     return (
         <section className="relative bg-gray-50 text-gray-700 h-screen w-full flex flex-col items-center font-poppins text-xs">
@@ -100,23 +117,23 @@ export const ReferenceEdit = () => {
                     </FieldSet>
 
                     <FieldSet>
-                        <Legend className="font-bold pb-4 text-base">
-                            Características
-                        </Legend>
+                        <Legend>Características</Legend>
 
                         <FormSection>
                             <FormSectionTitle>Altura</FormSectionTitle>
                             <FormGridOptions>
                                 {options.height.map((option) => (
                                     <Option
-                                        onClick={() =>
-                                            handleOptionChange(
-                                                option.type,
-                                                option.value
-                                            )
+                                        key={option.value}
+                                        isChecked={
+                                            optionsData.height ===
+                                                option.value && true
                                         }
                                         text={option.text}
                                         description={option.description}
+                                        onClick={() =>
+                                            handleOptionChange(option)
+                                        }
                                     />
                                 ))}
                             </FormGridOptions>
@@ -125,10 +142,20 @@ export const ReferenceEdit = () => {
                         <FormSection>
                             <FormSectionTitle>Tamanho</FormSectionTitle>
                             <FormGridOptions>
-                                <Option text="PP" description="sem altura" />
-                                <Option text="P" description="até 3m" />
-                                <Option text="M" description="de 3m a 6m" />
-                                <Option text="G" description="de 6m a 24m" />
+                                {options.size.map((option) => (
+                                    <Option
+                                        key={option.value}
+                                        isChecked={
+                                            optionsData.size === option.value &&
+                                            true
+                                        }
+                                        text={option.text}
+                                        description={option.description}
+                                        onClick={() =>
+                                            handleOptionChange(option)
+                                        }
+                                    />
+                                ))}
                             </FormGridOptions>
                         </FormSection>
                     </FieldSet>
@@ -142,6 +169,13 @@ export const ReferenceEdit = () => {
         </section>
     )
 }
+
+const Form = tw.form`flex flex-col gap-4`
+const FieldSet = tw.fieldset`flex flex-col gap-4`
+const Legend = tw.legend`font-bold pb-4 text-base`
+const FormSection = tw.section`flex flex-col gap-2`
+const FormSectionTitle = tw.h2`text-xm font-medium`
+const FormGridOptions = tw.ul`grid grid-cols-4 gap-4`
 
 interface CustomInputProps {
     label: string
@@ -187,28 +221,47 @@ const BreadCrumbLink = ({ text, isFirst, isActive }: BreadCrumbLinkProps) => {
 interface OptionProps {
     text: string
     description: string
+    isChecked?: boolean
     onClick?: (e: any) => void
 }
 
-const Option = ({ text, description, onClick }: OptionProps) => {
+const Option = ({ text, description, isChecked, onClick }: OptionProps) => {
     return (
-        <li
-            onClick={onClick}
-            className="group hover:border-blue-500 hover:shadow-lg bg-gray-50 border p-2 cursor-pointer border-gray-200 rounded flex flex-col items-center"
-        >
-            <p className="text-2xl text-center font-medium text-gray-400 group-hover:text-blue-500">
-                {text}
-            </p>
-            <p className="text-tiny text-center group-hover:text-blue-500">
-                {description}
-            </p>
-        </li>
+        <>
+            {isChecked ? (
+                <SelectedOptionItem onClick={onClick}>
+                    <p className="text-2xl text-center font-medium text-blue-500">
+                        {text}
+                    </p>
+                    <p className="text-tiny text-center text-blue-500">
+                        {description}
+                    </p>
+                </SelectedOptionItem>
+            ) : (
+                <OptionItem onClick={onClick}>
+                    <p className="text-2xl text-center font-medium text-gray-400 group-hover:text-blue-500">
+                        {text}
+                    </p>
+                    <p className="text-tiny text-center group-hover:text-blue-500">
+                        {description}
+                    </p>
+                </OptionItem>
+            )}
+        </>
     )
 }
 
-const Form = tw.form`flex flex-col gap-4`
-const FieldSet = tw.fieldset`flex flex-col gap-4`
-const Legend = tw.legend`font-bold pb-4 text-base`
-const FormSection = tw.section`flex flex-col gap-2`
-const FormSectionTitle = tw.h2`text-xm font-medium`
-const FormGridOptions = tw.ul`grid grid-cols-4 gap-4`
+const OptionItem = tw.li`
+    group 
+    hover:border-blue-500 hover:shadow-lg bg-gray-50 
+    border p-2 cursor-pointer border-gray-200 rounded 
+    flex flex-col 
+    items-center
+`
+
+const SelectedOptionItem = tw.li`
+    bg-blue-50
+    border p-2 cursor-pointer border-blue-500 rounded 
+    flex flex-col 
+    items-center
+`
