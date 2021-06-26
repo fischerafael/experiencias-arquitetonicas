@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { options } from '../../../model/formRadio'
 import {
     FieldSet,
     Form,
@@ -11,10 +10,33 @@ import {
 } from '../../../components/Form/style'
 import { FormOptionItem } from '../../../components/Form/FormRadio/FormOptionItem'
 
+import { options } from '../../../model/formRadio'
+import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
+const { height, size, elements } = options
+
 export const ReferenceEdit = () => {
     const [selectedOptions, setSelectedOptions] = useState({
         height: 0,
-        size: 0
+        size: 0,
+        elements: 0,
+        shape: 0,
+        materials: 0,
+        texture: 0,
+        tone: 0,
+        primary_color: 0,
+        secondary_color: 0,
+        tertiary_color: 0,
+        opennings: 0,
+        light: 0,
+        contrast: 0,
+        opacity: 0,
+        movement: 0,
+        people: 0,
+        context: 0,
+        landmark: 0,
+        context_interest: 0,
+        time: 0,
+        weather: 0
     })
 
     const handleOptionChange = (option: { type: string; value: number }) => {
@@ -74,60 +96,23 @@ export const ReferenceEdit = () => {
                     <FieldSet>
                         <Legend>Características</Legend>
 
-                        <FormSection>
-                            <FormSectionTitle>
-                                {options.height.title}
-                            </FormSectionTitle>
-                            <LegendShortDescription>
-                                {options.height.description}
-                            </LegendShortDescription>
-                            <FormGridOptions>
-                                {options.height.options.map((option) => (
-                                    <FormOptionItem
-                                        key={option.value}
-                                        isChecked={
-                                            selectedOptions.height ===
-                                                option.value && true
-                                        }
-                                        text={option.text}
-                                        description={option.description}
-                                        onClick={() =>
-                                            handleOptionChange(option)
-                                        }
-                                    />
-                                ))}
-                            </FormGridOptions>
-                        </FormSection>
+                        <FormRadioSection
+                            option={height}
+                            selectedHeight={selectedOptions.height}
+                            onClick={handleOptionChange}
+                        />
 
-                        <FormSection>
-                            <FormSectionTitle>
-                                {options.size.title}
-                            </FormSectionTitle>
-                            <LegendShortDescription>
-                                {options.size.description}
-                            </LegendShortDescription>
-                            <FormGridOptions>
-                                {options.size.options.map((option) => (
-                                    <FormOptionItem
-                                        key={option.value}
-                                        isChecked={
-                                            selectedOptions.size ===
-                                                option.value && true
-                                        }
-                                        text={option.text}
-                                        description={option.description}
-                                        onClick={() =>
-                                            handleOptionChange(option)
-                                        }
-                                    />
-                                ))}
-                            </FormGridOptions>
-                        </FormSection>
+                        <FormRadioSection
+                            option={size}
+                            selectedHeight={selectedOptions.size}
+                            onClick={handleOptionChange}
+                        />
 
-                        <FormSection>
-                            <FormSectionTitle>Elementos</FormSectionTitle>
-                            <FormGridOptions></FormGridOptions>
-                        </FormSection>
+                        <FormRadioSection
+                            option={elements}
+                            selectedHeight={selectedOptions.elements}
+                            onClick={handleOptionChange}
+                        />
                     </FieldSet>
                     <hr />
                 </Form>
