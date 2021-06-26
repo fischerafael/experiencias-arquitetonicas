@@ -206,6 +206,37 @@ export const ReferenceEdit = () => {
                             onClick={handleOptionChange}
                         />
                     </FieldSet>
+                    <FieldSet>
+                        <Legend>Tempo</Legend>
+                        <FormRadioSection
+                            option={time}
+                            selectedHeight={selectedOptions.time}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={weather}
+                            selectedHeight={selectedOptions.weather}
+                            onClick={handleOptionChange}
+                        />
+                    </FieldSet>
+                    <FieldSet>
+                        <Legend>Contexto</Legend>
+                        <FormRadioSection
+                            option={context}
+                            selectedHeight={selectedOptions.context}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={context_interest}
+                            selectedHeight={selectedOptions.context_interest}
+                            onClick={handleOptionChange}
+                        />
+                        <FormRadioSection
+                            option={landmark}
+                            selectedHeight={selectedOptions.landmark}
+                            onClick={handleOptionChange}
+                        />
+                    </FieldSet>
                     <hr />
                 </Form>
             </main>

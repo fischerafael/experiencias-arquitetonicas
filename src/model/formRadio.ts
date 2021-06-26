@@ -699,5 +699,163 @@ export const options: IOptions = {
                 value: 1
             }
         ]
+    },
+    time: {
+        title: 'Movimento',
+        description: 'Em qual momento do dia o espaço está sendo utilizado',
+        options: [
+            {
+                type: 'time',
+                id: 'sh1',
+                text: 'A',
+                description: 'Dia',
+                value: 0
+            },
+            {
+                type: 'time',
+                id: 'sh2',
+                text: 'B',
+                description: 'Noite',
+                value: 0.5
+            },
+            {
+                type: 'time',
+                id: 'sh3',
+                text: 'C',
+                description: 'Amanhecer ou Entardecer',
+                value: 1
+            }
+        ]
+    },
+    weather: {
+        title: 'Clima',
+        description: 'Qual é a condição meteorológica',
+        options: [
+            {
+                type: 'weather',
+                id: 'sh1',
+                text: 'A',
+                description: 'Céu Aberto',
+                value: 0
+            },
+            {
+                type: 'weather',
+                id: 'sh2',
+                text: 'B',
+                description: 'Nublado',
+                value: 0.25
+            },
+            {
+                type: 'weather',
+                id: 'sh3',
+                text: 'C',
+                description: 'Chuva',
+                value: 0.5
+            },
+            {
+                type: 'weather',
+                id: 'sh3',
+                text: 'D',
+                description: 'Neve',
+                value: 0.75
+            },
+            {
+                type: 'weather',
+                id: 'sh3',
+                text: 'E',
+                description: 'Neblina',
+                value: 1
+            }
+        ]
+    },
+    context: {
+        title: 'Contexto Físico',
+        description: 'Em qual contexto o espaço está inserido',
+        options: [
+            {
+                type: 'context',
+                id: 'sh1',
+                text: 'A',
+                description: 'Selvagem',
+                value: 0
+            },
+            {
+                type: 'context',
+                id: 'sh2',
+                text: 'B',
+                description: 'Rural',
+                value: 0.33
+            },
+            {
+                type: 'context',
+                id: 'sh3',
+                text: 'C',
+                description: 'Urbano de Baixa Densidade',
+                value: 0.66
+            },
+            {
+                type: 'context',
+                id: 'sh3',
+                text: 'D',
+                description: 'Urbano de Alta Densidade',
+                value: 1
+            }
+        ]
+    },
+    context_interest: {
+        title: 'Interesse do Contexto',
+        description:
+            'Há algum ponto de interesse coletivo no contexto onde o espaço está inserido? ex: cachoeira, edifício histórico ou praia',
+        options: [
+            {
+                type: 'context_interest',
+                id: 'sh1',
+                text: 'A',
+                description: 'Ponto de interesse natural',
+                value: 0
+            },
+            {
+                type: 'context_interest',
+                id: 'sh2',
+                text: 'B',
+                description: 'Ponto de interesse arquitetônico',
+                value: 0.5
+            },
+            {
+                type: 'context_interest',
+                id: 'sh3',
+                text: 'C',
+                description: 'Nenhum ponto de interesse específico',
+                value: 1
+            }
+        ]
+    },
+    landmark: {
+        title: 'Interesse do Espaço',
+        description:
+            'O espaço é, por si só, um ponto de interesse coletivo? ex: museu conhecido, edifício histórico ou ponto de referência',
+        options: [
+            {
+                type: 'landmark',
+                id: 'sh1',
+                text: 'A',
+                description: 'Ponto de Interesse Nacional / Mundial',
+                value: 0
+            },
+            {
+                type: 'landmark',
+                id: 'sh2',
+                text: 'B',
+                description: 'Ponto de Interesse Local',
+                value: 0.5
+            },
+            {
+                type: 'landmark',
+                id: 'sh3',
+                text: 'C',
+                description: 'Não é Ponto de Interesse',
+                value: 1
+            }
+        ]
     }
 }
