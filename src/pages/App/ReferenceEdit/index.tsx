@@ -3,6 +3,7 @@ import { FieldSet, Form, Legend } from '../../../components/Form/style'
 import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
 
 import { options } from '../../../model/formRadio'
+import { DefaultButton } from '../../../components/Button/style'
 const {
     height,
     size,
@@ -28,6 +29,20 @@ const {
 } = options
 
 export const ReferenceEdit = () => {
+    const project_type = 'reference'
+    const [textInputs, setTextInputs] = useState({
+        project_name: '',
+        project_location: '',
+        project_thumbnail: ''
+    })
+
+    const handleTextInputChange = (e: any, key: string) => {
+        setTextInputs({
+            ...textInputs,
+            [key]: e.target.value
+        })
+    }
+
     const [selectedOptions, setSelectedOptions] = useState({
         height: 0,
         size: 0,
@@ -56,7 +71,9 @@ export const ReferenceEdit = () => {
         setSelectedOptions({ ...selectedOptions, [option.type]: option.value })
     }
 
-    console.log('selectedOptions', selectedOptions)
+    const formData = { project_type, ...textInputs, ...selectedOptions }
+
+    console.log('formData', formData)
 
     return (
         <section className="relative bg-gray-50 text-gray-700 h-screen w-full flex flex-col items-center font-poppins text-xs">
@@ -93,16 +110,28 @@ export const ReferenceEdit = () => {
                             type="text"
                             label="URL da Imagem"
                             placeholder="ex: www.google.com/mac.png"
+                            value={textInputs.project_thumbnail}
+                            onChange={(e) =>
+                                handleTextInputChange(e, 'project_thumbnail')
+                            }
                         />
                         <CustomInput
                             type="text"
                             label="Referência"
                             placeholder="ex: Museu de Arte Contemporânea"
+                            value={textInputs.project_name}
+                            onChange={(e) =>
+                                handleTextInputChange(e, 'project_name')
+                            }
                         />
                         <CustomInput
                             type="text"
                             label="Localização"
                             placeholder="ex: Niterói, Brasil"
+                            value={textInputs.project_location}
+                            onChange={(e) =>
+                                handleTextInputChange(e, 'project_location')
+                            }
                         />
                     </FieldSet>
 
@@ -241,26 +270,36 @@ export const ReferenceEdit = () => {
                 </Form>
             </main>
 
-            <footer className="absolute bottom-0 bg-red-500 h-nav max-w-sm w-full px-6 flex flex-col items-center p-6">
-                <button>Adicionar</button>
+            <footer className="absolute bg-white bottom-0 h-nav max-w-sm w-full px-6 flex flex-col items-center justify-center p-6">
+                <DefaultButton disabled>Salvar Referência</DefaultButton>
             </footer>
         </section>
     )
 }
 
 interface CustomInputProps {
+    value: any
+    onChange: (e: any) => void
     label: string
     type: 'text' | 'email' | 'password' | 'number'
     placeholder?: string
 }
 
-const CustomInput = ({ label, type, placeholder }: CustomInputProps) => {
+const CustomInput = ({
+    label,
+    type,
+    placeholder,
+    value,
+    onChange
+}: CustomInputProps) => {
     return (
         <label className="flex flex-col gap-2">
             <span className="text-xm font-medium">{label}</span>
             <input
                 type={type}
                 placeholder={placeholder}
+                value={value}
+                onChange={onChange}
                 className="h-10 px-4 border border-gray-200 rounded bg-gray-50"
             />
         </label>
