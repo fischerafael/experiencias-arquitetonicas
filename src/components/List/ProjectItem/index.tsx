@@ -1,10 +1,12 @@
 import { TrashIcon, BeakerIcon } from '@heroicons/react/outline'
+import tw from 'tailwind-styled-components'
 
 import { IProject } from '../../../entities'
+import { options } from '../../../model/formRadio'
 
 interface ProjectItemProps {
     project: IProject
-    page: 'references' | 'evaluations'
+    page: 'references' | 'evaluations' | 'projects'
 }
 
 const handleDisplayEvaluationInfo = (evaluation: number) => {
@@ -18,13 +20,49 @@ const handleDisplayEvaluationInfo = (evaluation: number) => {
     if (evaluation <= 8 / 8) return emotionsDisplay.positiveH
 }
 
+const handleGetDescriptionFromKey = (project: IProject, key: string) => {
+    const description = options[key].options.find(
+        (option) => option.value === project[key]
+    ).description
+    return description
+}
+
 export const ProjectItem = ({ project, page }: ProjectItemProps) => {
-    const { predicted_evaluation } = project
-    const emotions = handleDisplayEvaluationInfo(predicted_evaluation)
+    const predictedEmotion = handleDisplayEvaluationInfo(
+        project.predicted_evaluation
+    )
+
+    const clientEmotion = handleDisplayEvaluationInfo(project.client_evaluation)
+
+    const descriptionArray = [
+        handleGetDescriptionFromKey(project, 'height'),
+        handleGetDescriptionFromKey(project, 'size'),
+        handleGetDescriptionFromKey(project, 'elements'),
+        handleGetDescriptionFromKey(project, 'shape'),
+        handleGetDescriptionFromKey(project, 'materials'),
+        handleGetDescriptionFromKey(project, 'texture'),
+        handleGetDescriptionFromKey(project, 'tone'),
+        handleGetDescriptionFromKey(project, 'primary_color'),
+        handleGetDescriptionFromKey(project, 'secondary_color'),
+        handleGetDescriptionFromKey(project, 'tertiary_color'),
+        handleGetDescriptionFromKey(project, 'opennings'),
+        handleGetDescriptionFromKey(project, 'light'),
+        handleGetDescriptionFromKey(project, 'contrast'),
+        handleGetDescriptionFromKey(project, 'opacity'),
+        handleGetDescriptionFromKey(project, 'movement'),
+        handleGetDescriptionFromKey(project, 'people'),
+        handleGetDescriptionFromKey(project, 'context'),
+        handleGetDescriptionFromKey(project, 'landmark'),
+        handleGetDescriptionFromKey(project, 'context_interest'),
+        handleGetDescriptionFromKey(project, 'time'),
+        handleGetDescriptionFromKey(project, 'weather')
+    ]
+
+    console.log(descriptionArray)
 
     return (
-        <li className="cursor-default font-poppins flex flex-col gap-4 border-b py-8">
-            <header className="grid grid-cols-4 gap-4">
+        <ListWrapper>
+            <ListHeader>
                 <section>
                     <img
                         src={project.project_thumbnail}
@@ -40,48 +78,64 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
                     <p className="text-gray-400">{project.project_location}</p>
                 </section>
 
-                <section className="flex flex-col justify-between items-end">
-                    <h2 className="text-2xl">{emotions.emoji}</h2>
-                    <p className="text-gray-400 text-tiny text-right leading-tight">
-                        {emotions.hashtags}
-                    </p>
-                </section>
-            </header>
+                <section className="h-full flex flex-col justify-start items-end">
+                    {/* <button className="flex items-center justify-center flex-col gap-2 group">
+                        <BeakerIcon className="w-4 h-4 group-hover:text-blue-500" />
+                        <span className="text-xs font-medium tracking-tight">
+                            Avaliar Referência
+                        </span>
+                    </button> */}
 
-            <footer className="grid grid-cols-4 gap-4">
-                {page === 'evaluations' && (
-                    <section className="col-start-2 col-span-3">
-                        <p className="text-tiny">
-                            #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu
-                            #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu #hfuash
-                            #udafhusfhusdah #hfuadhfu #ufhadufhsud #fuas
-                            #fausdfushdfuhs #hfuhfdu #hfuash #udafhusfhusdah
-                            #hfuadhfu #ufhadufhsud #fuas #fausdfushdfuhs
-                            #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu
-                            #ufhadufhsud #fuas #fausdfushdfuhs
-                        </p>
+                    <button className="flex items-center justify-center flex-col group text-gray-400">
+                        <TrashIcon className="w-4 h-4 group-hover:text-red-500" />
+                        <span className="text-tiny font-medium tracking-tight">
+                            Remover
+                        </span>
+                    </button>
+                </section>
+            </ListHeader>
+
+            <ListFooter>
+                <section className="flex flex-col items-center gap-4">
+                    <section className="w-full flex flex-col items-center justify-center">
+                        <span className="text-xs font-bold">XP Usuário</span>
+                        <p className="text-lg">{clientEmotion.emoji}</p>
+                        <span className="text-center text-tiny leading-tight">
+                            {clientEmotion.hashtags}
+                        </span>
                     </section>
-                )}
-
-                <section className="text-gray-400 col-start-2 col-span-3 flex-row flex justify-end">
-                    {page === 'references' && (
-                        <button className="flex items-center gap-2 group">
-                            <TrashIcon className="w-4 h-4 group-hover:text-red-500" />
-                            <span>Remover</span>
-                        </button>
-                    )}
-
-                    {page === 'evaluations' && (
-                        <button className="flex items-center gap-2 group">
-                            <BeakerIcon className="w-4 h-4 group-hover:text-blue-500" />
-                            <span>Avaliar Experiência</span>
-                        </button>
-                    )}
+                    <section className="w-full flex flex-col items-center justify-center">
+                        <span className="text-xs font-bold">XP Prevista</span>
+                        <p className="text-lg">{predictedEmotion.emoji}</p>
+                        <span className="text-center text-tiny leading-tight">
+                            {predictedEmotion.hashtags}
+                        </span>
+                    </section>
                 </section>
-            </footer>
-        </li>
+
+                <section className="col-start-2 col-span-3 flex flex-col gap-2">
+                    <span className="text-xs font-bold">Características</span>
+                    <ul className="flex flex-row flex-wrap gap-1">
+                        {descriptionArray?.map((description, index) => (
+                            <li
+                                key={index}
+                                className="text-tiny bg-gray-100 px-1"
+                            >
+                                {description}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </ListFooter>
+        </ListWrapper>
     )
 }
+
+const ListWrapper = tw.li`
+    cursor-default font-poppins flex flex-col gap-4 border-b py-8
+`
+const ListHeader = tw.header`grid grid-cols-4 gap-4`
+const ListFooter = tw.footer`grid grid-cols-4 gap-4`
 
 export const emotionsDisplay = {
     negativeA: {
