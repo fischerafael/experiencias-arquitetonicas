@@ -6,6 +6,7 @@ import {
 } from '../../../../styles/components/Layout'
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import { CustomLink } from '../../../components/CustomLink'
+import { GhostButton } from '../../../components/Button/style'
 
 export const AppPage = () => {
     return (
@@ -54,7 +55,11 @@ export const AppPage = () => {
                     />
                 </nav>
             </PageMainWrapper>
-            <PageFooterWrapper>footer</PageFooterWrapper>
+            <PageFooterWrapper>
+                <CustomLink href="/">
+                    <GhostButton>Sair</GhostButton>
+                </CustomLink>
+            </PageFooterWrapper>
         </PageAppWrapper>
     )
 }
