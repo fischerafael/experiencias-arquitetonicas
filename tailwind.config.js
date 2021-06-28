@@ -2,7 +2,10 @@ module.exports = {
     node: 'jit',
     purge: [
         './src/components/**/*.{js,ts,jsx,tsx}',
-        './src/pages/**/*.{js,ts,jsx,tsx}'
+        './src/pages/**/*.{js,ts,jsx,tsx}',
+        './src/pages/App/**/*.{js,ts,jsx,tsx}',
+        './src/pages/LoginPage/**/*.{js,ts,jsx,tsx}',
+        './src/pages/HomePage/**/*.{js,ts,jsx,tsx}'
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
