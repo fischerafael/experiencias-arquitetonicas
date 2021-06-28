@@ -23,7 +23,7 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
     const emotions = handleDisplayEvaluationInfo(predicted_evaluation)
 
     return (
-        <li className="cursor-default font-poppins flex flex-col gap-4 border-b py-4">
+        <li className="cursor-default font-poppins flex flex-col gap-4 border-b py-8">
             <header className="grid grid-cols-4 gap-4">
                 <section>
                     <img
@@ -51,16 +51,19 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
             </header>
 
             <footer className="grid grid-cols-4 gap-4">
-                <section className="col-start-2 col-span-3">
-                    <p className="text-tiny">
-                        #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu #ufhadufhsud
-                        #fuas #fausdfushdfuhs #hfuhfdu #hfuash #udafhusfhusdah
-                        #hfuadhfu #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
-                        #hfuash #udafhusfhusdah #hfuadhfu #ufhadufhsud #fuas
-                        #fausdfushdfuhs #hfuhfdu #hfuash #udafhusfhusdah
-                        #hfuadhfu #ufhadufhsud #fuas #fausdfushdfuhs
-                    </p>
-                </section>
+                {page === 'evaluations' && (
+                    <section className="col-start-2 col-span-3">
+                        <p className="text-tiny">
+                            #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu
+                            #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu #hfuash
+                            #udafhusfhusdah #hfuadhfu #ufhadufhsud #fuas
+                            #fausdfushdfuhs #hfuhfdu #hfuash #udafhusfhusdah
+                            #hfuadhfu #ufhadufhsud #fuas #fausdfushdfuhs
+                            #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu
+                            #ufhadufhsud #fuas #fausdfushdfuhs
+                        </p>
+                    </section>
+                )}
 
                 <section className="text-gray-400 col-start-2 col-span-3 flex-row flex justify-end">
                     {page === 'references' && (
