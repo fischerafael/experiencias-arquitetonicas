@@ -1,27 +1,113 @@
-import { DefaultButton } from '../../components/Button/Default'
-import { InputText } from '../../components/InputText'
-import { BlackLogo } from '../../components/BlackLogo'
+import { useEffect, useState } from 'react'
+import {
+    PageAppWrapper,
+    PageHeaderWrapper,
+    PageMainWrapper,
+    PageFooterWrapper
+} from '../../../styles/components/Layout'
+import { DefaultButton } from '../../components/Button/style'
+import { CustomInput } from '../../components/Input'
+import { CustomLink } from '../../components/CustomLink'
 
 export const RegisterPage = () => {
-    return (
-        <main className="bg-gray-50 h-screen flex flex-col justify-start items-center">
-            <div className="h-20">
-                <BlackLogo href="/" />
-            </div>
+    const [registerInfo, setRegisterInfo] = useState({
+        identifier: '',
+        password: '',
+        project_name: '',
+        architect_name: ''
+    })
+    const [disabled, setDisabled] = useState(false)
 
-            <form className="max-w-xs gap-2 w-full h-full flex flex-col justify-center items-center">
-                <h1 className="font-bold text-xl">Novo Projeto</h1>
-                <InputText
-                    label="Email de Acesso"
-                    placeholder="ex: fischer@gmail.com"
-                    type="email"
-                />
-                <InputText
-                    label="Nome do Projeto"
-                    placeholder="ex: casa de praia"
-                />
-                <DefaultButton>Criar Projeto</DefaultButton>
-            </form>
-        </main>
+    const handleUserInfoChange = (e: any, key: string) => {
+        setRegisterInfo({
+            ...registerInfo,
+            [key]: e.target.value
+        })
+    }
+
+    useEffect(() => {
+        if (
+            registerInfo.identifier === '' ||
+            registerInfo.password === '' ||
+            registerInfo.project_name === '' ||
+            registerInfo.architect_name === ''
+        ) {
+            setDisabled(true)
+            return
+        }
+
+        setDisabled(false)
+    }, [registerInfo])
+
+    console.log('registerInfo', registerInfo)
+
+    return (
+        <PageAppWrapper>
+            <PageHeaderWrapper>
+                <section className="h-2/3 flex w-full items-center justify-center">
+                    <img src="/icons/logo-black.svg" alt="" className="h-5" />
+                </section>
+            </PageHeaderWrapper>
+
+            <PageMainWrapper>
+                <section className="py-4 flex flex-row justify-center">
+                    <h2 className="font-bold text-lg">Criar Novo Projeto</h2>
+                </section>
+
+                <form
+                    id="register-form"
+                    className="flex flex-col gap-4 justify-center h-full"
+                    onSubmit={() => alert('oi')}
+                >
+                    <CustomInput
+                        label="Email"
+                        placeholder="ex: rafael@gmail.com"
+                        type="email"
+                        value={registerInfo.identifier}
+                        onChange={(e) => handleUserInfoChange(e, 'identifier')}
+                    />
+
+                    <CustomInput
+                        label="Senha"
+                        placeholder="ex: ********"
+                        type="password"
+                        value={registerInfo.password}
+                        onChange={(e) => handleUserInfoChange(e, 'password')}
+                    />
+
+                    <CustomInput
+                        label="Nome do Arquiteto"
+                        placeholder="ex: Rafael Fischer"
+                        type="text"
+                        value={registerInfo.architect_name}
+                        onChange={(e) =>
+                            handleUserInfoChange(e, 'architect_name')
+                        }
+                    />
+
+                    <CustomInput
+                        label="Nome do Projeto"
+                        placeholder="ex: Casa 01"
+                        type="text"
+                        value={registerInfo.project_name}
+                        onChange={(e) =>
+                            handleUserInfoChange(e, 'project_name')
+                        }
+                    />
+                </form>
+            </PageMainWrapper>
+
+            <PageFooterWrapper>
+                <DefaultButton disabled={disabled} form="login-form">
+                    Criar Projeto
+                </DefaultButton>
+
+                <CustomLink href="/login">
+                    <p className="font-medium py-2 w-full flex flex-row justify-center hover:text-blue-500 cursor-pointer">
+                        Acessar projeto existente
+                    </p>
+                </CustomLink>
+            </PageFooterWrapper>
+        </PageAppWrapper>
     )
 }
