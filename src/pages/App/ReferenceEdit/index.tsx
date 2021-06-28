@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import {
     PageAppWrapper,
-    PageHeaderWrapper
+    PageHeaderWrapper,
+    PageMainWrapper,
+    PageFooterWrapper
 } from '../../../../styles/components/Layout'
 import { FieldSet, Form, Legend } from '../../../components/Form/style'
 import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
@@ -36,19 +38,19 @@ const {
 const breadCrumbLinks = [
     {
         text: 'Início',
-        url: '/app',
+        href: '/app',
         isActive: false,
         isFirst: true
     },
     {
         text: 'Referências',
-        url: '/app/references',
+        href: '/app/references',
         isActive: false,
         isFirst: false
     },
     {
         text: 'Novo',
-        url: '/app/references/edit',
+        href: '/app/references/edit',
         isActive: true,
         isFirst: false
     }
@@ -126,7 +128,7 @@ export const ReferenceEdit = () => {
                 <BreadCrumb links={breadCrumbLinks} />
             </PageHeaderWrapper>
 
-            <main className="bg-white px-6 overflow-y-scroll max-w-sm w-full h-main flex flex-col gap-4">
+            <PageMainWrapper>
                 <section className="relative">
                     <img
                         src={
@@ -305,13 +307,13 @@ export const ReferenceEdit = () => {
                     </FieldSet>
                     <hr />
                 </Form>
-            </main>
+            </PageMainWrapper>
 
-            <footer className="absolute bg-white bottom-0 h-nav max-w-sm w-full px-6 flex flex-col items-center justify-center p-6">
+            <PageFooterWrapper>
                 <DefaultButton disabled={buttonDisabled}>
                     Salvar Referência
                 </DefaultButton>
-            </footer>
+            </PageFooterWrapper>
         </PageAppWrapper>
     )
 }

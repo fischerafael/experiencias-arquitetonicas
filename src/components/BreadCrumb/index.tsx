@@ -1,6 +1,8 @@
+import { CustomLink } from '../CustomLink'
+
 interface BreadCrumbLinkProps {
     text: string
-    url: string
+    href: string
     isFirst?: boolean
     isActive?: boolean
 }
@@ -18,12 +20,12 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
                         isFirst={link.isFirst}
                         isActive={link.isActive}
                         text={link.text}
-                        url={link.url}
+                        href={link.href}
                     />
                 ))}
             </nav>
 
-            <BreadCrumbLink isFirst text="Voltar" url="/app" />
+            <BreadCrumbLink isFirst text="Voltar" href="/app" />
         </section>
     )
 }
@@ -32,20 +34,22 @@ const BreadCrumbLink = ({
     text,
     isFirst,
     isActive,
-    url
+    href
 }: BreadCrumbLinkProps) => {
     return (
-        <div className="flex gap-1 font-medium">
-            {!isFirst && <span>&gt;</span>}
-            {!isActive && (
-                <span className="cursor-pointer hover:text-gray-700">
-                    {text}
-                </span>
-            )}
-            {isActive && (
-                <span className="cursor-pointer text-gray-700">{text}</span>
-            )}
-        </div>
+        <CustomLink href={href}>
+            <div className="flex gap-1 font-medium">
+                {!isFirst && <span>&gt;</span>}
+                {!isActive && (
+                    <span className="cursor-pointer hover:text-gray-700">
+                        {text}
+                    </span>
+                )}
+                {isActive && (
+                    <span className="cursor-pointer text-gray-700">{text}</span>
+                )}
+            </div>
+        </CustomLink>
     )
 }
 

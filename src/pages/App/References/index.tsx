@@ -7,13 +7,13 @@ import { BreadCrumb } from '../../../components/BreadCrumb'
 const breadCrumbLinks = [
     {
         text: 'Início',
-        url: '/app',
+        href: '/app',
         isActive: false,
         isFirst: true
     },
     {
         text: 'Referências',
-        url: '/app/references',
+        href: '/app/references',
         isActive: true,
         isFirst: false
     }

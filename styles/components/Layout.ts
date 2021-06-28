@@ -31,3 +31,29 @@ export const PageHeaderWrapper = tw.header`
     flex-col 
     items-center
 `
+
+export const PageMainWrapper = tw.main`
+    bg-white    
+    px-6 
+    overflow-y-scroll 
+    max-w-sm w-full 
+    h-main 
+    flex 
+    flex-col 
+    gap-4
+`
+
+export const PageFooterWrapper = tw.footer`
+    absolute 
+    bg-white 
+    bottom-0 
+    h-nav 
+    max-w-sm 
+    w-full 
+    px-6 
+    flex 
+    flex-col 
+    items-center 
+    justify-center 
+    p-6
+`
