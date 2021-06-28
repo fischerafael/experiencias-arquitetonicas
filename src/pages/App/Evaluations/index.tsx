@@ -66,7 +66,7 @@ export const Evaluations = () => {
                 <BreadCrumb links={breadCrumbLinks} />
             </PageHeaderWrapper>
 
-            <PageMainWrapper>
+            <PageMainWrapper fullScreen>
                 <ul className="flex flex-col w-full">
                     <ProjectItem project={projectOne} page="evaluations" />
                     <ProjectItem project={projectOne} page="evaluations" />
@@ -74,13 +74,13 @@ export const Evaluations = () => {
                 </ul>
             </PageMainWrapper>
 
-            <PageFooterWrapper>
+            {/* <PageFooterWrapper>
                 <CustomLink href="/app/references/edit">
                     <DefaultButton disabled={false}>
                         Sem função ainda
                     </DefaultButton>
                 </CustomLink>
-            </PageFooterWrapper>
+            </PageFooterWrapper> */}
         </PageAppWrapper>
     )
 }

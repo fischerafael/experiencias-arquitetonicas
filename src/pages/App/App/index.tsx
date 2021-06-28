@@ -40,7 +40,7 @@ export const AppPage = () => {
                     <NavListItem index="01" text="Usuário" href="/app/user" />
                     <NavListItem
                         index="02"
-                        text="Rerferências"
+                        text="Referências"
                         href="/app/references"
                     />
                     <NavListItem

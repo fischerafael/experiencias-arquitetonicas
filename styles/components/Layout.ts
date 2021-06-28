@@ -32,15 +32,19 @@ export const PageHeaderWrapper = tw.header`
     items-center
 `
 
-export const PageMainWrapper = tw.main`
+interface PageMainWrapperProps {
+    fullScreen?: boolean
+}
+
+export const PageMainWrapper = tw.main<PageMainWrapperProps>`
     bg-white    
     px-6 
     overflow-y-scroll 
-    max-w-sm w-full 
-    h-main 
+    max-w-sm w-full     
     flex 
     flex-col 
     gap-4
+    ${({ fullScreen }) => (fullScreen === true ? 'h-full' : 'h-main')}
 `
 
 export const PageFooterWrapper = tw.footer`
