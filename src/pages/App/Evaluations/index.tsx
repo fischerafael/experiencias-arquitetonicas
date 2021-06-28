@@ -6,9 +6,9 @@ import {
 } from '../../../../styles/components/Layout'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { ProjectItem } from '../../../components/List/ProjectItem'
+import { IProject } from '../../../entities'
 import { CustomLink } from '../../../components/CustomLink'
 import { DefaultButton } from '../../../components/Button/style'
-import { IProject } from '../../../entities'
 
 const breadCrumbLinks = [
     {
