@@ -1,7 +1,8 @@
 import React from 'react'
+import { Evaluations } from '../../../src/pages/App/Evaluations'
 
 const index = () => {
-    return <h1>oi</h1>
+    return <Evaluations />
 }
 
 export default index
