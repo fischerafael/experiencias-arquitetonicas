@@ -11,6 +11,7 @@ import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSe
 import { options } from '../../../model/formRadio'
 import { DefaultButton } from '../../../components/Button/style'
 import { BreadCrumb } from '../../../components/BreadCrumb'
+import { CustomInput } from '../../../components/Input'
 const {
     height,
     size,
@@ -315,34 +316,5 @@ export const ReferenceEdit = () => {
                 </DefaultButton>
             </PageFooterWrapper>
         </PageAppWrapper>
-    )
-}
-
-interface CustomInputProps {
-    value: any
-    onChange: (e: any) => void
-    label: string
-    type: 'text' | 'email' | 'password' | 'number'
-    placeholder?: string
-}
-
-const CustomInput = ({
-    label,
-    type,
-    placeholder,
-    value,
-    onChange
-}: CustomInputProps) => {
-    return (
-        <label className="flex flex-col gap-2">
-            <span className="text-xm font-medium">{label}</span>
-            <input
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                className="h-10 px-4 border border-gray-200 rounded bg-gray-50"
-            />
-        </label>
     )
 }

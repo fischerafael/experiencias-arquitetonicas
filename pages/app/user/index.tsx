@@ -1,7 +1,8 @@
 import React from 'react'
+import { User } from '../../../src/pages/App/User'
 
 const index = () => {
-    return <h1>oi</h1>
+    return <User />
 }
 
 export default index
