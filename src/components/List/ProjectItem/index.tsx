@@ -31,9 +31,7 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
     const predictedEmotion = handleDisplayEvaluationInfo(
         project.predicted_evaluation
     )
-
     const clientEmotion = handleDisplayEvaluationInfo(project.client_evaluation)
-
     const descriptionArray = [
         handleGetDescriptionFromKey(project, 'height'),
         handleGetDescriptionFromKey(project, 'size'),
@@ -58,8 +56,6 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
         handleGetDescriptionFromKey(project, 'weather')
     ]
 
-    console.log(descriptionArray)
-
     return (
         <ListWrapper>
             <ListHeader>
@@ -79,54 +75,73 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
                 </section>
 
                 <section className="h-full flex flex-col justify-start items-end">
-                    {/* <button className="flex items-center justify-center flex-col gap-2 group">
-                        <BeakerIcon className="w-4 h-4 group-hover:text-blue-500" />
-                        <span className="text-xs font-medium tracking-tight">
-                            Avaliar Referência
-                        </span>
-                    </button> */}
+                    {page === 'evaluations' && (
+                        <button className="flex items-center justify-center flex-col group text-gray-400">
+                            <BeakerIcon className="w-4 h-4 group-hover:text-blue-500" />
+                            <span className="text-tiny font-medium tracking-tight">
+                                Avaliar
+                            </span>
+                        </button>
+                    )}
 
-                    <button className="flex items-center justify-center flex-col group text-gray-400">
-                        <TrashIcon className="w-4 h-4 group-hover:text-red-500" />
-                        <span className="text-tiny font-medium tracking-tight">
-                            Remover
-                        </span>
-                    </button>
+                    {(page === 'references' || page === 'projects') && (
+                        <button className="flex items-center justify-center flex-col group text-gray-400">
+                            <TrashIcon className="w-4 h-4 group-hover:text-red-500" />
+                            <span className="text-tiny font-medium tracking-tight">
+                                Remover
+                            </span>
+                        </button>
+                    )}
                 </section>
             </ListHeader>
 
-            <ListFooter>
-                <section className="flex flex-col items-center gap-4">
-                    <section className="w-full flex flex-col items-center justify-center">
-                        <span className="text-xs font-bold">XP Usuário</span>
-                        <p className="text-lg">{clientEmotion.emoji}</p>
-                        <span className="text-center text-tiny leading-tight">
-                            {clientEmotion.hashtags}
-                        </span>
-                    </section>
-                    <section className="w-full flex flex-col items-center justify-center">
-                        <span className="text-xs font-bold">XP Prevista</span>
-                        <p className="text-lg">{predictedEmotion.emoji}</p>
-                        <span className="text-center text-tiny leading-tight">
-                            {predictedEmotion.hashtags}
-                        </span>
-                    </section>
-                </section>
+            {page !== 'references' && (
+                <ListFooter>
+                    <section className="flex flex-col items-center gap-4">
+                        {page === 'evaluations' && (
+                            <section className="w-full flex flex-col items-center justify-center">
+                                <span className="text-xs font-bold text-center">
+                                    XP do Usuário
+                                </span>
+                                <p className="text-lg">{clientEmotion.emoji}</p>
+                                <span className="text-center text-tiny leading-tight">
+                                    {clientEmotion.hashtags}
+                                </span>
+                            </section>
+                        )}
 
-                <section className="col-start-2 col-span-3 flex flex-col gap-2">
-                    <span className="text-xs font-bold">Características</span>
-                    <ul className="flex flex-row flex-wrap gap-1">
-                        {descriptionArray?.map((description, index) => (
-                            <li
-                                key={index}
-                                className="text-tiny bg-gray-100 px-1"
-                            >
-                                {description}
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            </ListFooter>
+                        {page === 'projects' && (
+                            <section className="w-full flex flex-col items-center justify-center">
+                                <span className="text-xs font-bold">
+                                    XP Prevista
+                                </span>
+                                <p className="text-lg">
+                                    {predictedEmotion.emoji}
+                                </p>
+                                <span className="text-center text-tiny leading-tight">
+                                    {predictedEmotion.hashtags}
+                                </span>
+                            </section>
+                        )}
+                    </section>
+
+                    <section className="col-start-2 col-span-3 flex flex-col gap-2">
+                        <span className="text-xs font-bold">
+                            Características
+                        </span>
+                        <ul className="flex flex-row flex-wrap gap-1">
+                            {descriptionArray?.map((description, index) => (
+                                <li
+                                    key={index}
+                                    className="text-tiny bg-gray-100 px-1"
+                                >
+                                    {description}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                </ListFooter>
+            )}
         </ListWrapper>
     )
 }

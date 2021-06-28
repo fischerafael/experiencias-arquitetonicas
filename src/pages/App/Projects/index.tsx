@@ -5,10 +5,8 @@ import {
     PageFooterWrapper
 } from '../../../../styles/components/Layout'
 import { BreadCrumb } from '../../../components/BreadCrumb'
-import { ProjectItem } from '../../../components/List/ProjectItem'
-import { CustomLink } from '../../../components/CustomLink'
-import { DefaultButton } from '../../../components/Button/style'
 import { IProject } from '../../../entities'
+import { ProjectItem } from '../../../components/List/ProjectItem'
 
 const breadCrumbLinks = [
     {
@@ -18,8 +16,8 @@ const breadCrumbLinks = [
         isFirst: true
     },
     {
-        text: 'Avaliações',
-        href: '/app/evaluations',
+        text: 'Propostas',
+        href: '/app/projects',
         isActive: true,
         isFirst: false
     }
@@ -55,7 +53,7 @@ const projectOne: IProject = {
         'https://i2.wp.com/www.historiadasartes.com/wp-content/uploads/2016/09/m_entrada.jpg?fit=500%2C332&ssl=1'
 }
 
-export const Evaluations = () => {
+export const Projects = () => {
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -68,19 +66,13 @@ export const Evaluations = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
-                    <ProjectItem project={projectOne} page="evaluations" />
-                    <ProjectItem project={projectOne} page="evaluations" />
-                    <ProjectItem project={projectOne} page="evaluations" />
+                    <ProjectItem project={projectOne} page="projects" />
+                    <ProjectItem project={projectOne} page="projects" />
+                    <ProjectItem project={projectOne} page="projects" />
                 </ul>
             </PageMainWrapper>
-
-            <PageFooterWrapper>
-                <CustomLink href="/app/references/edit">
-                    <DefaultButton disabled={false}>
-                        Sem função ainda
-                    </DefaultButton>
-                </CustomLink>
-            </PageFooterWrapper>
         </PageAppWrapper>
     )
 }
+
+export default Projects
