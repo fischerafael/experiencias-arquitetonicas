@@ -40,14 +40,12 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
                     <p className="text-gray-400">{project.project_location}</p>
                 </section>
 
-                {page === 'evaluations' && predicted_evaluation && (
-                    <section className="flex flex-col justify-between items-end">
-                        <h2 className="text-2xl">{emotions.emoji}</h2>
-                        <p className="text-gray-400 text-tiny text-right leading-tight">
-                            {emotions.hashtags}
-                        </p>
-                    </section>
-                )}
+                <section className="flex flex-col justify-between items-end">
+                    <h2 className="text-2xl">{emotions.emoji}</h2>
+                    <p className="text-gray-400 text-tiny text-right leading-tight">
+                        {emotions.hashtags}
+                    </p>
+                </section>
             </header>
 
             <footer className="grid grid-cols-4 gap-4">
