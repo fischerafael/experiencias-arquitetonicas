@@ -25,7 +25,7 @@ module.exports = {
                 footer: '10vh'
             },
             fontSize: {
-                tiny: '0.6rem',
+                tiny: '8px',
                 supersmall: '0.75rem',
                 small: '0.9rem'
             },

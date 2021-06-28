@@ -2,7 +2,7 @@ import { CustomLink } from '../CustomLink'
 
 interface BreadCrumbLinkProps {
     text: string
-    href: string
+    href?: string
     isFirst?: boolean
     isActive?: boolean
 }
@@ -25,7 +25,7 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
                 ))}
             </nav>
 
-            <BreadCrumbLink isFirst text="Voltar" href="/app" />
+            <BreadCrumbLink isFirst text="Voltar" />
         </section>
     )
 }
@@ -37,8 +37,8 @@ const BreadCrumbLink = ({
     href
 }: BreadCrumbLinkProps) => {
     return (
-        <CustomLink href={href}>
-            <div className="flex gap-1 font-medium">
+        <CustomLink href={href || '/app'}>
+            <div className="flex gap-1 font-medium justify-end">
                 {!isFirst && <span>&gt;</span>}
                 {!isActive && (
                     <span className="cursor-pointer hover:text-gray-700">
