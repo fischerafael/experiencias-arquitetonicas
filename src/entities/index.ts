@@ -1,0 +1,29 @@
+export interface IProject {
+    project_thumbnail: string
+    project_location: string
+    project_name: string
+    client_evaluation?: number
+    predicted_evaluation?: number
+    height?: number
+    size?: number
+    elements?: number
+    shape?: number
+    materials?: number
+    texture?: number
+    tone?: number
+    primary_color?: number
+    secondary_color?: number
+    tertiary_color?: number
+    opennings?: number
+    light?: number
+    contrast?: number
+    opacity?: number
+    movement?: number
+    people?: number
+    context?: number
+    landmark?: number
+    context_interest?: number
+    time?: number
+    weather?: number
+    id?: number
+}

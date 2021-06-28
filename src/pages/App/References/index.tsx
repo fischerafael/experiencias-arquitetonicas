@@ -7,6 +7,8 @@ import {
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { DefaultButton } from '../../../components/Button/style'
 import { CustomLink } from '../../../components/CustomLink'
+import { ProjectItem } from '../../../components/List/ProjectItem'
+import { IProject } from '../../../entities'
 
 const breadCrumbLinks = [
     {
@@ -22,6 +24,14 @@ const breadCrumbLinks = [
         isFirst: false
     }
 ]
+
+const projectOne: IProject = {
+    project_name: 'Museu de Arte de Niteroi',
+    project_location: 'Niteroi, Brasil',
+    predicted_evaluation: 0.2,
+    project_thumbnail:
+        'https://i2.wp.com/www.historiadasartes.com/wp-content/uploads/2016/09/m_entrada.jpg?fit=500%2C332&ssl=1'
+}
 //
 export const ReferencesPage = () => {
     return (
@@ -35,47 +45,10 @@ export const ReferencesPage = () => {
             </PageHeaderWrapper>
 
             <PageMainWrapper>
-                <ul className="flex flex-col gap-9 w-full">
-                    <li className="cursor-default my-2 font-poppins flex flex-col gap-4">
-                        <header className="grid grid-cols-4 gap-4">
-                            <section>
-                                <img
-                                    src="https://i2.wp.com/www.historiadasartes.com/wp-content/uploads/2016/09/m_entrada.jpg?fit=500%2C332&ssl=1"
-                                    alt=""
-                                    className="h-16 w-full object-cover rounded"
-                                />
-                            </section>
-
-                            <section className="col-span-2 flex flex-col justify-between">
-                                <h2 className="font-bold text-sm">
-                                    Museu de Arte Contemporânea
-                                </h2>
-                                <p className="text-gray-400">Niterói, Brasil</p>
-                            </section>
-
-                            <section className="flex flex-col justify-between items-end">
-                                <h2 className="text-2xl">😀</h2>
-                                <p className="text-gray-400 text-tiny text-right leading-tight">
-                                    #triste #deprimido
-                                </p>
-                            </section>
-                        </header>
-
-                        <footer className="grid grid-cols-4">
-                            <section className="col-start-2 col-span-3">
-                                <p className="text-tiny">
-                                    #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu
-                                    #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
-                                    #hfuash #udafhusfhusdah #hfuadhfu
-                                    #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
-                                    #hfuash #udafhusfhusdah #hfuadhfu
-                                    #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
-                                    #hfuash #udafhusfhusdah #hfuadhfu
-                                    #ufhadufhsud #fuas #fausdfushdfuhs
-                                </p>
-                            </section>
-                        </footer>
-                    </li>
+                <ul className="flex flex-col w-full">
+                    <ProjectItem project={projectOne} page="references" />
+                    <ProjectItem project={projectOne} page="references" />
+                    <ProjectItem project={projectOne} page="references" />
                 </ul>
             </PageMainWrapper>
 
