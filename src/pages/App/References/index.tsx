@@ -36,7 +36,7 @@ export const ReferencesPage = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col gap-9 w-full">
-                    <li className="cursor-default my-2 font-poppins">
+                    <li className="cursor-default my-2 font-poppins flex flex-col gap-4">
                         <header className="grid grid-cols-4 gap-4">
                             <section>
                                 <img
@@ -50,18 +50,31 @@ export const ReferencesPage = () => {
                                 <h2 className="font-bold text-sm">
                                     Museu de Arte Contemporânea
                                 </h2>
-                                <span className="text-gray-400">
-                                    Niterói, Brasil
-                                </span>
+                                <p className="text-gray-400">Niterói, Brasil</p>
                             </section>
 
                             <section className="flex flex-col justify-between items-end">
                                 <h2 className="text-2xl">😀</h2>
-                                <span className="text-gray-400 text-tiny text-right leading-tight">
+                                <p className="text-gray-400 text-tiny text-right leading-tight">
                                     #triste #deprimido
-                                </span>
+                                </p>
                             </section>
                         </header>
+
+                        <footer className="grid grid-cols-4">
+                            <section className="col-start-2 col-span-3">
+                                <p className="text-tiny">
+                                    #hfuhfdu #hfuash #udafhusfhusdah #hfuadhfu
+                                    #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
+                                    #hfuash #udafhusfhusdah #hfuadhfu
+                                    #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
+                                    #hfuash #udafhusfhusdah #hfuadhfu
+                                    #ufhadufhsud #fuas #fausdfushdfuhs #hfuhfdu
+                                    #hfuash #udafhusfhusdah #hfuadhfu
+                                    #ufhadufhsud #fuas #fausdfushdfuhs
+                                </p>
+                            </section>
+                        </footer>
                     </li>
                 </ul>
             </PageMainWrapper>
