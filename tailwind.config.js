@@ -5,7 +5,8 @@ module.exports = {
         './src/pages/**/*.{js,ts,jsx,tsx}',
         './src/pages/App/**/*.{js,ts,jsx,tsx}',
         './src/pages/LoginPage/**/*.{js,ts,jsx,tsx}',
-        './src/pages/HomePage/**/*.{js,ts,jsx,tsx}'
+        './src/pages/HomePage/**/*.{js,ts,jsx,tsx}',
+        './styles/**/*.{js,ts,jsx,tsx}'
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
