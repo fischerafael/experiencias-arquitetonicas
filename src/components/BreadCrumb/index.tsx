@@ -17,6 +17,7 @@ export const BreadCrumb = ({ links }: BreadCrumbProps) => {
             <nav className="flex gap-1">
                 {links.map((link) => (
                     <BreadCrumbLink
+                        key={link.href}
                         isFirst={link.isFirst}
                         isActive={link.isActive}
                         text={link.text}
