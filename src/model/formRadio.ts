@@ -20,6 +20,7 @@ export interface IOptions {
     context_interest: IOption
     time: IOption
     weather: IOption
+    emotions: IOption
 }
 
 export interface IOption {
@@ -855,6 +856,68 @@ export const options: IOptions = {
                 text: 'C',
                 description: 'Não é Ponto de Interesse',
                 value: 1
+            }
+        ]
+    },
+    emotions: {
+        title: 'Experiência do Usuário',
+        description: 'Qual é a experiência do usuário nesse espaço?',
+        options: [
+            {
+                id: '01',
+                type: 'emotions',
+                text: '😱',
+                description: '#tenso #nervoso',
+                value: 0
+            },
+            {
+                id: '02',
+                type: 'emotions',
+                text: '😤',
+                description: '#estressado #irritado',
+                value: 1 / 7
+            },
+            {
+                id: '03',
+                type: 'emotions',
+                text: '😢',
+                description: '#triste #deprimido',
+                value: 2 / 7
+            },
+            {
+                id: '04',
+                type: 'emotions',
+                text: '🥱',
+                description: '#letárgico #fatigado',
+                value: 3 / 7
+            },
+            {
+                id: '05',
+                type: 'emotions',
+                text: '🙂',
+                description: '#calmo #relaxado',
+                value: 4 / 7
+            },
+            {
+                id: '06',
+                type: 'emotions',
+                text: '😃',
+                description: '#sereno #contente',
+                value: 5 / 7
+            },
+            {
+                id: '07',
+                type: 'emotions',
+                text: '😁',
+                description: '#feliz #alegre',
+                value: 6 / 7
+            },
+            {
+                id: '08',
+                type: 'emotions',
+                text: '🤪',
+                description: '#excitado #eufórico',
+                value: 7 / 7
             }
         ]
     }

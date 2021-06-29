@@ -1,5 +1,6 @@
 import { TrashIcon, BeakerIcon } from '@heroicons/react/outline'
 import tw from 'tailwind-styled-components'
+import Router from 'next/router'
 
 import { IProject } from '../../../entities'
 import { options } from '../../../model/formRadio'
@@ -25,6 +26,10 @@ const handleGetDescriptionFromKey = (project: IProject, key: string) => {
         (option) => option.value === project[key]
     ).description
     return description
+}
+
+const handleNavigateToProject = (e) => {
+    Router.push('/app/evaluations/edit')
 }
 
 export const ProjectItem = ({ project, page }: ProjectItemProps) => {
@@ -76,7 +81,10 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
 
                 <section className="h-full flex flex-col justify-start items-end">
                     {page === 'evaluations' && (
-                        <button className="flex items-center justify-center flex-col group text-gray-400">
+                        <button
+                            onClick={() => handleNavigateToProject('')}
+                            className="flex items-center justify-center flex-col group text-gray-400"
+                        >
                             <BeakerIcon className="w-4 h-4 group-hover:text-blue-500" />
                             <span className="text-tiny font-medium tracking-tight">
                                 Avaliar
