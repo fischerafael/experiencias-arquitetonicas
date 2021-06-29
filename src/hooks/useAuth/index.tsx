@@ -4,6 +4,9 @@ import { fetch } from '../../services/api'
 interface AuthContextProps {
     handleLogin: (e: any, loginData: ILoginData) => void
     handleCreateProject: (e: any, registerData: IRegisterData) => void
+
+    credentials: ICredentials
+    setCredentials: (e: ICredentials) => void
 }
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -11,11 +14,22 @@ const AuthContext = createContext({} as AuthContextProps)
 export const AuthProvider = ({ children }) => {
     const [credentials, setCredentials] = useState({} as ICredentials)
 
+    console.log('auth provider - credentials', credentials)
+
     const handleLogin = async (e: any, loginData: ILoginData) => {
         e.preventDefault()
 
         try {
             const { response } = await fetch.login(loginData)
+
+            setCredentials({
+                user_name: response.user.architect_name,
+                user_email: response.user.email,
+                user_id: response.user.id,
+                jwt: response.jwt,
+                project_name: response.user.project_name
+            })
+
             console.log('handleLoginResponse', response)
         } catch (error) {
             console.log('handleLoginError', error)
@@ -26,6 +40,15 @@ export const AuthProvider = ({ children }) => {
         e.preventDefault()
         try {
             const { response } = await fetch.createProject(registerData)
+
+            setCredentials({
+                user_name: response.user.architect_name,
+                user_email: response.user.email,
+                user_id: response.user.id,
+                jwt: response.jwt,
+                project_name: response.user.project_name
+            })
+
             console.log('handleCreateProject', response)
         } catch (error) {
             console.log(error)
@@ -33,7 +56,14 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ handleLogin, handleCreateProject }}>
+        <AuthContext.Provider
+            value={{
+                handleLogin,
+                handleCreateProject,
+                credentials,
+                setCredentials
+            }}
+        >
             {children}
         </AuthContext.Provider>
     )
