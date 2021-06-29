@@ -99,6 +99,17 @@ export const fetch = {
             return { error }
         }
     },
+    async getReferenceData(referenceId: string) {
+        try {
+            const { data: response, status } = await api.get(
+                `/projects/${referenceId}`
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
+
     async removeReference(referenceId: string, jwt: string) {
         try {
             const { data: response, status } = await api.delete(

@@ -5,10 +5,13 @@ import {
     PageFooterWrapper
 } from '../../../../styles/components/Layout'
 import { BreadCrumb } from '../../../components/BreadCrumb'
-import { ProjectItem } from '../../../components/List/ProjectItem'
+import { EvaluationListItem } from '../../../components/List/ProjectItem/EvaluationListItem'
 import { IProject } from '../../../entities'
 import { CustomLink } from '../../../components/CustomLink'
 import { DefaultButton } from '../../../components/Button/style'
+import { useEffect, useState } from 'react'
+import { fetch } from '../../../services/api'
+import { useAuth } from '../../../hooks/useAuth'
 
 const breadCrumbLinks = [
     {
@@ -56,6 +59,23 @@ const projectOne: IProject = {
 }
 
 export const Evaluations = () => {
+    const { credentials } = useAuth()
+    const [references, setReferences] = useState<IProject[]>([])
+
+    useEffect(() => {
+        ;(async () => {
+            const { response } = await fetch.getArchitectData(
+                credentials.user_id
+            )
+
+            setReferences(response.projects)
+        })()
+    }, [])
+
+    const handleEvaluateProject = (referenceId: string) => {
+        alert(`${referenceId}`)
+    }
+
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -66,21 +86,19 @@ export const Evaluations = () => {
                 <BreadCrumb links={breadCrumbLinks} />
             </PageHeaderWrapper>
 
-            <PageMainWrapper fullScreen>
+            <PageMainWrapper fscreen={true}>
                 <ul className="flex flex-col w-full">
-                    <ProjectItem project={projectOne} page="evaluations" />
-                    <ProjectItem project={projectOne} page="evaluations" />
-                    <ProjectItem project={projectOne} page="evaluations" />
+                    {references?.map((reference) => (
+                        <EvaluationListItem
+                            key={reference.id}
+                            project={projectOne}
+                            onEvaluate={() =>
+                                handleEvaluateProject(reference.id)
+                            }
+                        />
+                    ))}
                 </ul>
             </PageMainWrapper>
-
-            {/* <PageFooterWrapper>
-                <CustomLink href="/app/references/edit">
-                    <DefaultButton disabled={false}>
-                        Sem função ainda
-                    </DefaultButton>
-                </CustomLink>
-            </PageFooterWrapper> */}
         </PageAppWrapper>
     )
 }

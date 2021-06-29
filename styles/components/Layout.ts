@@ -53,7 +53,7 @@ export const PageHeaderWrapper = tw.header`
 `
 
 interface PageMainWrapperProps {
-    fullScreen?: boolean
+    fscreen?: boolean
 }
 
 export const PageMainWrapper = tw.main<PageMainWrapperProps>`
@@ -64,7 +64,7 @@ export const PageMainWrapper = tw.main<PageMainWrapperProps>`
     flex 
     flex-col 
     gap-4
-    ${({ fullScreen }) => (fullScreen === true ? 'h-full' : 'h-main')}
+    ${({ fscreen }) => (fscreen ? 'h-full' : 'h-main')}
 `
 
 export const PageFooterWrapper = tw.footer`

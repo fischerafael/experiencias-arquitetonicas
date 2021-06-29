@@ -10,6 +10,7 @@ import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSe
 import { options } from '../../../model/formRadio'
 import { DefaultButton } from '../../../components/Button/style'
 import { useState } from 'react'
+import { IProject } from '../../../entities'
 
 const { emotions } = options
 
@@ -34,8 +35,23 @@ const breadCrumbLinks = [
     }
 ]
 
-export const EvaluationsEdit = () => {
-    const defaultProjectImage = '/pictures/default-placeholder.png'
+interface EvaluationsEditProps {
+    project_id: string
+    architect_id: string
+    client_evaluation: number
+    project_location: string
+    project_name: string
+    project_thumbnail: string
+}
+
+export const EvaluationsEdit = ({
+    project
+}: {
+    project: EvaluationsEditProps
+}) => {
+    console.log('project', project)
+
+    // const defaultProjectImage = '/pictures/default-placeholder.png'
     const [selectedOptions, setSelectedOptions] = useState({ emotions: 0 })
 
     const handleOptionChange = (option: { type: string; value: number }) => {
@@ -57,7 +73,7 @@ export const EvaluationsEdit = () => {
             <PageMainWrapper>
                 <section className="relative">
                     <img
-                        src={defaultProjectImage}
+                        src={project.project_thumbnail}
                         alt=""
                         className="h-80 w-full object-cover rounded"
                     />
@@ -65,7 +81,8 @@ export const EvaluationsEdit = () => {
 
                 <Form>
                     <FieldSet>
-                        <Legend>Avalie a Experiência do Usuário</Legend>
+                        <Legend>{project.project_name}</Legend>
+
                         <FormRadioSection
                             option={emotions}
                             selectedHeight={selectedOptions.emotions}
