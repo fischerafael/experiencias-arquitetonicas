@@ -1,14 +1,20 @@
+import { useEffect } from 'react'
 import {
     PageHomeWrapper,
-    PageHomeContent,
-    PageHeaderWrapper,
-    PageMainWrapper,
-    PageFooterWrapper
+    PageHomeContent
 } from '../../../styles/components/Layout'
 import { DefaultButton } from '../../components/Button/style'
 import { CustomLink } from '../../components/CustomLink'
+import { fetch } from '../../services/api'
 
 export const HomePage = () => {
+    useEffect(() => {
+        ;(async function () {
+            const status = await fetch.wakeUp()
+            console.log('FETCH WAKE UP API', status)
+        })()
+    }, [])
+
     return (
         <PageHomeWrapper>
             <PageHomeContent>
