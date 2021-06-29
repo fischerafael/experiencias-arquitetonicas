@@ -8,10 +8,11 @@ import {
 import { DefaultButton } from '../../components/Button/style'
 import { CustomInput } from '../../components/Input'
 import { CustomLink } from '../../components/CustomLink'
+import { fetch } from '../../services/api'
 
 export const RegisterPage = () => {
     const [registerInfo, setRegisterInfo] = useState({
-        identifier: '',
+        email: '',
         password: '',
         project_name: '',
         architect_name: ''
@@ -27,7 +28,7 @@ export const RegisterPage = () => {
 
     useEffect(() => {
         if (
-            registerInfo.identifier === '' ||
+            registerInfo.email === '' ||
             registerInfo.password === '' ||
             registerInfo.project_name === '' ||
             registerInfo.architect_name === ''
@@ -40,6 +41,19 @@ export const RegisterPage = () => {
     }, [registerInfo])
 
     console.log('registerInfo', registerInfo)
+
+    const handleCreateProject = async (e: any) => {
+        e.preventDefault()
+        try {
+            const { response, error, status } = await fetch.createProject({
+                ...registerInfo,
+                username: registerInfo.email
+            })
+            console.log('handleCreateProject', response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <PageAppWrapper>
@@ -57,14 +71,13 @@ export const RegisterPage = () => {
                 <form
                     id="register-form"
                     className="flex flex-col gap-4 justify-center h-full"
-                    onSubmit={() => alert('oi')}
                 >
                     <CustomInput
                         label="Email"
                         placeholder="ex: rafael@gmail.com"
                         type="email"
-                        value={registerInfo.identifier}
-                        onChange={(e) => handleUserInfoChange(e, 'identifier')}
+                        value={registerInfo.email}
+                        onChange={(e) => handleUserInfoChange(e, 'email')}
                     />
 
                     <CustomInput
@@ -98,7 +111,11 @@ export const RegisterPage = () => {
             </PageMainWrapper>
 
             <PageFooterWrapper>
-                <DefaultButton disabled={disabled} form="login-form">
+                <DefaultButton
+                    disabled={disabled}
+                    form="login-form"
+                    onClick={handleCreateProject}
+                >
                     Criar Projeto
                 </DefaultButton>
 
