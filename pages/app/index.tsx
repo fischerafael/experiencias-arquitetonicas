@@ -23,8 +23,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     const credentials = JSON.parse(UX_ARCH)
 
-    console.log('credentials', credentials)
-
     if (credentials.jwt === '') {
         return {
             redirect: {

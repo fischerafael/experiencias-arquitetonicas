@@ -4,8 +4,8 @@ import Cookie from 'js-cookie'
 import { fetch } from '../../services/api'
 
 interface AuthContextProps {
-    handleLogin: (e: any, loginData: ILoginData) => void
-    handleCreateProject: (e: any, registerData: IRegisterData) => void
+    login: (loginData: ILoginData) => void
+    newProject: (registerData: IRegisterData) => void
 
     credentials: ICredentials
     setCredentials: (e: ICredentials) => void
@@ -24,13 +24,11 @@ export const AuthProvider = ({ children }) => {
 
     console.log('auth provider - credentials', credentials)
 
-    const handleLogin = async (e: any, loginData: ILoginData) => {
-        e.preventDefault()
-
+    const login = async (loginData: ILoginData) => {
         try {
             const { response } = await fetch.login(loginData)
 
-            setCredentials({
+            Cookie.set('UX_ARCH', {
                 user_name: response.user.architect_name,
                 user_email: response.user.email,
                 user_id: response.user.id,
@@ -46,12 +44,13 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const handleCreateProject = async (e: any, registerData: IRegisterData) => {
-        e.preventDefault()
+    const newProject = async (registerData: IRegisterData) => {
         try {
             const { response } = await fetch.createProject(registerData)
 
-            setCredentials({
+            console.log('reponse', response)
+
+            Cookie.set('UX_ARCH', {
                 user_name: response.user.architect_name,
                 user_email: response.user.email,
                 user_id: response.user.id,
@@ -59,29 +58,27 @@ export const AuthProvider = ({ children }) => {
                 project_name: response.user.project_name
             })
 
-            console.log('handleCreateProject', response)
-
             Router.push('/app')
         } catch (error) {
             console.log(error)
         }
     }
 
-    useEffect(() => {
-        // if (credentials.jwt !== '') return
+    // useEffect(() => {
+    //     // if (credentials.jwt !== '') return
 
-        // const existingCookies = Cookie.get('UX_ARCH')
-        // if (JSON.parse(existingCookies) !== '') return
+    //     // const existingCookies = Cookie.get('UX_ARCH')
+    //     // if (JSON.parse(existingCookies) !== '') return
 
-        Cookie.set('UX_ARCH', credentials)
-        // console.log('existingCookies', existingCookies)
-    }, [credentials])
+    //     Cookie.set('UX_ARCH', credentials)
+    //     // console.log('existingCookies', existingCookies)
+    // }, [credentials])
 
     return (
         <AuthContext.Provider
             value={{
-                handleLogin,
-                handleCreateProject,
+                login,
+                newProject,
                 credentials,
                 setCredentials
             }}

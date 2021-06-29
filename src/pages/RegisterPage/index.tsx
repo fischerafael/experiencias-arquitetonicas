@@ -8,7 +8,7 @@ import {
 import { DefaultButton } from '../../components/Button/style'
 import { CustomInput } from '../../components/Input'
 import { CustomLink } from '../../components/CustomLink'
-import { fetch } from '../../services/api'
+
 import { useAuth } from '../../hooks/useAuth'
 
 export const RegisterPage = () => {
@@ -48,7 +48,12 @@ export const RegisterPage = () => {
 
     console.log('newProjectData', newProjectData)
 
-    const { handleCreateProject } = useAuth()
+    const { newProject } = useAuth()
+
+    const handleNewProject = (e: any) => {
+        e.preventDefault()
+        newProject(newProjectData)
+    }
 
     return (
         <PageAppWrapper>
@@ -109,7 +114,7 @@ export const RegisterPage = () => {
                 <DefaultButton
                     disabled={disabled}
                     form="login-form"
-                    onClick={(e) => handleCreateProject(e, newProjectData)}
+                    onClick={handleNewProject}
                 >
                     Criar Projeto
                 </DefaultButton>

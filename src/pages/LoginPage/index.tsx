@@ -14,7 +14,7 @@ export const LoginPage = () => {
     const [loginInfo, setLoginInfo] = useState({ identifier: '', password: '' })
     const [disabled, setDisabled] = useState(false)
 
-    const { handleLogin } = useAuth()
+    const { login } = useAuth()
 
     const handleUserInfoChange = (e: any, key: string) => {
         setLoginInfo({
@@ -31,6 +31,11 @@ export const LoginPage = () => {
 
         setDisabled(false)
     }, [loginInfo])
+
+    const handleLogin = (e: any) => {
+        e.preventDefault()
+        login(loginInfo)
+    }
 
     return (
         <PageAppWrapper>
@@ -72,7 +77,7 @@ export const LoginPage = () => {
                 <DefaultButton
                     disabled={disabled}
                     form="login-form"
-                    onClick={(e) => handleLogin(e, loginInfo)}
+                    onClick={handleLogin}
                 >
                     Acessar Projeto
                 </DefaultButton>
