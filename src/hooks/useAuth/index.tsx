@@ -14,7 +14,13 @@ interface AuthContextProps {
 const AuthContext = createContext({} as AuthContextProps)
 
 export const AuthProvider = ({ children }) => {
-    const [credentials, setCredentials] = useState({} as ICredentials)
+    const [credentials, setCredentials] = useState({
+        user_name: '',
+        user_email: '',
+        user_id: '',
+        jwt: '',
+        project_name: ''
+    })
 
     console.log('auth provider - credentials', credentials)
 
@@ -62,8 +68,12 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const existingCookie = Cookie.get('UX_ARCH')
-        if (existingCookie) return
+        // const existingCookie = Cookie.get('UX_ARCH')
+        // const parsedCookie = existingCookie && JSON.parse(existingCookie)
+        // if (!parsedCookie?.jwt) return
+
+        // // const parsedCookie = existingCookie && JSON.parse(existingCookie)
+        // // if (parsedCookie.jwt !== '') return
 
         Cookie.set('UX_ARCH', credentials)
     }, [credentials])

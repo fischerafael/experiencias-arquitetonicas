@@ -11,11 +11,21 @@ export default index
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const { UX_ARCH } = req.cookies
+
+    if (!UX_ARCH) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false
+            }
+        }
+    }
+
     const credentials = JSON.parse(UX_ARCH)
 
     console.log('credentials', credentials)
 
-    if (!credentials.jwt) {
+    if (credentials.jwt === '') {
         return {
             redirect: {
                 destination: '/login',
