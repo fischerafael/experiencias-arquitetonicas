@@ -8,10 +8,13 @@ import {
 import { DefaultButton } from '../../components/Button/style'
 import { CustomInput } from '../../components/Input'
 import { CustomLink } from '../../components/CustomLink'
+import { useAuth } from '../../hooks/useAuth'
 
 export const LoginPage = () => {
     const [loginInfo, setLoginInfo] = useState({ identifier: '', password: '' })
     const [disabled, setDisabled] = useState(false)
+
+    const { handleLogin } = useAuth()
 
     const handleUserInfoChange = (e: any, key: string) => {
         setLoginInfo({
@@ -66,7 +69,11 @@ export const LoginPage = () => {
             </PageMainWrapper>
 
             <PageFooterWrapper>
-                <DefaultButton disabled={disabled} form="login-form">
+                <DefaultButton
+                    disabled={disabled}
+                    form="login-form"
+                    onClick={(e) => handleLogin(e, loginInfo)}
+                >
                     Acessar Projeto
                 </DefaultButton>
 

@@ -8,6 +8,11 @@ interface ICreateProject {
     project_name: string
 }
 
+interface ILogin {
+    identifier: string
+    password: string
+}
+
 export const fetch = {
     async wakeUp() {
         try {
@@ -21,6 +26,17 @@ export const fetch = {
         try {
             const { data: response, status } = await api.post(
                 '/auth/local/register',
+                data
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
+    async login(data: ILogin) {
+        try {
+            const { data: response, status } = await api.post(
+                '/auth/local',
                 data
             )
             return { response, status }
