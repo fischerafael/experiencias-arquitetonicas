@@ -153,14 +153,6 @@ export const User = () => {
                         onChange={(e) => handleUserInfoChange(e, 'birth_year')}
                     />
 
-                    {/* <CustomInput
-                        label="Ano de Nascimento"
-                        placeholder="ex: feminino"
-                        type="text"
-                        value={userInfo.gender}
-                        onChange={(e) => handleUserInfoChange(e, 'gender')}
-                    /> */}
-
                     <SelectInput
                         label="Sexo"
                         options={[

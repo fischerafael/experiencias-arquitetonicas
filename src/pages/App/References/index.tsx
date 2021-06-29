@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -9,6 +10,8 @@ import { DefaultButton } from '../../../components/Button/style'
 import { CustomLink } from '../../../components/CustomLink'
 import { ProjectItem } from '../../../components/List/ProjectItem'
 import { IProject } from '../../../entities'
+import { useAuth } from '../../../hooks/useAuth'
+import { fetch } from '../../../services/api'
 
 const breadCrumbLinks = [
     {
@@ -30,7 +33,7 @@ const projectOne: IProject = {
     project_location: 'Niteroi, Brasil',
     predicted_evaluation: 0.2,
     client_evaluation: 0.4,
-    height: 0,
+    height: 0.5,
     size: 0,
     elements: 0,
     shape: 0,
@@ -56,6 +59,22 @@ const projectOne: IProject = {
 }
 //
 export const ReferencesPage = () => {
+    const { credentials } = useAuth()
+    const [references, setReferences] = useState<IProject[]>([])
+
+    console.log('references', references[0])
+    console.log('projectOne', projectOne)
+
+    useEffect(() => {
+        ;(async () => {
+            const { response } = await fetch.getArchitectData(
+                credentials.user_id
+            )
+
+            setReferences(response.projects)
+        })()
+    }, [])
+
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -68,9 +87,13 @@ export const ReferencesPage = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
-                    <ProjectItem project={projectOne} page="references" />
-                    <ProjectItem project={projectOne} page="references" />
-                    <ProjectItem project={projectOne} page="references" />
+                    {references?.map((reference) => (
+                        <ProjectItem
+                            key={reference.id}
+                            project={reference}
+                            page="references"
+                        />
+                    ))}
                 </ul>
             </PageMainWrapper>
 

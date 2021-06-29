@@ -21,12 +21,15 @@ const handleDisplayEvaluationInfo = (evaluation: number) => {
     if (evaluation <= 8 / 8) return emotionsDisplay.positiveH
 }
 
-const handleGetDescriptionFromKey = (project: IProject, key: string) => {
-    const description = options[key].options.find(
-        (option) => option.value === project[key]
-    ).description
-    return description
-}
+// const handleGetDescriptionFromKey = (project: IProject, key: string) => {
+//     // const descriptionBase = options[key]
+//     // const projectKey = project[key]
+//     // console.log('projectKey', projectKey)
+//     const description = options[key].options.find(
+//         (option) => option.value === project[key]
+//     ).description
+//     return description
+// }
 
 const handleNavigateToProject = (e) => {
     Router.push('/app/evaluations/edit')
@@ -37,29 +40,29 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
         project.predicted_evaluation
     )
     const clientEmotion = handleDisplayEvaluationInfo(project.client_evaluation)
-    const descriptionArray = [
-        handleGetDescriptionFromKey(project, 'height'),
-        handleGetDescriptionFromKey(project, 'size'),
-        handleGetDescriptionFromKey(project, 'elements'),
-        handleGetDescriptionFromKey(project, 'shape'),
-        handleGetDescriptionFromKey(project, 'materials'),
-        handleGetDescriptionFromKey(project, 'texture'),
-        handleGetDescriptionFromKey(project, 'tone'),
-        handleGetDescriptionFromKey(project, 'primary_color'),
-        handleGetDescriptionFromKey(project, 'secondary_color'),
-        handleGetDescriptionFromKey(project, 'tertiary_color'),
-        handleGetDescriptionFromKey(project, 'opennings'),
-        handleGetDescriptionFromKey(project, 'light'),
-        handleGetDescriptionFromKey(project, 'contrast'),
-        handleGetDescriptionFromKey(project, 'opacity'),
-        handleGetDescriptionFromKey(project, 'movement'),
-        handleGetDescriptionFromKey(project, 'people'),
-        handleGetDescriptionFromKey(project, 'context'),
-        handleGetDescriptionFromKey(project, 'landmark'),
-        handleGetDescriptionFromKey(project, 'context_interest'),
-        handleGetDescriptionFromKey(project, 'time'),
-        handleGetDescriptionFromKey(project, 'weather')
-    ]
+    // const descriptionArray = [
+    //     handleGetDescriptionFromKey(project, 'height'),
+    //     handleGetDescriptionFromKey(project, 'size'),
+    //     handleGetDescriptionFromKey(project, 'elements'),
+    //     handleGetDescriptionFromKey(project, 'shape'),
+    //     handleGetDescriptionFromKey(project, 'materials'),
+    //     handleGetDescriptionFromKey(project, 'texture'),
+    //     handleGetDescriptionFromKey(project, 'tone'),
+    //     handleGetDescriptionFromKey(project, 'primary_color'),
+    //     handleGetDescriptionFromKey(project, 'secondary_color'),
+    //     handleGetDescriptionFromKey(project, 'tertiary_color'),
+    //     handleGetDescriptionFromKey(project, 'opennings'),
+    //     handleGetDescriptionFromKey(project, 'light'),
+    //     handleGetDescriptionFromKey(project, 'contrast'),
+    //     handleGetDescriptionFromKey(project, 'opacity'),
+    //     handleGetDescriptionFromKey(project, 'movement'),
+    //     handleGetDescriptionFromKey(project, 'people'),
+    //     handleGetDescriptionFromKey(project, 'context'),
+    //     handleGetDescriptionFromKey(project, 'landmark'),
+    //     handleGetDescriptionFromKey(project, 'context_interest'),
+    //     handleGetDescriptionFromKey(project, 'time'),
+    //     handleGetDescriptionFromKey(project, 'weather')
+    // ]
 
     return (
         <ListWrapper>
@@ -138,14 +141,14 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
                             Características
                         </span>
                         <ul className="flex flex-row flex-wrap gap-1">
-                            {descriptionArray?.map((description, index) => (
+                            {/* {descriptionArray?.map((description, index) => (
                                 <li
                                     key={index}
                                     className="text-tiny bg-gray-100 px-1"
                                 >
                                     {description}
                                 </li>
-                            ))}
+                            ))} */}
                         </ul>
                     </section>
                 </ListFooter>
