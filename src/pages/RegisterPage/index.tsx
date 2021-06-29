@@ -9,6 +9,7 @@ import { DefaultButton } from '../../components/Button/style'
 import { CustomInput } from '../../components/Input'
 import { CustomLink } from '../../components/CustomLink'
 import { fetch } from '../../services/api'
+import { useAuth } from '../../hooks/useAuth'
 
 export const RegisterPage = () => {
     const [registerInfo, setRegisterInfo] = useState({
@@ -40,20 +41,14 @@ export const RegisterPage = () => {
         setDisabled(false)
     }, [registerInfo])
 
-    console.log('registerInfo', registerInfo)
-
-    const handleCreateProject = async (e: any) => {
-        e.preventDefault()
-        try {
-            const { response } = await fetch.createProject({
-                ...registerInfo,
-                username: registerInfo.email
-            })
-            console.log('handleCreateProject', response)
-        } catch (error) {
-            console.log(error)
-        }
+    const newProjectData = {
+        ...registerInfo,
+        username: registerInfo.email
     }
+
+    console.log('newProjectData', newProjectData)
+
+    const { handleCreateProject } = useAuth()
 
     return (
         <PageAppWrapper>
@@ -114,7 +109,7 @@ export const RegisterPage = () => {
                 <DefaultButton
                     disabled={disabled}
                     form="login-form"
-                    onClick={handleCreateProject}
+                    onClick={(e) => handleCreateProject(e, newProjectData)}
                 >
                     Criar Projeto
                 </DefaultButton>

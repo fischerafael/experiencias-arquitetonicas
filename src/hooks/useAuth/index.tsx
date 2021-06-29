@@ -3,6 +3,7 @@ import { fetch } from '../../services/api'
 
 interface AuthContextProps {
     handleLogin: (e: any, loginData: ILoginData) => void
+    handleCreateProject: (e: any, registerData: IRegisterData) => void
 }
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -32,20 +33,36 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const handleCreateProject = async (e: any, registerData: IRegisterData) => {
+        e.preventDefault()
+        try {
+            const { response } = await fetch.createProject(registerData)
+            console.log('handleCreateProject', response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{ handleLogin }}>
+        <AuthContext.Provider value={{ handleLogin, handleCreateProject }}>
             {children}
         </AuthContext.Provider>
     )
 }
 
 export const useAuth = () => {
-    const context = useContext(AuthContext)
-
-    return context
+    return useContext(AuthContext)
 }
 
 interface ILoginData {
     identifier: string
     password: string
+}
+
+interface IRegisterData {
+    email: string
+    username: string
+    password: string
+    project_name: string
+    architect_name: string
 }
