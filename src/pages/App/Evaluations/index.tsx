@@ -4,6 +4,7 @@ import {
     PageMainWrapper,
     PageFooterWrapper
 } from '../../../../styles/components/Layout'
+import Router from 'next/router'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { EvaluationListItem } from '../../../components/List/ProjectItem/EvaluationListItem'
 import { IProject } from '../../../entities'
@@ -74,6 +75,7 @@ export const Evaluations = () => {
 
     const handleEvaluateProject = (referenceId: string) => {
         alert(`${referenceId}`)
+        Router.push(`/app/evaluations/${referenceId}`)
     }
 
     return (
