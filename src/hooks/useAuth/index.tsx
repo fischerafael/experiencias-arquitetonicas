@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import Cookie from 'js-cookie'
 import { fetch } from '../../services/api'
 
 interface AuthContextProps {
@@ -54,6 +55,10 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        Cookie.set('UX-ARCH', credentials)
+    }, [credentials])
 
     return (
         <AuthContext.Provider
