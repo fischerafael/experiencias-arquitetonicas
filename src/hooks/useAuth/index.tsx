@@ -68,12 +68,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        // const existingCookie = Cookie.get('UX_ARCH')
-        // const parsedCookie = existingCookie && JSON.parse(existingCookie)
-        // if (!parsedCookie?.jwt) return
-
-        // // const parsedCookie = existingCookie && JSON.parse(existingCookie)
-        // // if (parsedCookie.jwt !== '') return
+        if (credentials.jwt === '') return
 
         Cookie.set('UX_ARCH', credentials)
     }, [credentials])
