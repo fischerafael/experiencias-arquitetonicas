@@ -45,7 +45,7 @@ export const RegisterPage = () => {
     const handleCreateProject = async (e: any) => {
         e.preventDefault()
         try {
-            const { response, error, status } = await fetch.createProject({
+            const { response } = await fetch.createProject({
                 ...registerInfo,
                 username: registerInfo.email
             })
