@@ -111,5 +111,47 @@ export const fetch = {
         } catch (error) {
             return { error }
         }
+    },
+    async createReference(data: ICreateReference, jwt: string) {
+        try {
+            const { data: response, status } = await api.post(
+                '/projects',
+                data,
+                {
+                    headers: { Authorization: `Bearer ${jwt}` }
+                }
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
     }
+}
+
+interface ICreateReference {
+    project_name: string
+    project_location: string
+    project_thumbnail: string
+    architect: string
+    height: number
+    size: number
+    elements: number
+    shape: number
+    materials: number
+    texture: number
+    tone: number
+    primary_color: number
+    secondary_color: number
+    tertiary_color: number
+    opennings: number
+    light: number
+    contrast: number
+    opacity: number
+    movement: number
+    people: number
+    context: number
+    landmark: number
+    context_interest: number
+    time: number
+    weather: number
 }

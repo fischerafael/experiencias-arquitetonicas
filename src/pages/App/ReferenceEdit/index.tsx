@@ -12,6 +12,8 @@ import { options } from '../../../model/formRadio'
 import { DefaultButton } from '../../../components/Button/style'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { CustomInput } from '../../../components/Input'
+import { fetch } from '../../../services/api'
+import { useAuth } from '../../../hooks/useAuth'
 const {
     height,
     size,
@@ -58,6 +60,7 @@ const breadCrumbLinks = [
 ]
 
 export const ReferenceEdit = () => {
+    const { credentials } = useAuth()
     const defaultProjectImage = '/pictures/default-placeholder.png'
     const project_type = 'reference'
     const [textInputs, setTextInputs] = useState({
@@ -101,7 +104,12 @@ export const ReferenceEdit = () => {
         setSelectedOptions({ ...selectedOptions, [option.type]: option.value })
     }
 
-    const formData = { project_type, ...textInputs, ...selectedOptions }
+    const formData = {
+        ...textInputs,
+        ...selectedOptions,
+        project_type,
+        architect: credentials.user_id
+    }
 
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
@@ -118,6 +126,21 @@ export const ReferenceEdit = () => {
     }, [formData])
 
     console.log('formData', formData)
+
+    const handleAddReference = async (e: any) => {
+        e.preventDefault()
+        try {
+            const { response } = await fetch.createReference(
+                formData,
+                credentials.jwt
+            )
+            console.log('success handleAddReference', response)
+            alert('Referência criada com sucesso!')
+        } catch (error) {
+            console.log('handleAddReferenceError', error)
+            alert('Erro ao criar referência')
+        }
+    }
 
     return (
         <PageAppWrapper>
@@ -311,7 +334,10 @@ export const ReferenceEdit = () => {
             </PageMainWrapper>
 
             <PageFooterWrapper>
-                <DefaultButton disabled={buttonDisabled}>
+                <DefaultButton
+                    onClick={handleAddReference}
+                    disabled={buttonDisabled}
+                >
                     Salvar Referência
                 </DefaultButton>
             </PageFooterWrapper>
