@@ -8,34 +8,14 @@ import { options } from '../../../model/formRadio'
 interface ProjectItemProps {
     project: IProject
     page: 'references' | 'evaluations' | 'projects'
+    onClick: (e: any) => void
 }
-
-const handleDisplayEvaluationInfo = (evaluation: number) => {
-    if (evaluation < 1 / 8) return emotionsDisplay.negativeA
-    if (evaluation < 2 / 8) return emotionsDisplay.negativeB
-    if (evaluation < 3 / 8) return emotionsDisplay.negativeC
-    if (evaluation < 4 / 8) return emotionsDisplay.negativeD
-    if (evaluation < 5 / 8) return emotionsDisplay.positiveE
-    if (evaluation < 6 / 8) return emotionsDisplay.positiveF
-    if (evaluation < 7 / 8) return emotionsDisplay.positiveG
-    if (evaluation <= 8 / 8) return emotionsDisplay.positiveH
-}
-
-// const handleGetDescriptionFromKey = (project: IProject, key: string) => {
-//     // const descriptionBase = options[key]
-//     // const projectKey = project[key]
-//     // console.log('projectKey', projectKey)
-//     const description = options[key].options.find(
-//         (option) => option.value === project[key]
-//     ).description
-//     return description
-// }
 
 const handleNavigateToProject = (e) => {
     Router.push('/app/evaluations/edit')
 }
 
-export const ProjectItem = ({ project, page }: ProjectItemProps) => {
+export const ProjectItem = ({ project, page, onClick }: ProjectItemProps) => {
     const predictedEmotion = handleDisplayEvaluationInfo(
         project.predicted_evaluation
     )
@@ -65,7 +45,7 @@ export const ProjectItem = ({ project, page }: ProjectItemProps) => {
     // ]
 
     return (
-        <ListWrapper>
+        <ListWrapper onClick={onClick}>
             <ListHeader>
                 <section>
                     <img
@@ -197,3 +177,24 @@ export const emotionsDisplay = {
         hashtags: '#excitado #eufórico'
     }
 }
+
+const handleDisplayEvaluationInfo = (evaluation: number) => {
+    if (evaluation < 1 / 8) return emotionsDisplay.negativeA
+    if (evaluation < 2 / 8) return emotionsDisplay.negativeB
+    if (evaluation < 3 / 8) return emotionsDisplay.negativeC
+    if (evaluation < 4 / 8) return emotionsDisplay.negativeD
+    if (evaluation < 5 / 8) return emotionsDisplay.positiveE
+    if (evaluation < 6 / 8) return emotionsDisplay.positiveF
+    if (evaluation < 7 / 8) return emotionsDisplay.positiveG
+    if (evaluation <= 8 / 8) return emotionsDisplay.positiveH
+}
+
+// const handleGetDescriptionFromKey = (project: IProject, key: string) => {
+//     // const descriptionBase = options[key]
+//     // const projectKey = project[key]
+//     // console.log('projectKey', projectKey)
+//     const description = options[key].options.find(
+//         (option) => option.value === project[key]
+//     ).description
+//     return description
+// }

@@ -62,9 +62,6 @@ export const ReferencesPage = () => {
     const { credentials } = useAuth()
     const [references, setReferences] = useState<IProject[]>([])
 
-    console.log('references', references[0])
-    console.log('projectOne', projectOne)
-
     useEffect(() => {
         ;(async () => {
             const { response } = await fetch.getArchitectData(
@@ -92,6 +89,7 @@ export const ReferencesPage = () => {
                             key={reference.id}
                             project={reference}
                             page="references"
+                            onClick={() => alert(`Olá, ${reference.id}`)}
                         />
                     ))}
                 </ul>
