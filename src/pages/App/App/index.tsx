@@ -7,8 +7,11 @@ import {
 import { ChevronRightIcon } from '@heroicons/react/outline'
 import { CustomLink } from '../../../components/CustomLink'
 import { GhostButton } from '../../../components/Button/style'
+import { useAuth } from '../../../hooks/useAuth'
 
 export const AppPage = () => {
+    const { credentials } = useAuth()
+
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -20,7 +23,7 @@ export const AppPage = () => {
                     <p>
                         Olá,{' '}
                         <span className="font-bold text-gray-600">
-                            Beatriz!
+                            {credentials.user_name}!
                         </span>
                     </p>
                 </section>
