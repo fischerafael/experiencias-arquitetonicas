@@ -62,13 +62,17 @@ export const ReferencesPage = () => {
     const { credentials } = useAuth()
     const [references, setReferences] = useState<IProject[]>([])
 
-    console.log('references', references)
+    console.log(references)
 
     const handleRemoveReference = async (referenceId: string) => {
         try {
             const { response } = await fetch.removeReference(
                 referenceId,
                 credentials.jwt
+            )
+
+            setReferences(
+                references.filter((reference) => reference.id !== referenceId)
             )
             console.log('removed', response)
             alert(`Referência ${referenceId} removida com sucesso!`)
