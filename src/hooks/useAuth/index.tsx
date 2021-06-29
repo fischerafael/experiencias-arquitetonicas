@@ -22,21 +22,21 @@ export const AuthProvider = ({ children }) => {
         project_name: ''
     })
 
-    console.log('auth provider - credentials', credentials)
-
     const login = async (loginData: ILoginData) => {
         try {
             const { response } = await fetch.login(loginData)
 
-            Cookie.set('UX_ARCH', {
+            const credentialsData = {
                 user_name: response.user.architect_name,
                 user_email: response.user.email,
                 user_id: response.user.id,
                 jwt: response.jwt,
                 project_name: response.user.project_name
-            })
+            }
 
-            console.log('handleLoginResponse', response)
+            setCredentials(credentialsData)
+
+            Cookie.set('UX_ARCH', credentialsData)
 
             Router.push('/app')
         } catch (error) {
@@ -48,15 +48,17 @@ export const AuthProvider = ({ children }) => {
         try {
             const { response } = await fetch.createProject(registerData)
 
-            console.log('reponse', response)
-
-            Cookie.set('UX_ARCH', {
+            const credentialsData = {
                 user_name: response.user.architect_name,
                 user_email: response.user.email,
                 user_id: response.user.id,
                 jwt: response.jwt,
                 project_name: response.user.project_name
-            })
+            }
+
+            setCredentials(credentialsData)
+
+            Cookie.set('UX_ARCH', credentialsData)
 
             Router.push('/app')
         } catch (error) {
@@ -64,15 +66,13 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // useEffect(() => {
-    //     // if (credentials.jwt !== '') return
-
-    //     // const existingCookies = Cookie.get('UX_ARCH')
-    //     // if (JSON.parse(existingCookies) !== '') return
-
-    //     Cookie.set('UX_ARCH', credentials)
-    //     // console.log('existingCookies', existingCookies)
-    // }, [credentials])
+    useEffect(() => {
+        const cookies = Cookie.get('UX_ARCH')
+        if (cookies) {
+            const parsedCookies = JSON.parse(cookies)
+            setCredentials(parsedCookies)
+        }
+    }, [])
 
     return (
         <AuthContext.Provider
