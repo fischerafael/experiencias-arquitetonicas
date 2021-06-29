@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Router from 'next/router'
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -134,6 +135,7 @@ export const ReferenceEdit = () => {
                 formData,
                 credentials.jwt
             )
+            Router.push('/app/references')
             console.log('success handleAddReference', response)
             alert('Referência criada com sucesso!')
         } catch (error) {

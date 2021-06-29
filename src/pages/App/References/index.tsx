@@ -8,7 +8,7 @@ import {
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { DefaultButton } from '../../../components/Button/style'
 import { CustomLink } from '../../../components/CustomLink'
-import { ProjectItem } from '../../../components/List/ProjectItem'
+import { SimpleListItem } from '../../../components/List/ProjectItem/SimpleListItem'
 import { IProject } from '../../../entities'
 import { useAuth } from '../../../hooks/useAuth'
 import { fetch } from '../../../services/api'
@@ -62,8 +62,6 @@ export const ReferencesPage = () => {
     const { credentials } = useAuth()
     const [references, setReferences] = useState<IProject[]>([])
 
-    console.log(references)
-
     const handleRemoveReference = async (referenceId: string) => {
         try {
             const { response } = await fetch.removeReference(
@@ -104,10 +102,9 @@ export const ReferencesPage = () => {
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
                     {references?.map((reference) => (
-                        <ProjectItem
+                        <SimpleListItem
                             key={reference.id}
                             project={reference}
-                            page="references"
                             onRemove={() => handleRemoveReference(reference.id)}
                         />
                     ))}
