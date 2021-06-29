@@ -9,7 +9,7 @@ import { CustomLink } from '../../../components/CustomLink'
 import { DefaultButton } from '../../../components/Button/style'
 import { CustomInput } from '../../../components/Input'
 import { CustomTextArea } from '../../../components/TextArea'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SelectInput } from '../../../components/SelectInput'
 import { fetch } from '../../../services/api'
 import { useAuth } from '../../../hooks/useAuth'
@@ -40,6 +40,10 @@ export const User = () => {
         description: ''
     })
 
+    const [userExists, setUserExists] = useState('')
+
+    console.log('user exists', userExists)
+
     const handleUserInfoChange = (e: any, key: string) => {
         setUserInfo({
             ...userInfo,
@@ -55,21 +59,53 @@ export const User = () => {
 
     console.log('userInfoData', userInfoData)
 
-    const handleSaveUser = async (e: any) => {
+    const handleUpdateUser = async (e: any) => {
         e.preventDefault()
-        alert('Usuário salvo')
+
         try {
+            if (userExists !== '') {
+                const { response } = await fetch.updateUser(
+                    userInfoData,
+                    credentials.jwt,
+                    userExists
+                )
+                console.log('HANDLE UPDATE USER', response)
+
+                alert('Usuário atualizado com sucesso!')
+                return
+            }
+
             const { response } = await fetch.createUser(
                 userInfoData,
                 credentials.jwt
             )
             console.log('HANDLE SAVE USER', response)
 
-            alert('Usuário salvo com sucesso!')
+            alert('Usuário criado com sucesso!')
         } catch (error) {
             console.log('HANDLE SAVE USER ERROR', error)
         }
     }
+
+    useEffect(() => {
+        ;(async () => {
+            const { response } = await fetch.getArchitectData(
+                credentials.user_id
+            )
+            console.log('RESPONSE', response)
+
+            if (response.client) {
+                setUserInfo({
+                    name: response.client.name,
+                    profession: response.client.profession,
+                    birth_year: response.client.birth_year,
+                    gender: response.client.name.gender,
+                    description: response.client.description
+                })
+                setUserExists(response.client.id)
+            }
+        })()
+    }, [])
 
     return (
         <PageAppWrapper>
@@ -133,7 +169,7 @@ export const User = () => {
 
             <PageFooterWrapper>
                 <CustomLink href="/app/references/edit">
-                    <DefaultButton disabled={false} onClick={handleSaveUser}>
+                    <DefaultButton disabled={false} onClick={handleUpdateUser}>
                         Salvar Usuário
                     </DefaultButton>
                 </CustomLink>

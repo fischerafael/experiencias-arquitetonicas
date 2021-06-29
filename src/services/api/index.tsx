@@ -22,6 +22,14 @@ interface ICreateUser {
     architect: string
 }
 
+interface IUpdateUser {
+    name?: string
+    profession?: string
+    birth_year?: number
+    gender?: string
+    description?: string
+}
+
 export const fetch = {
     async wakeUp() {
         try {
@@ -61,6 +69,30 @@ export const fetch = {
                 {
                     headers: { Authorization: `Bearer ${jwt}` }
                 }
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
+    async updateUser(data: IUpdateUser, jwt: string, clientId: string) {
+        try {
+            const { data: response, status } = await api.put(
+                `/clients/${clientId}`,
+                data,
+                {
+                    headers: { Authorization: `Bearer ${jwt}` }
+                }
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
+    async getArchitectData(architectId: string) {
+        try {
+            const { data: response, status } = await api.get(
+                `/users/${architectId}`
             )
             return { response, status }
         } catch (error) {
