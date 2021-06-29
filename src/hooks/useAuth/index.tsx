@@ -62,7 +62,10 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        Cookie.set('UX-ARCH', credentials)
+        const existingCookie = Cookie.get('UX_ARCH')
+        if (existingCookie) return
+
+        Cookie.set('UX_ARCH', credentials)
     }, [credentials])
 
     return (
