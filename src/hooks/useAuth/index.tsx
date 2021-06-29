@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import Router from 'next/router'
 import Cookie from 'js-cookie'
 import { fetch } from '../../services/api'
 
@@ -32,6 +33,8 @@ export const AuthProvider = ({ children }) => {
             })
 
             console.log('handleLoginResponse', response)
+
+            Router.push('/app')
         } catch (error) {
             console.log('handleLoginError', error)
         }
@@ -51,6 +54,8 @@ export const AuthProvider = ({ children }) => {
             })
 
             console.log('handleCreateProject', response)
+
+            Router.push('/app')
         } catch (error) {
             console.log(error)
         }
