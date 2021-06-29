@@ -98,5 +98,18 @@ export const fetch = {
         } catch (error) {
             return { error }
         }
+    },
+    async removeReference(referenceId: string, jwt: string) {
+        try {
+            const { data: response, status } = await api.delete(
+                `/projects/${referenceId}`,
+                {
+                    headers: { Authorization: `Bearer ${jwt}` }
+                }
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
     }
 }

@@ -62,6 +62,21 @@ export const ReferencesPage = () => {
     const { credentials } = useAuth()
     const [references, setReferences] = useState<IProject[]>([])
 
+    console.log('references', references)
+
+    const handleRemoveReference = async (referenceId: string) => {
+        try {
+            const { response } = await fetch.removeReference(
+                referenceId,
+                credentials.jwt
+            )
+            console.log('removed', response)
+            alert(`Referência ${referenceId} removida com sucesso!`)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
     useEffect(() => {
         ;(async () => {
             const { response } = await fetch.getArchitectData(
@@ -89,7 +104,7 @@ export const ReferencesPage = () => {
                             key={reference.id}
                             project={reference}
                             page="references"
-                            onClick={() => alert(`Olá, ${reference.id}`)}
+                            onRemove={() => handleRemoveReference(reference.id)}
                         />
                     ))}
                 </ul>

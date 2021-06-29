@@ -25,5 +25,5 @@ export interface IProject {
     context_interest?: number
     time?: number
     weather?: number
-    id?: number
+    id?: string
 }

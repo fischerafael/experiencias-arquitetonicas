@@ -8,14 +8,14 @@ import { options } from '../../../model/formRadio'
 interface ProjectItemProps {
     project: IProject
     page: 'references' | 'evaluations' | 'projects'
-    onClick: (e: any) => void
+    onRemove: (e: any) => void
 }
 
 const handleNavigateToProject = (e) => {
     Router.push('/app/evaluations/edit')
 }
 
-export const ProjectItem = ({ project, page, onClick }: ProjectItemProps) => {
+export const ProjectItem = ({ project, page, onRemove }: ProjectItemProps) => {
     const predictedEmotion = handleDisplayEvaluationInfo(
         project.predicted_evaluation
     )
@@ -45,7 +45,7 @@ export const ProjectItem = ({ project, page, onClick }: ProjectItemProps) => {
     // ]
 
     return (
-        <ListWrapper onClick={onClick}>
+        <ListWrapper>
             <ListHeader>
                 <section>
                     <img
@@ -76,7 +76,10 @@ export const ProjectItem = ({ project, page, onClick }: ProjectItemProps) => {
                     )}
 
                     {(page === 'references' || page === 'projects') && (
-                        <button className="flex items-center justify-center flex-col group text-gray-400">
+                        <button
+                            onClick={onRemove}
+                            className="flex items-center justify-center flex-col group text-gray-400"
+                        >
                             <TrashIcon className="w-4 h-4 group-hover:text-red-500" />
                             <span className="text-tiny font-medium tracking-tight">
                                 Remover
