@@ -11,6 +11,8 @@ import { CustomInput } from '../../../components/Input'
 import { CustomTextArea } from '../../../components/TextArea'
 import { useState } from 'react'
 import { SelectInput } from '../../../components/SelectInput'
+import { fetch } from '../../../services/api'
+import { useAuth } from '../../../hooks/useAuth'
 
 const breadCrumbLinks = [
     {
@@ -28,6 +30,8 @@ const breadCrumbLinks = [
 ]
 
 export const User = () => {
+    const { credentials } = useAuth()
+
     const [userInfo, setUserInfo] = useState({
         name: '',
         profession: '',
@@ -45,10 +49,27 @@ export const User = () => {
 
     const userInfoData = {
         ...userInfo,
-        birth_year: +userInfo.birth_year
+        birth_year: +userInfo.birth_year,
+        architect: credentials.user_id
     }
 
     console.log('userInfoData', userInfoData)
+
+    const handleSaveUser = async (e: any) => {
+        e.preventDefault()
+        alert('Usuário salvo')
+        try {
+            const { response } = await fetch.createUser(
+                userInfoData,
+                credentials.jwt
+            )
+            console.log('HANDLE SAVE USER', response)
+
+            alert('Usuário salvo com sucesso!')
+        } catch (error) {
+            console.log('HANDLE SAVE USER ERROR', error)
+        }
+    }
 
     return (
         <PageAppWrapper>
@@ -112,7 +133,7 @@ export const User = () => {
 
             <PageFooterWrapper>
                 <CustomLink href="/app/references/edit">
-                    <DefaultButton disabled={false}>
+                    <DefaultButton disabled={false} onClick={handleSaveUser}>
                         Salvar Usuário
                     </DefaultButton>
                 </CustomLink>

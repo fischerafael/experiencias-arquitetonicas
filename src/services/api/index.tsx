@@ -13,6 +13,15 @@ interface ILogin {
     password: string
 }
 
+interface ICreateUser {
+    name: string
+    profession: string
+    birth_year: number
+    gender: string
+    description?: string
+    architect: string
+}
+
 export const fetch = {
     async wakeUp() {
         try {
@@ -38,6 +47,20 @@ export const fetch = {
             const { data: response, status } = await api.post(
                 '/auth/local',
                 data
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
+    async createUser(data: ICreateUser, jwt: string) {
+        try {
+            const { data: response, status } = await api.post(
+                '/clients',
+                data,
+                {
+                    headers: { Authorization: `Bearer ${jwt}` }
+                }
             )
             return { response, status }
         } catch (error) {
