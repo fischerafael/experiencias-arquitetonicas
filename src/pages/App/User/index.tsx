@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -71,6 +72,8 @@ export const User = () => {
                 )
                 console.log('HANDLE UPDATE USER', response)
 
+                Router.push('/app')
+
                 alert('Usuário atualizado com sucesso!')
                 return
             }
@@ -80,6 +83,8 @@ export const User = () => {
                 credentials.jwt
             )
             console.log('HANDLE SAVE USER', response)
+
+            Router.push('/app')
 
             alert('Usuário criado com sucesso!')
         } catch (error) {
@@ -99,7 +104,7 @@ export const User = () => {
                     name: response.client.name,
                     profession: response.client.profession,
                     birth_year: response.client.birth_year,
-                    gender: response.client.name.gender,
+                    gender: response.client.gender,
                     description: response.client.description
                 })
                 setUserExists(response.client.id)
@@ -147,6 +152,14 @@ export const User = () => {
                         value={userInfo.birth_year}
                         onChange={(e) => handleUserInfoChange(e, 'birth_year')}
                     />
+
+                    {/* <CustomInput
+                        label="Ano de Nascimento"
+                        placeholder="ex: feminino"
+                        type="text"
+                        value={userInfo.gender}
+                        onChange={(e) => handleUserInfoChange(e, 'gender')}
+                    /> */}
 
                     <SelectInput
                         label="Sexo"
