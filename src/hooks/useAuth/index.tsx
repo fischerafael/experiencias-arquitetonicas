@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { fetch } from '../../services/api'
 
 interface AuthContextProps {
@@ -9,18 +9,7 @@ interface AuthContextProps {
 const AuthContext = createContext({} as AuthContextProps)
 
 export const AuthProvider = ({ children }) => {
-    // const handleCreateProject = async (e: any) => {
-    //     e.preventDefault()
-    //     try {
-    //         const { response } = await fetch.createProject({
-    //             ...registerInfo,
-    //             username: registerInfo.email
-    //         })
-    //         console.log('handleCreateProject', response)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    const [credentials, setCredentials] = useState({} as ICredentials)
 
     const handleLogin = async (e: any, loginData: ILoginData) => {
         e.preventDefault()
@@ -65,4 +54,12 @@ interface IRegisterData {
     password: string
     project_name: string
     architect_name: string
+}
+
+interface ICredentials {
+    user_email: string
+    user_id: string
+    user_name: string
+    project_name: string
+    jwt: string
 }
