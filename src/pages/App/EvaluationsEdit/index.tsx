@@ -4,13 +4,14 @@ import {
     PageMainWrapper,
     PageFooterWrapper
 } from '../../../../styles/components/Layout'
+import Router from 'next/router'
 import { FieldSet, Form, Legend } from '../../../components/Form/style'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { FormRadioSection } from '../../../components/Form/FormRadio/FormRadioSection'
 import { options } from '../../../model/formRadio'
 import { DefaultButton } from '../../../components/Button/style'
-import { useState } from 'react'
-import { IProject } from '../../../entities'
+import { useEffect, useState } from 'react'
+
 import { fetch } from '../../../services/api'
 import { useAuth } from '../../../hooks/useAuth'
 
@@ -72,11 +73,20 @@ export const EvaluationsEdit = ({
                 credentials.jwt
             )
             console.log('handleSaveEvaluation', response)
+            Router.push('/app/evaluations')
             alert('Projeto avaliado com sucesso!')
         } catch (error) {
             console.log('handleSaveEvaluationError', error)
         }
     }
+
+    useEffect(() => {
+        ;(async () => {
+            const { response } = await fetch.getReferenceData(project.id)
+            console.log('evaluation', response)
+            setSelectedOptions({ emotions: response.client_evaluation })
+        })()
+    }, [])
 
     return (
         <PageAppWrapper>
