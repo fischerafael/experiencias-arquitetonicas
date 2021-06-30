@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 
 import { fetch } from '../../../services/api'
 import { useAuth } from '../../../hooks/useAuth'
+import { Loading } from '../../../components/Loading'
 
 const { emotions } = options
 
@@ -55,8 +56,9 @@ export const EvaluationsEdit = ({
     console.log('project', project)
 
     const { credentials } = useAuth()
-    // const defaultProjectImage = '/pictures/default-placeholder.png'
+
     const [selectedOptions, setSelectedOptions] = useState({ emotions: 0 })
+    const [loading, setLoading] = useState(false)
 
     const handleOptionChange = (option: { type: string; value: number }) => {
         setSelectedOptions({ ...selectedOptions, [option.type]: option.value })
@@ -66,6 +68,7 @@ export const EvaluationsEdit = ({
 
     const handleSaveEvaluation = async (e: any) => {
         e.preventDefault()
+        setLoading(true)
         try {
             const { response } = await fetch.updatedReference(
                 project.id,
@@ -77,6 +80,8 @@ export const EvaluationsEdit = ({
             alert('Projeto avaliado com sucesso!')
         } catch (error) {
             console.log('handleSaveEvaluationError', error)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -90,41 +95,54 @@ export const EvaluationsEdit = ({
 
     return (
         <PageAppWrapper>
-            <PageHeaderWrapper>
-                <section className="h-2/3 flex w-full items-center justify-center">
-                    <img src="/icons/logo-black.svg" alt="" className="h-5" />
-                </section>
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <PageHeaderWrapper>
+                        <section className="h-2/3 flex w-full items-center justify-center">
+                            <img
+                                src="/icons/logo-black.svg"
+                                alt=""
+                                className="h-5"
+                            />
+                        </section>
 
-                <BreadCrumb links={breadCrumbLinks} />
-            </PageHeaderWrapper>
+                        <BreadCrumb links={breadCrumbLinks} />
+                    </PageHeaderWrapper>
 
-            <PageMainWrapper>
-                <section className="relative">
-                    <img
-                        src={project.project_thumbnail}
-                        alt=""
-                        className="h-80 w-full object-cover rounded"
-                    />
-                </section>
+                    <PageMainWrapper>
+                        <section className="relative">
+                            <img
+                                src={project.project_thumbnail}
+                                alt=""
+                                className="h-80 w-full object-cover rounded"
+                            />
+                        </section>
 
-                <Form>
-                    <FieldSet>
-                        <Legend>{project.project_name}</Legend>
+                        <Form>
+                            <FieldSet>
+                                <Legend>{project.project_name}</Legend>
 
-                        <FormRadioSection
-                            option={emotions}
-                            selectedHeight={selectedOptions.emotions}
-                            onClick={handleOptionChange}
-                        />
-                    </FieldSet>
-                </Form>
-            </PageMainWrapper>
+                                <FormRadioSection
+                                    option={emotions}
+                                    selectedHeight={selectedOptions.emotions}
+                                    onClick={handleOptionChange}
+                                />
+                            </FieldSet>
+                        </Form>
+                    </PageMainWrapper>
 
-            <PageFooterWrapper>
-                <DefaultButton onClick={handleSaveEvaluation} disabled={false}>
-                    Salvar Avaliação
-                </DefaultButton>
-            </PageFooterWrapper>
+                    <PageFooterWrapper>
+                        <DefaultButton
+                            onClick={handleSaveEvaluation}
+                            disabled={false}
+                        >
+                            Salvar Avaliação
+                        </DefaultButton>
+                    </PageFooterWrapper>
+                </>
+            )}
         </PageAppWrapper>
     )
 }
