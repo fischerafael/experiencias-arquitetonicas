@@ -12,6 +12,7 @@ import { BreadCrumb } from '../../../components/BreadCrumb'
 import { IProject } from '../../../entities'
 import { CustomLink } from '../../../components/CustomLink'
 import { ProjectListItem } from '../../../components/List/ProjectItem/ProjectListItem'
+import { EmptyStateItem } from '../../../components/List/ProjectItem/EmptyStateItem'
 import { DefaultButton } from '../../../components/Button/style'
 
 const breadCrumbLinks = [
@@ -22,7 +23,7 @@ const breadCrumbLinks = [
         isFirst: true
     },
     {
-        text: 'Propostas',
+        text: 'Projetos',
         href: '/app/projects',
         isActive: true,
         isFirst: false
@@ -74,6 +75,13 @@ export const Projects = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
+                    {projects.length === 0 && (
+                        <EmptyStateItem
+                            title="alternativa de projeto"
+                            message="Crie a primeira agora mesmo para que o Ux Arch consiga prever a experiência do usuário nela."
+                        />
+                    )}
+
                     {projects?.map((project) => (
                         <ProjectListItem
                             key={project.id}
@@ -87,7 +95,7 @@ export const Projects = () => {
             <PageFooterWrapper>
                 <CustomLink href="/app/projects/edit">
                     <DefaultButton disabled={false}>
-                        Adicionar Proposta
+                        Criar Alternativa de Projeto
                     </DefaultButton>
                 </CustomLink>
             </PageFooterWrapper>

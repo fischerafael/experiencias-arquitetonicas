@@ -1,7 +1,5 @@
 import { BeakerIcon } from '@heroicons/react/outline'
 import tw from 'tailwind-styled-components'
-import { emojis } from '../../../../data'
-
 import { IProject } from '../../../../entities'
 import { getEmoji, getHashtagsArray } from '../../../../utils'
 
