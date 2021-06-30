@@ -1,5 +1,6 @@
 import { BeakerIcon } from '@heroicons/react/outline'
 import tw from 'tailwind-styled-components'
+import { emojis } from '../../../../data'
 
 import { IProject } from '../../../../entities'
 
@@ -12,6 +13,8 @@ export const EvaluationListItem = ({
     project,
     onEvaluate
 }: EvaluationListItemProps) => {
+    const userXp = displayEmoji(project.client_evaluation)
+
     return (
         <ListWrapper>
             <ListHeader>
@@ -42,6 +45,25 @@ export const EvaluationListItem = ({
                     </button>
                 </section>
             </ListHeader>
+
+            <ListFooter>
+                <section className="flex flex-col items-center gap-4">
+                    <section className="w-full flex flex-col items-center justify-center">
+                        <span className="text-xs font-bold text-center">
+                            XP Real
+                        </span>
+                        <p className="text-lg">{userXp.emoji}</p>
+                        <span className="text-center text-tiny leading-tight">
+                            {userXp.hashtags}
+                        </span>
+                    </section>
+                </section>
+
+                <section className="col-start-2 col-span-3 flex flex-col gap-2">
+                    <span className="text-xs font-bold">Características</span>
+                    <ul className="flex flex-row flex-wrap gap-1"></ul>
+                </section>
+            </ListFooter>
         </ListWrapper>
     )
 }
@@ -50,3 +72,15 @@ const ListWrapper = tw.li`
     cursor-default font-poppins flex flex-col gap-4 border-b py-8
 `
 const ListHeader = tw.header`grid grid-cols-4 gap-4`
+const ListFooter = tw.footer`grid grid-cols-4 gap-4`
+
+const displayEmoji = (evaluation: number) => {
+    if (evaluation < 1 / 8) return emojis.negativeA
+    if (evaluation < 2 / 8) return emojis.negativeB
+    if (evaluation < 3 / 8) return emojis.negativeC
+    if (evaluation < 4 / 8) return emojis.negativeD
+    if (evaluation < 5 / 8) return emojis.positiveE
+    if (evaluation < 6 / 8) return emojis.positiveF
+    if (evaluation < 7 / 8) return emojis.positiveG
+    return emojis.positiveH
+}

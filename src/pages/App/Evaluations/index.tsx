@@ -93,7 +93,7 @@ export const Evaluations = () => {
                     {references?.map((reference) => (
                         <EvaluationListItem
                             key={reference.id}
-                            project={projectOne}
+                            project={reference}
                             onEvaluate={() =>
                                 handleEvaluateProject(reference.id)
                             }
