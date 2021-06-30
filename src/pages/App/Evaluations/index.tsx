@@ -13,6 +13,7 @@ import Router from 'next/router'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { EvaluationListItem } from '../../../components/List/ProjectItem/EvaluationListItem'
 import { EmptyStateItem } from '../../../components/List/ProjectItem/EmptyStateItem'
+import { Loading } from '../../../components/Loading'
 
 const breadCrumbLinks = [
     {
