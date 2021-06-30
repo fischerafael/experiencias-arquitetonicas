@@ -280,21 +280,21 @@ export const options: IOptions = {
                 id: 'pc1',
                 text: 'A',
                 description: 'branca',
-                value: 0 / 9
+                value: 0
             },
             {
                 type: 'primary_color',
                 id: 'pc2',
                 text: 'B',
                 description: 'preta',
-                value: 1 / 9
+                value: 0.1
             },
             {
                 type: 'primary_color',
                 id: 'pc3',
                 text: 'C',
                 description: 'vermelha',
-                value: 2 / 9
+                value: 0.2
             },
             ,
             {
@@ -302,49 +302,56 @@ export const options: IOptions = {
                 id: 'pc4',
                 text: 'D',
                 description: 'laranja',
-                value: 3 / 9
+                value: 0.3
             },
             {
                 type: 'primary_color',
                 id: 'pc5',
                 text: 'E',
                 description: 'amarela',
-                value: 4 / 9
+                value: 0.4
             },
             {
                 type: 'primary_color',
                 id: 'pc6',
                 text: 'F',
                 description: 'verde',
-                value: 5 / 9
+                value: 0.5
             },
             {
                 type: 'primary_color',
                 id: 'pc7',
                 text: 'G',
                 description: 'azul',
-                value: 6 / 9
+                value: 0.6
             },
             {
                 type: 'primary_color',
                 id: 'pc8',
                 text: 'H',
                 description: 'rosa',
-                value: 7 / 9
+                value: 0.7
             },
             {
                 type: 'primary_color',
                 id: 'pc9',
                 text: 'I',
                 description: 'roxa',
-                value: 8 / 9
+                value: 0.8
             },
             {
                 type: 'primary_color',
                 id: 'pc10',
                 text: 'J',
                 description: 'marrom',
-                value: 9 / 9
+                value: 0.9
+            },
+            {
+                type: 'primary_color',
+                id: 'pc11',
+                text: 'B',
+                description: 'cinza',
+                value: 1
             }
         ]
     },
@@ -354,74 +361,81 @@ export const options: IOptions = {
         options: [
             {
                 type: 'secondary_color',
-                id: 'pc1',
+                id: 'sc1',
                 text: 'A',
                 description: 'branca',
-                value: 0 / 9
+                value: 0
             },
             {
                 type: 'secondary_color',
-                id: 'pc2',
+                id: 'sc2',
                 text: 'B',
                 description: 'preta',
-                value: 1 / 9
+                value: 0.1
             },
             {
                 type: 'secondary_color',
-                id: 'pc3',
+                id: 'sc3',
                 text: 'C',
                 description: 'vermelha',
-                value: 2 / 9
+                value: 0.2
             },
             ,
             {
                 type: 'secondary_color',
-                id: 'pc4',
+                id: 'sc4',
                 text: 'D',
                 description: 'laranja',
-                value: 3 / 9
+                value: 0.3
             },
             {
                 type: 'secondary_color',
-                id: 'pc5',
+                id: 'sc5',
                 text: 'E',
                 description: 'amarela',
-                value: 4 / 9
+                value: 0.4
             },
             {
                 type: 'secondary_color',
-                id: 'pc6',
+                id: 'sc6',
                 text: 'F',
                 description: 'verde',
-                value: 5 / 9
+                value: 0.5
             },
             {
                 type: 'secondary_color',
-                id: 'pc7',
+                id: 'sc7',
                 text: 'G',
                 description: 'azul',
-                value: 6 / 9
+                value: 0.6
             },
             {
                 type: 'secondary_color',
-                id: 'pc8',
+                id: 'sc8',
                 text: 'H',
                 description: 'rosa',
-                value: 7 / 9
+                value: 0.7
             },
             {
                 type: 'secondary_color',
-                id: 'pc9',
+                id: 'sc9',
                 text: 'I',
                 description: 'roxa',
-                value: 8 / 9
+                value: 0.8
             },
             {
                 type: 'secondary_color',
-                id: 'pc10',
+                id: 'sc10',
                 text: 'J',
                 description: 'marrom',
-                value: 9 / 9
+                value: 0.9
+            },
+            {
+                type: 'secondary_color',
+                id: 'sc11',
+                text: 'B',
+                description: 'cinza',
+                value: 1
             }
         ]
     },
@@ -431,74 +445,81 @@ export const options: IOptions = {
         options: [
             {
                 type: 'tertiary_color',
-                id: 'pc1',
+                id: 'tc1',
                 text: 'A',
                 description: 'branca',
-                value: 0 / 9
+                value: 0
             },
             {
                 type: 'tertiary_color',
-                id: 'pc2',
+                id: 'tc2',
                 text: 'B',
                 description: 'preta',
-                value: 1 / 9
+                value: 0.1
             },
             {
                 type: 'tertiary_color',
-                id: 'pc3',
+                id: 'tc3',
                 text: 'C',
                 description: 'vermelha',
-                value: 2 / 9
+                value: 0.2
             },
             ,
             {
                 type: 'tertiary_color',
-                id: 'pc4',
+                id: 'tc4',
                 text: 'D',
                 description: 'laranja',
-                value: 3 / 9
+                value: 0.3
             },
             {
                 type: 'tertiary_color',
-                id: 'pc5',
+                id: 'tc5',
                 text: 'E',
                 description: 'amarela',
-                value: 4 / 9
+                value: 0.4
             },
             {
                 type: 'tertiary_color',
-                id: 'pc6',
+                id: 'tc6',
                 text: 'F',
                 description: 'verde',
-                value: 5 / 9
+                value: 0.5
             },
             {
                 type: 'tertiary_color',
-                id: 'pc7',
+                id: 'tc7',
                 text: 'G',
                 description: 'azul',
-                value: 6 / 9
+                value: 0.6
             },
             {
                 type: 'tertiary_color',
-                id: 'pc8',
+                id: 'tc8',
                 text: 'H',
                 description: 'rosa',
-                value: 7 / 9
+                value: 0.7
             },
             {
                 type: 'tertiary_color',
-                id: 'pc9',
+                id: 'tc9',
                 text: 'I',
                 description: 'roxa',
-                value: 8 / 9
+                value: 0.8
             },
             {
                 type: 'tertiary_color',
-                id: 'pc10',
+                id: 'tc10',
                 text: 'J',
                 description: 'marrom',
-                value: 9 / 9
+                value: 0.9
+            },
+            {
+                type: 'tertiary_color',
+                id: 'tc11',
+                text: 'B',
+                description: 'cinza',
+                value: 1
             }
         ]
     },
@@ -875,49 +896,49 @@ export const options: IOptions = {
                 type: 'emotions',
                 text: '😤',
                 description: '#estressado #irritado',
-                value: 1 / 7
+                value: 0.14
             },
             {
                 id: '03',
                 type: 'emotions',
                 text: '😢',
                 description: '#triste #deprimido',
-                value: 2 / 7
+                value: 0.28
             },
             {
                 id: '04',
                 type: 'emotions',
                 text: '🥱',
                 description: '#letárgico #fatigado',
-                value: 3 / 7
+                value: 0.42
             },
             {
                 id: '05',
                 type: 'emotions',
                 text: '🙂',
                 description: '#calmo #relaxado',
-                value: 4 / 7
+                value: 0.58
             },
             {
                 id: '06',
                 type: 'emotions',
                 text: '😃',
                 description: '#sereno #contente',
-                value: 5 / 7
+                value: 0.72
             },
             {
                 id: '07',
                 type: 'emotions',
                 text: '😁',
                 description: '#feliz #alegre',
-                value: 6 / 7
+                value: 0.85
             },
             {
                 id: '08',
                 type: 'emotions',
                 text: '🤪',
                 description: '#excitado #eufórico',
-                value: 7 / 7
+                value: 1
             }
         ]
     }
