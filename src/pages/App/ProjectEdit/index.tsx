@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -5,6 +6,7 @@ import {
     PageFooterWrapper
 } from '../../../../styles/components/Layout'
 import { BreadCrumb } from '../../../components/BreadCrumb'
+import { FormEdit } from '../../../components/FormEdit'
 
 const breadCrumbLinks = [
     {
@@ -28,6 +30,23 @@ const breadCrumbLinks = [
 ]
 
 export const ProjectEdit = () => {
+    const defaultProjectImage = '/pictures/default-placeholder.png'
+
+    const [textInputs, setTextInputs] = useState({
+        project_name: '',
+        project_location: '',
+        project_thumbnail: ''
+    })
+
+    const handleTextInputChange = (e: any, key: string) => {
+        setTextInputs({
+            ...textInputs,
+            [key]: e.target.value
+        })
+    }
+
+    console.log('textInputs', textInputs)
+
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -37,6 +56,25 @@ export const ProjectEdit = () => {
 
                 <BreadCrumb links={breadCrumbLinks} />
             </PageHeaderWrapper>
+
+            <PageMainWrapper>
+                <section className="relative">
+                    <img
+                        src={
+                            textInputs.project_thumbnail
+                                ? textInputs.project_thumbnail
+                                : defaultProjectImage
+                        }
+                        alt=""
+                        className="h-80 w-full object-cover rounded"
+                    />
+                </section>
+
+                <FormEdit
+                    textInputs={textInputs}
+                    onChange={handleTextInputChange}
+                />
+            </PageMainWrapper>
         </PageAppWrapper>
     )
 }
