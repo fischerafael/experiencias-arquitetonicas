@@ -3,6 +3,7 @@ import tw from 'tailwind-styled-components'
 import { emojis } from '../../../../data'
 
 import { IProject } from '../../../../entities'
+import { options } from '../../../../model/formRadio'
 
 interface EvaluationListItemProps {
     project: IProject
@@ -14,6 +15,10 @@ export const EvaluationListItem = ({
     onEvaluate
 }: EvaluationListItemProps) => {
     const userXp = displayEmoji(project.client_evaluation)
+
+    const height = getHashtag(project.height, 'height')
+
+    console.log('height', height)
 
     return (
         <ListWrapper>
@@ -83,4 +88,16 @@ const displayEmoji = (evaluation: number) => {
     if (evaluation < 6 / 8) return emojis.positiveF
     if (evaluation < 7 / 8) return emojis.positiveG
     return emojis.positiveH
+}
+
+const getHashtag = (value: number, key: string) => {
+    const caracteristicsDescriptionAndOptions = options[key]
+    const caracteristicsOptions = caracteristicsDescriptionAndOptions.options
+    const chosenOption = caracteristicsOptions.find(
+        (option) => option.value === value
+    )
+
+    const chosenOptionDescription = chosenOption?.description
+
+    return chosenOptionDescription
 }

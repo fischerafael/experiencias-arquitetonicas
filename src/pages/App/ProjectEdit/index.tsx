@@ -114,7 +114,7 @@ export const ProjectEdit = () => {
                 credentials.jwt
             )
 
-            Router.push('/app/references')
+            Router.push('/app/projects')
 
             console.log('success handleAddReference', response)
             alert('Proposta criada com sucesso!')
