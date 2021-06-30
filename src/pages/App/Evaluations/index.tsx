@@ -7,7 +7,7 @@ import { useAuth } from '../../../hooks/useAuth'
 import {
     PageAppWrapper,
     PageHeaderWrapper,
-    PageMainWrapper
+    PageFullMainWrapper
 } from '../../../../styles/components/Layout'
 import Router from 'next/router'
 import { BreadCrumb } from '../../../components/BreadCrumb'
@@ -87,7 +87,7 @@ export const Evaluations = () => {
                 <BreadCrumb links={breadCrumbLinks} />
             </PageHeaderWrapper>
 
-            <PageMainWrapper>
+            <PageFullMainWrapper>
                 <ul className="flex flex-col w-full">
                     {references?.length === 0 && (
                         <EmptyStateItem
@@ -105,7 +105,7 @@ export const Evaluations = () => {
                         />
                     ))}
                 </ul>
-            </PageMainWrapper>
+            </PageFullMainWrapper>
         </PageAppWrapper>
     )
 }

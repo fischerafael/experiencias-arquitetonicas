@@ -41,6 +41,7 @@ export const PageAppWrapper = tw.section`
     font-poppins 
     text-xs
 `
+
 export const PageHeaderWrapper = tw.header`
     h-nav 
     bg-white 
@@ -52,11 +53,7 @@ export const PageHeaderWrapper = tw.header`
     items-center
 `
 
-interface PageMainWrapperProps {
-    fscreen?: boolean
-}
-
-export const PageMainWrapper = tw.main<PageMainWrapperProps>`
+export const PageMainWrapper = tw.main`
     bg-white    
     px-6 
     overflow-y-scroll 
@@ -64,7 +61,18 @@ export const PageMainWrapper = tw.main<PageMainWrapperProps>`
     flex 
     flex-col 
     gap-4
-    ${({ fscreen }) => (fscreen ? 'h-full' : 'h-main')}
+    h-main
+`
+
+export const PageFullMainWrapper = tw.main`
+    bg-white    
+    px-6 
+    overflow-y-scroll 
+    max-w-sm w-full     
+    flex 
+    flex-col 
+    gap-4
+    h-full
 `
 
 export const PageFooterWrapper = tw.footer`
