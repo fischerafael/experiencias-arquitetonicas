@@ -87,7 +87,7 @@ export const Evaluations = () => {
                 <BreadCrumb links={breadCrumbLinks} />
             </PageHeaderWrapper>
 
-            <PageMainWrapper fscreen={true}>
+            <PageMainWrapper>
                 <ul className="flex flex-col w-full">
                     {references?.length === 0 && (
                         <EmptyStateItem
