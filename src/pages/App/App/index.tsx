@@ -10,7 +10,7 @@ import { GhostButton } from '../../../components/Button/style'
 import { useAuth } from '../../../hooks/useAuth'
 
 export const AppPage = () => {
-    const { credentials } = useAuth()
+    const { credentials, logout } = useAuth()
 
     return (
         <PageAppWrapper>
@@ -59,9 +59,7 @@ export const AppPage = () => {
                 </nav>
             </PageMainWrapper>
             <PageFooterWrapper>
-                <CustomLink href="/">
-                    <GhostButton>Sair</GhostButton>
-                </CustomLink>
+                <GhostButton onClick={logout}>Sair</GhostButton>
             </PageFooterWrapper>
         </PageAppWrapper>
     )

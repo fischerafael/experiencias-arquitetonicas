@@ -9,6 +9,8 @@ interface AuthContextProps {
 
     credentials: ICredentials
     setCredentials: (e: ICredentials) => void
+
+    logout: () => void
 }
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -66,6 +68,24 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = () => {
+        setCredentials({
+            user_name: '',
+            user_email: '',
+            user_id: '',
+            jwt: '',
+            project_name: ''
+        })
+        Cookie.set('UX_ARCH', {
+            user_name: '',
+            user_email: '',
+            user_id: '',
+            jwt: '',
+            project_name: ''
+        })
+        Router.push('/')
+    }
+
     useEffect(() => {
         const cookies = Cookie.get('UX_ARCH')
         if (cookies) {
@@ -80,7 +100,8 @@ export const AuthProvider = ({ children }) => {
                 login,
                 newProject,
                 credentials,
-                setCredentials
+                setCredentials,
+                logout
             }}
         >
             {children}
