@@ -14,6 +14,7 @@ import {
 import { DefaultButton } from '../../../components/Button/style'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { FormEdit } from '../../../components/FormEdit'
+import { getPrediction } from '../../../brainjs'
 
 const breadCrumbLinks = [
     {
@@ -105,6 +106,10 @@ export const ProjectEdit = () => {
     }
 
     console.log('formData', formData)
+
+    const predictedValue = getPrediction('rs')
+
+    console.log('predictedValue', predictedValue)
 
     const handleAddProject = async (e: any) => {
         e.preventDefault()
