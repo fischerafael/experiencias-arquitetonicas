@@ -74,7 +74,6 @@ export const Evaluations = () => {
     }, [])
 
     const handleEvaluateProject = (referenceId: string) => {
-        alert(`${referenceId}`)
         Router.push(`/app/evaluations/${referenceId}`)
     }
 
