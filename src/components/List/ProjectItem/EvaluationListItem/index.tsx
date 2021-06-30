@@ -3,7 +3,7 @@ import tw from 'tailwind-styled-components'
 import { emojis } from '../../../../data'
 
 import { IProject } from '../../../../entities'
-import { options } from '../../../../model/formRadio'
+import { getEmoji, getHashtagsArray } from '../../../../utils'
 
 interface EvaluationListItemProps {
     project: IProject
@@ -14,11 +14,10 @@ export const EvaluationListItem = ({
     project,
     onEvaluate
 }: EvaluationListItemProps) => {
-    const userXp = displayEmoji(project.client_evaluation)
+    const userXp = getEmoji(project.client_evaluation)
+    const hashtagsArray = getHashtagsArray(project)
 
-    const height = getHashtag(project.height, 'height')
-
-    console.log('height', height)
+    console.log('hashtagsArray', hashtagsArray)
 
     return (
         <ListWrapper>
@@ -66,7 +65,16 @@ export const EvaluationListItem = ({
 
                 <section className="col-start-2 col-span-3 flex flex-col gap-2">
                     <span className="text-xs font-bold">Características</span>
-                    <ul className="flex flex-row flex-wrap gap-1"></ul>
+                    <ul className="flex flex-row flex-wrap gap-1">
+                        {hashtagsArray?.map((description, index) => (
+                            <li
+                                key={index}
+                                className="text-tiny bg-gray-100 px-1"
+                            >
+                                {description}
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             </ListFooter>
         </ListWrapper>
@@ -78,26 +86,3 @@ const ListWrapper = tw.li`
 `
 const ListHeader = tw.header`grid grid-cols-4 gap-4`
 const ListFooter = tw.footer`grid grid-cols-4 gap-4`
-
-const displayEmoji = (evaluation: number) => {
-    if (evaluation < 1 / 8) return emojis.negativeA
-    if (evaluation < 2 / 8) return emojis.negativeB
-    if (evaluation < 3 / 8) return emojis.negativeC
-    if (evaluation < 4 / 8) return emojis.negativeD
-    if (evaluation < 5 / 8) return emojis.positiveE
-    if (evaluation < 6 / 8) return emojis.positiveF
-    if (evaluation < 7 / 8) return emojis.positiveG
-    return emojis.positiveH
-}
-
-const getHashtag = (value: number, key: string) => {
-    const caracteristicsDescriptionAndOptions = options[key]
-    const caracteristicsOptions = caracteristicsDescriptionAndOptions.options
-    const chosenOption = caracteristicsOptions.find(
-        (option) => option.value === value
-    )
-
-    const chosenOptionDescription = chosenOption?.description
-
-    return chosenOptionDescription
-}
