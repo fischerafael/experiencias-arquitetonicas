@@ -10,9 +10,8 @@ import {
 } from '../../../../styles/components/Layout'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { IProject } from '../../../entities'
-import { ProjectItem } from '../../../components/List/ProjectItem'
 import { CustomLink } from '../../../components/CustomLink'
-import { SimpleListItem } from '../../../components/List/ProjectItem/SimpleListItem'
+import { ProjectListItem } from '../../../components/List/ProjectItem/ProjectListItem'
 import { DefaultButton } from '../../../components/Button/style'
 
 const breadCrumbLinks = [
@@ -29,36 +28,6 @@ const breadCrumbLinks = [
         isFirst: false
     }
 ]
-
-const projectOne: IProject = {
-    project_name: 'Museu de Arte de Niteroi',
-    project_location: 'Niteroi, Brasil',
-    predicted_evaluation: 0.2,
-    client_evaluation: 0.4,
-    height: 0,
-    size: 0,
-    elements: 0,
-    shape: 0,
-    materials: 0,
-    texture: 0,
-    tone: 0,
-    primary_color: 0,
-    secondary_color: 0,
-    tertiary_color: 0,
-    opennings: 0,
-    light: 0,
-    contrast: 0,
-    opacity: 0,
-    movement: 0,
-    people: 0,
-    context: 0,
-    landmark: 0,
-    context_interest: 0,
-    time: 0,
-    weather: 0,
-    project_thumbnail:
-        'https://i2.wp.com/www.historiadasartes.com/wp-content/uploads/2016/09/m_entrada.jpg?fit=500%2C332&ssl=1'
-}
 
 export const Projects = () => {
     const { credentials } = useAuth()
@@ -106,7 +75,7 @@ export const Projects = () => {
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
                     {projects?.map((project) => (
-                        <SimpleListItem
+                        <ProjectListItem
                             key={project.id}
                             project={project}
                             onRemove={() => handleRemoveProject(project.id)}
