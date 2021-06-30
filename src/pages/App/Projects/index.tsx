@@ -66,9 +66,21 @@ export const Projects = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
-                    <ProjectItem project={projectOne} page="projects" />
-                    <ProjectItem project={projectOne} page="projects" />
-                    <ProjectItem project={projectOne} page="projects" />
+                    <ProjectItem
+                        project={projectOne}
+                        page="projects"
+                        onRemove={() => {}}
+                    />
+                    <ProjectItem
+                        project={projectOne}
+                        page="projects"
+                        onRemove={() => {}}
+                    />
+                    <ProjectItem
+                        project={projectOne}
+                        page="projects"
+                        onRemove={() => {}}
+                    />
                 </ul>
             </PageMainWrapper>
         </PageAppWrapper>
