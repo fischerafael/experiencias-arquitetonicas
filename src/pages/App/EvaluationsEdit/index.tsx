@@ -11,6 +11,8 @@ import { options } from '../../../model/formRadio'
 import { DefaultButton } from '../../../components/Button/style'
 import { useState } from 'react'
 import { IProject } from '../../../entities'
+import { fetch } from '../../../services/api'
+import { useAuth } from '../../../hooks/useAuth'
 
 const { emotions } = options
 
@@ -36,7 +38,7 @@ const breadCrumbLinks = [
 ]
 
 interface EvaluationsEditProps {
-    project_id: string
+    id: string
     architect_id: string
     client_evaluation: number
     project_location: string
@@ -51,6 +53,7 @@ export const EvaluationsEdit = ({
 }) => {
     console.log('project', project)
 
+    const { credentials } = useAuth()
     // const defaultProjectImage = '/pictures/default-placeholder.png'
     const [selectedOptions, setSelectedOptions] = useState({ emotions: 0 })
 
@@ -59,6 +62,21 @@ export const EvaluationsEdit = ({
     }
 
     console.log('selectedOption', selectedOptions)
+
+    const handleSaveEvaluation = async (e: any) => {
+        e.preventDefault()
+        try {
+            const { response } = await fetch.updatedReference(
+                project.id,
+                selectedOptions.emotions,
+                credentials.jwt
+            )
+            console.log('handleSaveEvaluation', response)
+            alert('Projeto avaliado com sucesso!')
+        } catch (error) {
+            console.log('handleSaveEvaluationError', error)
+        }
+    }
 
     return (
         <PageAppWrapper>
@@ -93,7 +111,9 @@ export const EvaluationsEdit = ({
             </PageMainWrapper>
 
             <PageFooterWrapper>
-                <DefaultButton disabled={false}>Salvar Avaliação</DefaultButton>
+                <DefaultButton onClick={handleSaveEvaluation} disabled={false}>
+                    Salvar Avaliação
+                </DefaultButton>
             </PageFooterWrapper>
         </PageAppWrapper>
     )

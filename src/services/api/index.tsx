@@ -136,6 +136,24 @@ export const fetch = {
         } catch (error) {
             return { error }
         }
+    },
+    async updatedReference(
+        projectId: string,
+        clientEvaluation: number,
+        jwt: string
+    ) {
+        try {
+            const { data: response, status } = await api.put(
+                `/projects/${projectId}`,
+                { client_evaluation: clientEvaluation },
+                {
+                    headers: { Authorization: `Bearer ${jwt}` }
+                }
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
     }
 }
 
