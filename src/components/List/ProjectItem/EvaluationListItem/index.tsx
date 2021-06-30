@@ -15,6 +15,8 @@ export const EvaluationListItem = ({
     const userXp = getEmoji(project.client_evaluation)
     const hashtagsArray = getHashtagsArray(project)
 
+    console.log(hashtagsArray)
+
     return (
         <ListWrapper>
             <ListHeader>

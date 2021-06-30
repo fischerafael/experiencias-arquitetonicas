@@ -3,11 +3,13 @@ import { IProject } from '../entities'
 import { options } from '../model/formRadio'
 
 const getHashtag = (value: number, key: string) => {
+    console.log('value', value)
     const caracteristicsDescriptionAndOptions = options[key]
     const caracteristicsOptions = caracteristicsDescriptionAndOptions.options
     const chosenOption = caracteristicsOptions.find(
-        (option) => option.value === value
+        (option) => option.value >= value
     )
+    console.log('chosenOption', chosenOption)
     const chosenOptionDescription = chosenOption?.description
     return chosenOptionDescription
 }
@@ -21,9 +23,9 @@ export const getHashtagsArray = (project: IProject) => {
         getHashtag(project.materials, 'materials'),
         getHashtag(project.texture, 'texture'),
         getHashtag(project.tone, 'tone'),
-        getHashtag(project.primary_color, 'primary_color'),
-        getHashtag(project.secondary_color, 'secondary_color'),
-        getHashtag(project.tertiary_color, 'tertiary_color'),
+        // getHashtag(project.primary_color, 'primary_color')
+        // getHashtag(project.secondary_color, 'secondary_color'),
+        // getHashtag(project.tertiary_color, 'tertiary_color'),
         getHashtag(project.opennings, 'opennings'),
         getHashtag(project.light, 'light'),
         getHashtag(project.contrast, 'contrast'),
