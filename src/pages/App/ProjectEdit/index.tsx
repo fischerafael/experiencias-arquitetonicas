@@ -1,5 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Router from 'next/router'
+
 import { useAuth } from '../../../hooks/useAuth'
+import { fetch } from '../../../services/api'
 
 import {
     PageAppWrapper,
@@ -7,6 +10,8 @@ import {
     PageMainWrapper,
     PageFooterWrapper
 } from '../../../../styles/components/Layout'
+
+import { DefaultButton } from '../../../components/Button/style'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { FormEdit } from '../../../components/FormEdit'
 
@@ -35,7 +40,7 @@ export const ProjectEdit = () => {
     const { credentials } = useAuth()
 
     const defaultProjectImage = '/pictures/default-placeholder.png'
-    const project_type = 'reference'
+    const project_type = 'design'
 
     const [textInputs, setTextInputs] = useState({
         project_name: '',
@@ -78,6 +83,20 @@ export const ProjectEdit = () => {
         setSelectedOptions({ ...selectedOptions, [option.type]: option.value })
     }
 
+    const [buttonDisabled, setButtonDisabled] = useState(true)
+
+    useEffect(() => {
+        if (
+            textInputs.project_location != '' &&
+            textInputs.project_name != '' &&
+            textInputs.project_thumbnail != ''
+        ) {
+            setButtonDisabled(false)
+            return
+        }
+        setButtonDisabled(true)
+    }, [textInputs])
+
     const formData = {
         ...textInputs,
         ...selectedOptions,
@@ -86,6 +105,25 @@ export const ProjectEdit = () => {
     }
 
     console.log('formData', formData)
+
+    const handleAddProject = async (e: any) => {
+        e.preventDefault()
+        try {
+            const { response } = await fetch.createReference(
+                formData,
+                credentials.jwt
+            )
+
+            Router.push('/app/references')
+
+            console.log('success handleAddReference', response)
+            alert('Proposta criada com sucesso!')
+        } catch (error) {
+            console.log('handleAddReferenceError', error)
+
+            alert('Erro ao criar proposta')
+        }
+    }
 
     return (
         <PageAppWrapper>
@@ -117,6 +155,15 @@ export const ProjectEdit = () => {
                     onOptionChange={handleOptionChange}
                 />
             </PageMainWrapper>
+
+            <PageFooterWrapper>
+                <DefaultButton
+                    onClick={handleAddProject}
+                    disabled={buttonDisabled}
+                >
+                    Salvar Referência
+                </DefaultButton>
+            </PageFooterWrapper>
         </PageAppWrapper>
     )
 }
