@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react'
+
+import { IProject } from '../../../entities'
+import { useAuth } from '../../../hooks/useAuth'
+import { fetch } from '../../../services/api'
+
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -9,9 +14,7 @@ import { BreadCrumb } from '../../../components/BreadCrumb'
 import { DefaultButton } from '../../../components/Button/style'
 import { CustomLink } from '../../../components/CustomLink'
 import { SimpleListItem } from '../../../components/List/ProjectItem/SimpleListItem'
-import { IProject } from '../../../entities'
-import { useAuth } from '../../../hooks/useAuth'
-import { fetch } from '../../../services/api'
+import { EmptyStateItem } from '../../../components/List/ProjectItem/EmptyStateItem'
 
 const breadCrumbLinks = [
     {
@@ -101,6 +104,12 @@ export const ReferencesPage = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
+                    {references?.length === 0 && (
+                        <EmptyStateItem
+                            title="referência de projeto"
+                            message="Cadastre a primeira agora mesmo para que o usuário possa avaliar suas experiências."
+                        />
+                    )}
                     {references?.map((reference) => (
                         <SimpleListItem
                             key={reference.id}

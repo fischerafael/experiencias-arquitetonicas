@@ -75,7 +75,7 @@ export const Projects = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
-                    {projects.length === 0 && (
+                    {projects?.length === 0 && (
                         <EmptyStateItem
                             title="alternativa de projeto"
                             message="Crie a primeira agora mesmo para que o Ux Arch consiga prever a experiência do usuário nela."

@@ -1,18 +1,18 @@
+import { useEffect, useState } from 'react'
+
+import { IProject } from '../../../entities'
+import { fetch } from '../../../services/api'
+import { useAuth } from '../../../hooks/useAuth'
+
 import {
     PageAppWrapper,
     PageHeaderWrapper,
-    PageMainWrapper,
-    PageFooterWrapper
+    PageMainWrapper
 } from '../../../../styles/components/Layout'
 import Router from 'next/router'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { EvaluationListItem } from '../../../components/List/ProjectItem/EvaluationListItem'
-import { IProject } from '../../../entities'
-import { CustomLink } from '../../../components/CustomLink'
-import { DefaultButton } from '../../../components/Button/style'
-import { useEffect, useState } from 'react'
-import { fetch } from '../../../services/api'
-import { useAuth } from '../../../hooks/useAuth'
+import { EmptyStateItem } from '../../../components/List/ProjectItem/EmptyStateItem'
 
 const breadCrumbLinks = [
     {
@@ -89,6 +89,12 @@ export const Evaluations = () => {
 
             <PageMainWrapper fscreen={true}>
                 <ul className="flex flex-col w-full">
+                    {references?.length === 0 && (
+                        <EmptyStateItem
+                            title="referência de projeto"
+                            message="Retorne ao menu de referências e cadastre a primeira agora mesmo para que o usuário possa avaliá-la."
+                        />
+                    )}
                     {references?.map((reference) => (
                         <EvaluationListItem
                             key={reference.id}
