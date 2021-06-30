@@ -7,6 +7,8 @@ import {
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { IProject } from '../../../entities'
 import { ProjectItem } from '../../../components/List/ProjectItem'
+import { CustomLink } from '../../../components/CustomLink'
+import { DefaultButton } from '../../../components/Button/style'
 
 const breadCrumbLinks = [
     {
@@ -83,6 +85,14 @@ export const Projects = () => {
                     />
                 </ul>
             </PageMainWrapper>
+
+            <PageFooterWrapper>
+                <CustomLink href="/app/projects/edit">
+                    <DefaultButton disabled={false}>
+                        Adicionar Proposta
+                    </DefaultButton>
+                </CustomLink>
+            </PageFooterWrapper>
         </PageAppWrapper>
     )
 }
