@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react'
+import { fetch } from '../../../services/api'
+import { useAuth } from '../../../hooks/useAuth'
+
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -8,6 +12,7 @@ import { BreadCrumb } from '../../../components/BreadCrumb'
 import { IProject } from '../../../entities'
 import { ProjectItem } from '../../../components/List/ProjectItem'
 import { CustomLink } from '../../../components/CustomLink'
+import { SimpleListItem } from '../../../components/List/ProjectItem/SimpleListItem'
 import { DefaultButton } from '../../../components/Button/style'
 
 const breadCrumbLinks = [
@@ -56,6 +61,38 @@ const projectOne: IProject = {
 }
 
 export const Projects = () => {
+    const { credentials } = useAuth()
+
+    const [projects, setProjects] = useState<IProject[]>([])
+
+    console.log('projects', projects)
+
+    const handleRemoveProject = async (projectId: string) => {
+        try {
+            const { response } = await fetch.removeReference(
+                projectId,
+                credentials.jwt
+            )
+
+            setProjects(
+                projects.filter((reference) => reference.id !== projectId)
+            )
+
+            console.log('removed', response)
+            alert(`Proposta ${projectId} removida com sucesso!`)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    useEffect(() => {
+        ;(async () => {
+            const { response } = await fetch.getAllProjects(credentials.user_id)
+
+            setProjects(response)
+        })()
+    }, [])
+
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -68,21 +105,13 @@ export const Projects = () => {
 
             <PageMainWrapper>
                 <ul className="flex flex-col w-full">
-                    <ProjectItem
-                        project={projectOne}
-                        page="projects"
-                        onRemove={() => {}}
-                    />
-                    <ProjectItem
-                        project={projectOne}
-                        page="projects"
-                        onRemove={() => {}}
-                    />
-                    <ProjectItem
-                        project={projectOne}
-                        page="projects"
-                        onRemove={() => {}}
-                    />
+                    {projects?.map((project) => (
+                        <SimpleListItem
+                            key={project.id}
+                            project={project}
+                            onRemove={() => handleRemoveProject(project.id)}
+                        />
+                    ))}
                 </ul>
             </PageMainWrapper>
 

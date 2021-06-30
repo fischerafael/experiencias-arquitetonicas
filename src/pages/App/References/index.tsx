@@ -81,11 +81,11 @@ export const ReferencesPage = () => {
 
     useEffect(() => {
         ;(async () => {
-            const { response } = await fetch.getArchitectData(
+            const { response } = await fetch.getAllReferences(
                 credentials.user_id
             )
 
-            setReferences(response.projects)
+            setReferences(response)
         })()
     }, [])
 

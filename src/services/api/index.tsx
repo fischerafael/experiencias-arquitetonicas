@@ -99,6 +99,26 @@ export const fetch = {
             return { error }
         }
     },
+    async getAllReferences(architectId: string) {
+        try {
+            const { data: response, status } = await api.get(
+                `projects?architect=${architectId}&project_type=reference`
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
+    async getAllProjects(architectId: string) {
+        try {
+            const { data: response, status } = await api.get(
+                `projects?architect=${architectId}&project_type=design`
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
     async getReferenceData(referenceId: string) {
         try {
             const { data: response, status } = await api.get(
