@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useAuth } from '../../../hooks/useAuth'
+
 import {
     PageAppWrapper,
     PageHeaderWrapper,
@@ -30,7 +32,10 @@ const breadCrumbLinks = [
 ]
 
 export const ProjectEdit = () => {
+    const { credentials } = useAuth()
+
     const defaultProjectImage = '/pictures/default-placeholder.png'
+    const project_type = 'reference'
 
     const [textInputs, setTextInputs] = useState({
         project_name: '',
@@ -45,7 +50,42 @@ export const ProjectEdit = () => {
         })
     }
 
-    console.log('textInputs', textInputs)
+    const [selectedOptions, setSelectedOptions] = useState({
+        height: 0,
+        size: 0,
+        elements: 0,
+        shape: 0,
+        materials: 0,
+        texture: 0,
+        tone: 0,
+        primary_color: 0,
+        secondary_color: 0,
+        tertiary_color: 0,
+        opennings: 0,
+        light: 0,
+        contrast: 0,
+        opacity: 0,
+        movement: 0,
+        people: 0,
+        context: 0,
+        landmark: 0,
+        context_interest: 0,
+        time: 0,
+        weather: 0
+    })
+
+    const handleOptionChange = (option: { type: string; value: number }) => {
+        setSelectedOptions({ ...selectedOptions, [option.type]: option.value })
+    }
+
+    const formData = {
+        ...textInputs,
+        ...selectedOptions,
+        project_type,
+        architect: credentials.user_id
+    }
+
+    console.log('formData', formData)
 
     return (
         <PageAppWrapper>
@@ -72,7 +112,9 @@ export const ProjectEdit = () => {
 
                 <FormEdit
                     textInputs={textInputs}
-                    onChange={handleTextInputChange}
+                    onTextChange={handleTextInputChange}
+                    selectedOptions={selectedOptions}
+                    onOptionChange={handleOptionChange}
                 />
             </PageMainWrapper>
         </PageAppWrapper>
