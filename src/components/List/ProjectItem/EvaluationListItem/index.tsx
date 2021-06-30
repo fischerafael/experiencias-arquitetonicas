@@ -17,8 +17,6 @@ export const EvaluationListItem = ({
     const userXp = getEmoji(project.client_evaluation)
     const hashtagsArray = getHashtagsArray(project)
 
-    console.log('hashtagsArray', hashtagsArray)
-
     return (
         <ListWrapper>
             <ListHeader>
@@ -54,7 +52,7 @@ export const EvaluationListItem = ({
                 <section className="flex flex-col items-center gap-4">
                     <section className="w-full flex flex-col items-center justify-center">
                         <span className="text-xs font-bold text-center">
-                            XP Real
+                            XP Avaliada
                         </span>
                         <p className="text-lg">{userXp.emoji}</p>
                         <span className="text-center text-tiny leading-tight">

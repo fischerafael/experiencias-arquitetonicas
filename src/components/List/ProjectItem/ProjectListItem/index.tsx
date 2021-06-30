@@ -3,6 +3,7 @@ import tw from 'tailwind-styled-components'
 import { emojis } from '../../../../data'
 
 import { IProject } from '../../../../entities'
+import { getHashtagsArray } from '../../../../utils'
 
 interface ProjectListItemProps {
     project: IProject
@@ -14,6 +15,7 @@ export const ProjectListItem = ({
     onRemove
 }: ProjectListItemProps) => {
     const userXp = displayEmoji(project.predicted_evaluation)
+    const hashtagsArray = getHashtagsArray(project)
 
     return (
         <ListWrapper>
@@ -40,7 +42,7 @@ export const ProjectListItem = ({
                     >
                         <TrashIcon className="w-4 h-4 group-hover:text-blue-500" />
                         <span className="text-tiny font-medium tracking-tight">
-                            Avaliar
+                            Remover
                         </span>
                     </button>
                 </section>
@@ -61,7 +63,16 @@ export const ProjectListItem = ({
 
                 <section className="col-start-2 col-span-3 flex flex-col gap-2">
                     <span className="text-xs font-bold">Características</span>
-                    <ul className="flex flex-row flex-wrap gap-1"></ul>
+                    <ul className="flex flex-row flex-wrap gap-1">
+                        {hashtagsArray?.map((description, index) => (
+                            <li
+                                key={index}
+                                className="text-tiny bg-gray-100 px-1"
+                            >
+                                {description}
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             </ListFooter>
         </ListWrapper>
