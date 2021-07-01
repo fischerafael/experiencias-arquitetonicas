@@ -14,6 +14,8 @@ import {
 import { DefaultButton } from '../../../components/Button/style'
 import { BreadCrumb } from '../../../components/BreadCrumb'
 import { FormEdit } from '../../../components/FormEdit'
+import { options } from '../../../model/formRadio'
+import { getEmoji } from '../../../utils'
 
 const breadCrumbLinks = [
     {
@@ -23,7 +25,7 @@ const breadCrumbLinks = [
         isFirst: true
     },
     {
-        text: 'Referências',
+        text: 'Projetos',
         href: '/app/projects',
         isActive: false,
         isFirst: false
@@ -35,6 +37,8 @@ const breadCrumbLinks = [
         isFirst: false
     }
 ]
+
+const { emotions } = options
 
 export const ProjectEdit = () => {
     const { credentials } = useAuth()
@@ -125,6 +129,8 @@ export const ProjectEdit = () => {
         }
     }
 
+    const userXp = getEmoji(1)
+
     return (
         <PageAppWrapper>
             <PageHeaderWrapper>
@@ -157,6 +163,16 @@ export const ProjectEdit = () => {
             </PageMainWrapper>
 
             <PageFooterWrapper>
+                <section className="flex flex-col items-center justify-center leading-tight">
+                    <span className="text-tiny text-center font-bold ">
+                        XP Prevista
+                    </span>
+                    <h2 className="text-xl">{userXp.emoji}</h2>
+                    <p className="text-tiny text-center leading-tight">
+                        {userXp.hashtags}
+                    </p>
+                </section>
+
                 <DefaultButton
                     onClick={handleAddProject}
                     disabled={buttonDisabled}

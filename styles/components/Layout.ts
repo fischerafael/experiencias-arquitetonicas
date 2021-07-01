@@ -84,7 +84,7 @@ export const PageFooterWrapper = tw.footer`
     w-full 
     px-6 
     flex 
-    flex-col 
+    gap-4
     items-center 
     justify-center 
     p-6
