@@ -20,78 +20,74 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query
 
     try {
-        // const rawProjectData = await fetch.getReferenceData(id as string)
-        // if (!rawProjectData)
-        //     return res.status(200).json({ architect: 'Not found' })
+        const rawProjectData = await fetch.getReferenceData(id as string)
+        if (!rawProjectData)
+            return res.status(200).json({ architect: 'Not found' })
 
-        // const {
-        //     height,
-        //     size,
-        //     elements,
-        //     shape,
-        //     materials,
-        //     texture,
-        //     tone,
-        //     primary_color,
-        //     secondary_color,
-        //     tertiary_color,
-        //     opennings,
-        //     light,
-        //     contrast,
-        //     opacity,
-        //     movement,
-        //     people,
-        //     context,
-        //     landmark,
-        //     context_interest,
-        //     time,
-        //     weather
-        // } = rawProjectData?.response
+        const {
+            height,
+            size,
+            elements,
+            shape,
+            materials,
+            texture,
+            tone,
+            primary_color,
+            secondary_color,
+            tertiary_color,
+            opennings,
+            light,
+            contrast,
+            opacity,
+            movement,
+            people,
+            context,
+            landmark,
+            context_interest,
+            time,
+            weather
+        } = rawProjectData?.response
 
-        // const formatedProjectData = [
-        //     height,
-        //     size,
-        //     elements,
-        //     shape,
-        //     materials,
-        //     texture,
-        //     tone,
-        //     primary_color,
-        //     secondary_color,
-        //     tertiary_color,
-        //     opennings,
-        //     light,
-        //     contrast,
-        //     opacity,
-        //     movement,
-        //     people,
-        //     context,
-        //     landmark,
-        //     context_interest,
-        //     time,
-        //     weather
-        // ]
+        const formatedProjectData = [
+            height,
+            size,
+            elements,
+            shape,
+            materials,
+            texture,
+            tone,
+            primary_color,
+            secondary_color,
+            tertiary_color,
+            opennings,
+            light,
+            contrast,
+            opacity,
+            movement,
+            people,
+            context,
+            landmark,
+            context_interest,
+            time,
+            weather
+        ]
 
-        // const rawReferencesData = await fetch.getAllReferences(
-        //     rawProjectData.response.architect.id
-        // )
-        // const formatedTrainningData = formatTrainningData(
-        //     rawReferencesData?.response
-        // )
+        const rawReferencesData = await fetch.getAllReferences(
+            rawProjectData.response.architect.id
+        )
+        const formatedTrainningData = formatTrainningData(
+            rawReferencesData?.response
+        )
 
-        // net.train(formatedTrainningData)
-        // const result = net.run(formatedProjectData)[0]
+        net.train(formatedTrainningData)
+        const result = net.run(formatedProjectData)[0]
 
-        // console.log(result)
-
-        // res.status(200).json({
-        //     predicted_evaluation: result,
-        //     project_data: formatedProjectData,
-        //     trainning_data: formatedTrainningData
-        // })
+        console.log(result)
 
         res.status(200).json({
-            id: id
+            predicted_evaluation: result,
+            project_data: formatedProjectData,
+            trainning_data: formatedTrainningData
         })
     } catch (e) {
         res.status(200).json({ error: 'Error fetching data' })
