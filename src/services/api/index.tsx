@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { env } from '../../env'
 import { api } from './config'
 
 interface ICreateProject {
@@ -197,7 +198,7 @@ export const fetch = {
     async predictExperience(projectId: string) {
         try {
             const { data: response, status } = await axios.get(
-                `http://localhost:3000/api/${projectId}`
+                `${env.local}/${projectId}`
             )
             return { response, status }
         } catch (error) {
