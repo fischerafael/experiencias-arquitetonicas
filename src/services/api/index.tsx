@@ -198,7 +198,7 @@ export const fetch = {
     async predictExperience(projectId: string) {
         try {
             const { data: response, status } = await axios.get(
-                `${env.local}/${projectId}`
+                `${env}/${projectId}`
             )
             return { response, status }
         } catch (error) {
