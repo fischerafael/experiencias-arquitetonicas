@@ -118,9 +118,23 @@ export const ProjectEdit = () => {
                 credentials.jwt
             )
 
+            const { response: predictedExp } = await fetch.predictExperience(
+                response.id
+            )
+
+            const predictedEval = predictedExp.predicted_evaluation
+            console.log('predictedEval', predictedEval)
+
+            const { response: finalResponse } = await fetch.updateReference(
+                response.id,
+                predictedEval,
+                credentials.jwt
+            )
+
+            console.log('finalResponse', finalResponse)
+
             Router.push('/app/projects')
 
-            console.log('success handleAddReference', response)
             alert('Proposta criada com sucesso!')
         } catch (error) {
             console.log('handleAddReferenceError', error)
@@ -163,7 +177,7 @@ export const ProjectEdit = () => {
             </PageMainWrapper>
 
             <PageFooterWrapper>
-                <section className="flex flex-col items-center justify-center leading-tight">
+                {/* <section className="flex flex-col items-center justify-center leading-tight">
                     <span className="text-tiny text-center font-bold ">
                         XP Prevista
                     </span>
@@ -171,7 +185,7 @@ export const ProjectEdit = () => {
                     <p className="text-tiny text-center leading-tight">
                         {userXp.hashtags}
                     </p>
-                </section>
+                </section> */}
 
                 <DefaultButton
                     onClick={handleAddProject}

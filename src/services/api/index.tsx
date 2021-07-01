@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { api } from './config'
 
 interface ICreateProject {
@@ -143,6 +144,24 @@ export const fetch = {
             return { error }
         }
     },
+    async updateReference(
+        referenceId: string,
+        predictedEval: number,
+        jwt: string
+    ) {
+        try {
+            const { data: response, status } = await api.put(
+                `/projects/${referenceId}`,
+                { predicted_evaluation: predictedEval },
+                {
+                    headers: { Authorization: `Bearer ${jwt}` }
+                }
+            )
+            return { response, status }
+        } catch (error) {
+            return { error }
+        }
+    },
     async createReference(data: ICreateReference, jwt: string) {
         try {
             const { data: response, status } = await api.post(
@@ -173,6 +192,16 @@ export const fetch = {
             return { response, status }
         } catch (error) {
             return { error }
+        }
+    },
+    async predictExperience(projectId: string) {
+        try {
+            const { data: response, status } = await axios.get(
+                `http://localhost:3000/api/${projectId}`
+            )
+            return { response, status }
+        } catch (error) {
+            return { error, projectId }
         }
     }
 }
