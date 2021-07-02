@@ -139,6 +139,8 @@ export const ProjectEdit = () => {
         } catch (error) {
             console.log('handleAddReferenceError', error)
 
+            Router.push('/app/projects')
+
             alert('Erro ao criar proposta')
         }
     }
