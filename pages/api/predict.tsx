@@ -29,48 +29,54 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         weather
     } = req.body
 
-    const { architect_id } = req.headers
+    try {
+        const { architect_id } = req.headers
 
-    const formatedProjectData = [
-        height,
-        size,
-        elements,
-        shape,
-        materials,
-        texture,
-        tone,
-        primary_color,
-        secondary_color,
-        tertiary_color,
-        opennings,
-        light,
-        contrast,
-        opacity,
-        movement,
-        people,
-        context,
-        landmark,
-        context_interest,
-        time,
-        weather
-    ]
+        const formatedProjectData = [
+            height,
+            size,
+            elements,
+            shape,
+            materials,
+            texture,
+            tone,
+            primary_color,
+            secondary_color,
+            tertiary_color,
+            opennings,
+            light,
+            contrast,
+            opacity,
+            movement,
+            people,
+            context,
+            landmark,
+            context_interest,
+            time,
+            weather
+        ]
 
-    const rawReferencesData = await fetch.getAllReferences(
-        architect_id as string
-    )
+        const rawReferencesData = await fetch.getAllReferences(
+            architect_id as string
+        )
 
-    const formatedTrainningData = formatTrainningData(
-        rawReferencesData.response
-    )
+        const formatedTrainningData = formatTrainningData(
+            rawReferencesData.response
+        )
 
-    net.train(formatedTrainningData)
-    const result = net.run(formatedProjectData)[0]
+        net.train(formatedTrainningData)
+        const result = net.run(formatedProjectData)[0]
 
-    res.status(200).json({
-        predicted_evaluation: result,
-        project_data: formatedProjectData,
-        trainning_data: formatedTrainningData
-    })
+        res.status(200).json({
+            predicted_evaluation: result,
+            project_data: formatedProjectData,
+            trainning_data: formatedTrainningData
+        })
+    } catch (e) {
+        res.status(400).json({
+            e
+        })
+    }
 }
 
 const formatTrainningData = (data: any[]) => {
