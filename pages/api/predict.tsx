@@ -1,5 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { fetch } from '../../src/services/api'
+import brain from 'brain.js'
+
+const net = new brain.NeuralNetwork({ hiddenLayers: [3] })
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const {
@@ -60,14 +63,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         rawReferencesData.response
     )
 
+    net.train(formatedTrainningData)
+    const result = net.run(formatedProjectData)[0]
+
     res.status(200).json({
-        message: {
-            height,
-            size,
-            elements,
-            shape,
-            formatedTrainningData
-        }
+        predicted_evaluation: result,
+        project_data: formatedProjectData,
+        trainning_data: formatedTrainningData
     })
 }
 
