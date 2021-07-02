@@ -68,7 +68,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const result = net.run(formatedProjectData)[0]
 
         res.status(200).json({
-            predicted_evaluation: result,
+            // predicted_evaluation: result,
             project_data: formatedProjectData,
             trainning_data: formatedTrainningData
         })
