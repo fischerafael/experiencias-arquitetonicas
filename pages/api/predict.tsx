@@ -64,8 +64,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             rawReferencesData.response
         )
 
-        net.train(formatedTrainningData)
-        const result = net.run(formatedProjectData)[0]
+        // net.train(formatedTrainningData)
+        // const result = net.run(formatedProjectData)[0]
 
         res.status(200).json({
             // predicted_evaluation: result,
