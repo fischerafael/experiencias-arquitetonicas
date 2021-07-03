@@ -102,10 +102,13 @@ export const ProjectEdit = () => {
         setButtonDisabled(true)
     }, [textInputs])
 
+    const [predictedEmotion, setPredictedEmotion] = useState(0.5)
+
     const formData = {
         ...textInputs,
         ...selectedOptions,
         project_type,
+        predicted_evaluation: predictedEmotion,
         architect: credentials.user_id
     }
 
@@ -119,21 +122,6 @@ export const ProjectEdit = () => {
                 credentials.jwt
             )
 
-            // const { response: predictedExp } = await fetch.predictExperience(
-            //     response.id
-            // )
-
-            // const predictedEval = predictedExp.predicted_evaluation
-            // console.log('predictedEval', predictedEval)
-
-            // const { response: finalResponse } = await fetch.updateReference(
-            //     response.id,
-            //     predictedEval,
-            //     credentials.jwt
-            // )
-
-            // console.log('finalResponse', finalResponse)
-
             Router.push('/app/projects')
 
             alert('Proposta criada com sucesso!')
@@ -143,8 +131,6 @@ export const ProjectEdit = () => {
             alert('Erro ao criar proposta')
         }
     }
-
-    const [predictedEmotion, setPredictedEmotion] = useState(0.5)
 
     useEffect(() => {
         ;(async () => {
