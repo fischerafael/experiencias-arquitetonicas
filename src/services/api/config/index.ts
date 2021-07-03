@@ -13,5 +13,5 @@ const localAPIPrediction = 'http://localhost:3333'
 const prodAPIPrediction = 'https://exp-arq.herokuapp.com'
 
 export const apiPrediction = axios.create({
-    baseURL: localAPIPrediction
+    baseURL: prodAPIPrediction
 })
