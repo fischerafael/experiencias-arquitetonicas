@@ -9,6 +9,9 @@ export const api = axios.create({
     baseURL: env.production
 })
 
+const localAPIPrediction = 'http://localhost:3333'
+const prodAPIPrediction = 'https://exp-arq.herokuapp.com'
+
 export const apiPrediction = axios.create({
-    baseURL: 'https://exp-arq.herokuapp.com'
+    baseURL: localAPIPrediction
 })

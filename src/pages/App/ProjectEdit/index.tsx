@@ -16,6 +16,7 @@ import { BreadCrumb } from '../../../components/BreadCrumb'
 import { FormEdit } from '../../../components/FormEdit'
 import { options } from '../../../model/formRadio'
 import { getEmoji } from '../../../utils'
+import { apiPrediction } from '../../../services/api/config'
 
 const breadCrumbLinks = [
     {
@@ -118,20 +119,20 @@ export const ProjectEdit = () => {
                 credentials.jwt
             )
 
-            const { response: predictedExp } = await fetch.predictExperience(
-                response.id
-            )
+            // const { response: predictedExp } = await fetch.predictExperience(
+            //     response.id
+            // )
 
-            const predictedEval = predictedExp.predicted_evaluation
-            console.log('predictedEval', predictedEval)
+            // const predictedEval = predictedExp.predicted_evaluation
+            // console.log('predictedEval', predictedEval)
 
-            const { response: finalResponse } = await fetch.updateReference(
-                response.id,
-                predictedEval,
-                credentials.jwt
-            )
+            // const { response: finalResponse } = await fetch.updateReference(
+            //     response.id,
+            //     predictedEval,
+            //     credentials.jwt
+            // )
 
-            console.log('finalResponse', finalResponse)
+            // console.log('finalResponse', finalResponse)
 
             Router.push('/app/projects')
 
@@ -139,13 +140,24 @@ export const ProjectEdit = () => {
         } catch (error) {
             console.log('handleAddReferenceError', error)
 
-            Router.push('/app/projects')
-
             alert('Erro ao criar proposta')
         }
     }
 
-    const userXp = getEmoji(1)
+    const [predictedEmotion, setPredictedEmotion] = useState(0.5)
+
+    useEffect(() => {
+        ;(async () => {
+            const { data } = await apiPrediction.post(
+                `/predict/${credentials.user_id}`,
+                selectedOptions
+            )
+
+            setPredictedEmotion(data.predictedXp)
+        })()
+    }, [selectedOptions])
+
+    const userXp = getEmoji(predictedEmotion)
 
     return (
         <PageAppWrapper>
@@ -179,7 +191,7 @@ export const ProjectEdit = () => {
             </PageMainWrapper>
 
             <PageFooterWrapper>
-                {/* <section className="flex flex-col items-center justify-center leading-tight">
+                <section className="flex flex-col items-center justify-center leading-tight">
                     <span className="text-tiny text-center font-bold ">
                         XP Prevista
                     </span>
@@ -187,7 +199,7 @@ export const ProjectEdit = () => {
                     <p className="text-tiny text-center leading-tight">
                         {userXp.hashtags}
                     </p>
-                </section> */}
+                </section>
 
                 <DefaultButton
                     onClick={handleAddProject}
