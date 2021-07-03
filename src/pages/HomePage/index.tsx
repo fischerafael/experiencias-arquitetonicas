@@ -10,8 +10,13 @@ import { fetch } from '../../services/api'
 export const HomePage = () => {
     useEffect(() => {
         ;(async function () {
-            const status = await fetch.wakeUp()
-            console.log('FETCH WAKE UP API', status)
+            const { apiStatus, apiPredictionStatus } = await fetch.wakeUp()
+            console.log(
+                'API DATA',
+                apiStatus,
+                'API PREDICTION STATUS',
+                apiPredictionStatus
+            )
         })()
     }, [])
 

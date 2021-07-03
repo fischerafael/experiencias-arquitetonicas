@@ -8,3 +8,7 @@ const env = {
 export const api = axios.create({
     baseURL: env.production
 })
+
+export const apiPrediction = axios.create({
+    baseURL: 'https://exp-arq.herokuapp.com'
+})

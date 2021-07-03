@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { env } from '../../env'
-import { api } from './config'
+import { api, apiPrediction } from './config'
 
 interface ICreateProject {
     username: string
@@ -35,8 +35,13 @@ interface IUpdateUser {
 export const fetch = {
     async wakeUp() {
         try {
-            const { status } = await api.get('/')
-            return status
+            const { status: apiStatus } = await api.get('/')
+            const { status: apiPredictionStatus } = await apiPrediction.get('/')
+
+            return {
+                apiStatus,
+                apiPredictionStatus
+            }
         } catch (error) {
             return error
         }
